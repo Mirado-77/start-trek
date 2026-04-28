@@ -3,3 +3,4 @@ pygame
 torch
 pyyaml
 Pillow
+matplotlib
