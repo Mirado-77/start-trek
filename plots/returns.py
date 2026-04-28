@@ -18,7 +18,7 @@ def plot_returns(phase: str, policy: str, out_dir: str):
 
     rows = load_csv(csv_path)
     episodes = [r["episode"] for r in rows]
-    scores = [r["score"]   for r in rows]
+    scores = [r["score"] for r in rows]
     smooth = smoothed(scores, window=10)
 
     apply_style()
