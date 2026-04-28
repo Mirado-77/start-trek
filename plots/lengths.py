@@ -24,7 +24,7 @@ def plot_episode_lengths(phase: str, policy: str, out_dir: str):
 
     color = POLICY_COLORS.get(policy, "#888888")
     ax.plot(episodes, lengths, alpha=0.3, color=color, linewidth=0.8, label="raw")
-    ax.plot(episodes, smooth,  color=color, linewidth=2, label="smoothed (10-ep)")
+    ax.plot(episodes, smooth, color=color, linewidth=2, label="smoothed (10-ep)")
 
     ax.set_title(f"Episode length | {policy} ({phase})")
     ax.set_xlabel("Episode")

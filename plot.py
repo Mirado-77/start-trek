@@ -42,8 +42,8 @@ def parse_args():
     return parser.parse_args()
 
 
+"""Return list of (phase, policy) pairs to plot."""
 def resolve_targets(phase_filter, policy_filter):
-    """Return list of (phase, policy) pairs to plot."""
     phases = [phase_filter] if phase_filter else PHASES
     policies = [policy_filter] if policy_filter else POLICIES
     return [(ph, po) for ph in phases for po in policies]
