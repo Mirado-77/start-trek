@@ -3,3 +3,6 @@ pygame
 torch
 pyyaml
 Pillow
+pandas
+matplotlib
+numpy
