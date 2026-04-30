@@ -1,3 +1,10 @@
+##
+## EPITECH PROJECT, 2026
+## starttrek
+## File description:
+## replay_buffer
+##
+
 import random
 import numpy as np
 from collections import deque
