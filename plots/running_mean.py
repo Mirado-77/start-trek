@@ -48,7 +48,7 @@ def plot_running_mean(out_dir: str):
         ax.axvline(solved_at, color="#f39c12", linestyle=":", linewidth=1.2,
                    label=f"first solved @ ep {solved_at}")
 
-    ax.set_title(f"Rolling mean over {WINDOW} consecutive episodes — DQN (eval)")
+    ax.set_title(f"Rolling mean over {WINDOW} consecutive episodes - DQN (eval)")
     ax.set_xlabel("Episode")
     ax.set_ylabel(f"Mean score (last {WINDOW} ep)")
     ax.legend()

@@ -34,7 +34,7 @@ def plot_termination_reasons(phase: str, policy: str, out_dir: str):
             ha="center", va="bottom", fontsize=10
         )
 
-    ax.set_title(f"Termination reasons — {policy} ({phase})")
+    ax.set_title(f"Termination reasons - {policy} ({phase})")
     ax.set_xlabel("Reason")
     ax.set_ylabel("Count")
 

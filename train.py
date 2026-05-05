@@ -11,7 +11,27 @@ import yaml
 import argparse
 import csv
 import os
+import random as _stdrandom
 from policies.baseline import random, heuristic
+
+
+def _seed_everything(seed: int):
+    """Seed Python's random, NumPy and Torch (CPU + CUDA) so that two runs
+    sharing a seed produce identical network init, replay sampling and
+    epsilon-greedy choices. Required for the multi-seed CI study."""
+    _stdrandom.seed(seed)
+    try:
+        import numpy as _np
+        _np.random.seed(seed)
+    except ImportError:
+        pass
+    try:
+        import torch as _torch
+        _torch.manual_seed(seed)
+        if _torch.cuda.is_available():
+            _torch.cuda.manual_seed_all(seed)
+    except ImportError:
+        pass
 
 
 LOGS_DIR   = "logs/train"
@@ -54,8 +74,8 @@ def _make_env(config: dict, run_name: str, save_video: bool, render: bool, video
     return env
 
 
-def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bool, render: bool):
-    run_name = policy_name
+def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bool, render: bool, seed_suffix: str = ""):
+    run_name = f"{policy_name}{seed_suffix}"
     os.makedirs(LOGS_DIR, exist_ok=True)
     log_path = f"{LOGS_DIR}/{run_name}.csv"
 
@@ -93,13 +113,17 @@ def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bo
     env.close()
 
 
-def train_dqn(config: dict, save_video: bool, render: bool):
+def train_dqn(config: dict, save_video: bool, render: bool, seed_suffix: str = ""):
     from policies.dqn.agent import DQNAgent
 
     train_cfg = config["train"]
     n_episodes = train_cfg["n_episodes"]
     max_steps = train_cfg["max_steps"]
     save_path = train_cfg["save_path"]
+
+    if seed_suffix:
+        base, ext = os.path.splitext(save_path)
+        save_path = f"{base}{seed_suffix}{ext}"
 
     run_name = os.path.splitext(os.path.basename(save_path))[0]
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
@@ -158,11 +182,18 @@ if __name__ == "__main__":
     parser.add_argument("--episodes", type=int, default=100)
     parser.add_argument("--video", action="store_true")
     parser.add_argument("--render", action="store_true")
+    parser.add_argument("--seed", type=int, default=None,
+                        help="Override config seed and suffix run name with _s<seed>")
     args = parser.parse_args()
 
     config = load_config(args.config)
+    seed_suffix = ""
+    if args.seed is not None:
+        config["env"]["seed"] = args.seed
+        seed_suffix = f"_s{args.seed}"
+    _seed_everything(config["env"]["seed"])
 
     if args.policy == "dqn":
-        train_dqn(config, args.video, args.render)
+        train_dqn(config, args.video, args.render, seed_suffix)
     else:
-        run_baseline(config, args.policy, args.episodes, args.video, args.render)
+        run_baseline(config, args.policy, args.episodes, args.video, args.render, seed_suffix)

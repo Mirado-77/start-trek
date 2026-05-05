@@ -62,8 +62,8 @@ def _write_log(log_path: str, rows: list):
             writer.writerow(r)
 
 
-def evaluate(config: dict, policy_name: str, n_episodes: int, save_video: bool, render: bool):
-    run_name = policy_name
+def evaluate(config: dict, policy_name: str, n_episodes: int, save_video: bool, render: bool, seed_suffix: str = ""):
+    run_name = f"{policy_name}{seed_suffix}"
     os.makedirs(LOGS_DIR, exist_ok=True)
     log_path = f"{LOGS_DIR}/{run_name}.csv"
 
@@ -96,10 +96,13 @@ def evaluate(config: dict, policy_name: str, n_episodes: int, save_video: bool, 
     env.close()
 
 
-def eval_dqn(config: dict, n_episodes: int, save_video: bool, render: bool):
+def eval_dqn(config: dict, n_episodes: int, save_video: bool, render: bool, seed_suffix: str = ""):
     from policies.dqn.agent import DQNAgent
 
     save_path = config["train"]["save_path"]
+    if seed_suffix:
+        base, ext = os.path.splitext(save_path)
+        save_path = f"{base}{seed_suffix}{ext}"
     run_name = os.path.splitext(os.path.basename(save_path))[0]
 
     os.makedirs(LOGS_DIR, exist_ok=True)
@@ -147,11 +150,17 @@ if __name__ == "__main__":
     parser.add_argument("--episodes", type=int, default=100)
     parser.add_argument("--video", action="store_true")
     parser.add_argument("--render", action="store_true")
+    parser.add_argument("--seed", type=int, default=None,
+                        help="Override config seed and suffix run name with _s<seed>")
     args = parser.parse_args()
 
     config = load_config(args.config)
+    seed_suffix = ""
+    if args.seed is not None:
+        config["env"]["seed"] = args.seed
+        seed_suffix = f"_s{args.seed}"
 
     if args.policy == "dqn":
-        eval_dqn(config, args.episodes, args.video, args.render)
+        eval_dqn(config, args.episodes, args.video, args.render, seed_suffix)
     else:
-        evaluate(config, args.policy, args.episodes, args.video, args.render)
+        evaluate(config, args.policy, args.episodes, args.video, args.render, seed_suffix)
