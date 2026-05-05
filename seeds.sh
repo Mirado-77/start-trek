@@ -19,16 +19,16 @@ for s in "${SEEDS[@]}"; do
   echo "=================== seed $s ==================="
 
   echo "[random]    train + eval"
-  python train.py --policy random    --config config/default.yaml --episodes 100 --seed "$s"
-  python eval.py  --policy random    --config config/default.yaml --episodes 100 --seed "$s"
+  python train.py --policy random --config config/default.yaml --episodes 100 --seed "$s"
+  python eval.py --policy random --config config/default.yaml --episodes 100 --seed "$s"
 
   echo "[heuristic] train + eval"
   python train.py --policy heuristic --config config/default.yaml --episodes 100 --seed "$s"
-  python eval.py  --policy heuristic --config config/default.yaml --episodes 100 --seed "$s"
+  python eval.py --policy heuristic --config config/default.yaml --episodes 100 --seed "$s"
 
   echo "[dqn]       train + eval"
-  python train.py --policy dqn       --config config/dqn.yaml                    --seed "$s"
-  python eval.py  --policy dqn       --config config/dqn.yaml     --episodes 100 --seed "$s"
+  python train.py --policy dqn --config config/dqn.yaml --seed "$s"
+  python eval.py --policy dqn --config config/dqn.yaml --episodes 100 --seed "$s"
 done
 
 echo ""
