@@ -1,5 +1,8 @@
 """
 _io.py - Shared utilities: CSV loading, path resolution, output saving.
+
+Flat layout:
+    logs/<phase>/<run_name>.csv
 """
 
 import csv
@@ -7,16 +10,14 @@ import os
 from typing import Optional
 
 
-def resolve_csv_path(phase: str, policy: str) -> Optional[str]:
-    base = os.path.join("logs", phase, policy)
-    for subdir in ("default", "videos", "images"):
-        folder = os.path.join(base, subdir)
-        if not os.path.isdir(folder):
-            continue
-        candidates = [f for f in os.listdir(folder) if f.endswith(".csv")]
-        if candidates:
-            return os.path.join(folder, sorted(candidates)[-1])
-    return None
+def resolve_csv_path(phase: str, run_name: str) -> Optional[str]:
+    """Return logs/<phase>/<run_name>.csv if it exists, else None."""
+    path = os.path.join("logs", phase, f"{run_name}.csv")
+    return path if os.path.isfile(path) else None
+
+
+def resolve_train_dqn_csv_path(run_name: str = "dqn") -> Optional[str]:
+    return resolve_csv_path("train", run_name)
 
 
 def load_csv(path: str) -> list[dict]:
@@ -29,7 +30,7 @@ def load_csv(path: str) -> list[dict]:
                 "length": int(row["length"]),
                 "termination_reason": row["termination_reason"],
                 "epsilon": float(row["epsilon"]) if "epsilon" in row else None,
-                "loss": float(row["loss"]) if "loss" in row else None,
+                "mean_loss": float(row["mean_loss"]) if "mean_loss" in row else None,
             })
     return rows
 

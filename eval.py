@@ -14,6 +14,10 @@ import os
 from policies.baseline import random, heuristic
 
 
+LOGS_DIR   = "logs/eval"
+VIDEOS_DIR = "assets/videos/eval"
+
+
 def load_config(path: str) -> dict:
     with open(path, "r") as f:
         return yaml.safe_load(f)
@@ -26,77 +30,82 @@ POLICIES = {
 }
 
 
-def evaluate(config: dict, policy_name: str, n_episodes: int, save_video: bool, render: bool):
-    typeOfSave = "videos" if save_video else "default"
+def _resolve_render_mode(config: dict, save_video: bool, render: bool) -> str:
+    if render:
+        return "human"
+    if save_video:
+        return "rgb_array"
+    return config["env"].get("render_mode", "rgb_array")
 
-    os.makedirs(f"assets/eval/videos/{policy_name}", exist_ok=True)
-    os.makedirs(f"logs/eval/{policy_name}/{typeOfSave}", exist_ok=True)
 
-    render_mode = "human" if render else "rgb_array" if save_video else config["env"].get("render_mode", "rgb_array")
-
+def _make_env(config: dict, run_name: str, save_video: bool, render: bool):
+    render_mode = _resolve_render_mode(config, save_video, render)
     env = gym.make(config["env"]["name"], render_mode=render_mode)
 
     if save_video:
+        video_folder = f"{VIDEOS_DIR}/{run_name}"
+        os.makedirs(video_folder, exist_ok=True)
         env = RecordVideo(
             env,
-            video_folder=f"assets/eval/videos/{policy_name}",
+            video_folder=video_folder,
             episode_trigger=lambda ep: ep % 10 == 0,
-            name_prefix=f"{policy_name}_eval",
+            name_prefix=f"{run_name}_eval",
         )
+    return env
 
-    policy = POLICIES[policy_name]
 
-    log_path = f"logs/eval/{policy_name}/{typeOfSave}/{policy_name}_eval_{typeOfSave}.csv"
-    scores = []
-
+def _write_log(log_path: str, rows: list):
     with open(log_path, "w", newline="") as f:
         writer = csv.writer(f, delimiter=',')
         writer.writerow(["episode", "score", "length", "termination_reason"])
+        for r in rows:
+            writer.writerow(r)
 
-        for ep in range(n_episodes):
-            obs, info = env.reset(seed=config["env"]["seed"] + ep)
-            total_reward = 0.0
-            length = 0
-            terminated = truncated = False
 
-            while not (terminated or truncated):
-                action = policy(obs, env)
-                obs, reward, terminated, truncated, info = env.step(action)
-                total_reward += reward
-                length += 1
+def evaluate(config: dict, policy_name: str, n_episodes: int, save_video: bool, render: bool):
+    run_name = policy_name
+    os.makedirs(LOGS_DIR, exist_ok=True)
+    log_path = f"{LOGS_DIR}/{run_name}.csv"
 
-            reason = "crash" if terminated else "truncated"
-            scores.append(total_reward)
-            print(f"[ep {ep+1:03d}] score: {total_reward:8.2f} | length: {length:4d} | {reason}")
-            writer.writerow([ep + 1, round(total_reward, 2), length, reason])
+    env = _make_env(config, run_name, save_video, render)
+    policy = POLICIES[policy_name]
+    scores = []
+    rows_out = []
 
+    for ep in range(n_episodes):
+        obs, info = env.reset(seed=config["env"]["seed"] + ep)
+        total_reward = 0.0
+        length = 0
+        terminated = truncated = False
+
+        while not (terminated or truncated):
+            action = policy(obs, env)
+            obs, reward, terminated, truncated, info = env.step(action)
+            total_reward += reward
+            length += 1
+
+        reason = "crash" if terminated else "truncated"
+        scores.append(total_reward)
+        rows_out.append([ep + 1, round(total_reward, 2), length, reason])
+        print(f"[ep {ep+1:03d}] score: {total_reward:8.2f} | length: {length:4d} | {reason}")
+
+    _write_log(log_path, rows_out)
     mean = sum(scores) / len(scores)
     print(f"\nMean score over {n_episodes} episodes: {mean:.2f}")
     print(f"Logs saved to {log_path}")
     env.close()
 
 
-# Evaluate a trained DQN agent in pure greedy mode (epsilon = 0).
-# Loads weights from the path specified in config["train"]["save_path"].
 def eval_dqn(config: dict, n_episodes: int, save_video: bool, render: bool):
     from policies.dqn.agent import DQNAgent
 
     save_path = config["train"]["save_path"]
-    typeOfSave = "videos" if save_video else "default"
+    run_name = os.path.splitext(os.path.basename(save_path))[0]
 
-    os.makedirs("assets/eval/videos/dqn", exist_ok=True)
-    os.makedirs(f"logs/eval/dqn/{typeOfSave}", exist_ok=True)
+    os.makedirs(LOGS_DIR, exist_ok=True)
+    log_path = f"{LOGS_DIR}/{run_name}.csv"
 
-    render_mode = "human" if render else "rgb_array" if save_video else config["env"].get("render_mode", "rgb_array")
-    env = gym.make(config["env"]["name"], render_mode=render_mode)
-
-    if save_video:
-        env = RecordVideo(
-            env,
-            video_folder="assets/eval/videos/dqn",
-            episode_trigger=lambda ep: ep % 10 == 0,
-            name_prefix="dqn_eval",
-        )
+    env = _make_env(config, run_name, save_video, render)
 
     obs_dim = env.observation_space.shape[0]
     n_actions = env.action_space.n
@@ -104,30 +113,27 @@ def eval_dqn(config: dict, n_episodes: int, save_video: bool, render: bool):
     agent.load(save_path)
     agent.epsilon = 0.0
 
-    log_path = f"logs/eval/dqn/{typeOfSave}/dqn_eval_{typeOfSave}.csv"
     scores = []
+    rows_out = []
 
-    with open(log_path, "w", newline="") as f:
-        writer = csv.writer(f, delimiter=',')
-        writer.writerow(["episode", "score", "length", "termination_reason"])
+    for ep in range(n_episodes):
+        obs, info = env.reset(seed=config["env"]["seed"] + ep)
+        total_reward = 0.0
+        length = 0
+        terminated = truncated = False
 
-        for ep in range(n_episodes):
-            obs, info = env.reset(seed=config["env"]["seed"] + ep)
-            total_reward = 0.0
-            length = 0
-            terminated = truncated = False
+        while not (terminated or truncated):
+            action = agent.select_action(obs)
+            obs, reward, terminated, truncated, info = env.step(action)
+            total_reward += reward
+            length += 1
 
-            while not (terminated or truncated):
-                action = agent.select_action(obs)
-                obs, reward, terminated, truncated, info = env.step(action)
-                total_reward += reward
-                length += 1
+        reason = "crash" if terminated else "truncated"
+        scores.append(total_reward)
+        rows_out.append([ep + 1, round(total_reward, 2), length, reason])
+        print(f"[ep {ep+1:03d}] score: {total_reward:8.2f} | length: {length:4d} | {reason}")
 
-            reason = "crash" if terminated else "truncated"
-            scores.append(total_reward)
-            print(f"[ep {ep+1:03d}] score: {total_reward:8.2f} | length: {length:4d} | {reason}")
-            writer.writerow([ep + 1, round(total_reward, 2), length, reason])
-
+    _write_log(log_path, rows_out)
     mean = sum(scores) / len(scores)
     print(f"\nMean score over {n_episodes} episodes: {mean:.2f}")
     print(f"Logs saved to {log_path}")

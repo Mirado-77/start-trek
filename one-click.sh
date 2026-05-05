@@ -18,29 +18,29 @@ echo "============================================"
 # --- Baselines ---
 
 echo ""
-echo "[1/4] Training baselines..."
-python train.py --policy random --episodes 100 --config config/default.yaml
-python train.py --policy heuristic --episodes 100 --config config/default.yaml
+echo "[1/5] Training baselines..."
+python train.py --policy random    --episodes 100 --config config/default.yaml --video
+python train.py --policy heuristic --episodes 100 --config config/default.yaml --video
 
 echo ""
-echo "[2/4] Evaluating baselines..."
-python eval.py --policy random --episodes 100 --config config/default.yaml
-python eval.py --policy heuristic --episodes 100 --config config/default.yaml
+echo "[2/5] Evaluating baselines..."
+python eval.py --policy random    --episodes 100 --config config/default.yaml --video
+python eval.py --policy heuristic --episodes 100 --config config/default.yaml --video
 
 # --- DQN ---
 
 echo ""
-echo "[3/4] Training DQN..."
-python train.py --policy dqn --config config/dqn.yaml
+echo "[3/5] Training DQN..."
+python train.py --policy dqn --config config/dqn.yaml --video
 
 echo ""
-echo "[3/4] Evaluating DQN..."
-python eval.py --policy dqn --episodes 100 --config config/dqn.yaml
+echo "[4/5] Evaluating DQN..."
+python eval.py --policy dqn --episodes 100 --config config/dqn.yaml --video
 
 # --- Plots ---
 
 echo ""
-echo "[4/4] Generating plots..."
+echo "[5/5] Generating plots..."
 python plot.py --out assets/plots
 
 echo ""
