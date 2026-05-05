@@ -14,6 +14,10 @@ import os
 from policies.baseline import random, heuristic
 
 
+LOGS_DIR   = "logs/train"
+VIDEOS_DIR = "assets/videos/train"
+
+
 def load_config(path: str) -> dict:
     with open(path, "r") as f:
         return yaml.safe_load(f)
@@ -26,27 +30,37 @@ POLICIES = {
 }
 
 
-def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bool, render: bool):
-    typeOfSave = "videos" if save_video else "default"
+def _resolve_render_mode(config: dict, save_video: bool, render: bool) -> str:
+    if render:
+        return "human"
+    if save_video:
+        return "rgb_array"
+    return config["env"].get("render_mode", "rgb_array")
 
-    os.makedirs(f"assets/train/videos/{policy_name}", exist_ok=True)
-    os.makedirs(f"logs/train/{policy_name}/{typeOfSave}", exist_ok=True)
 
-    render_mode = "human" if render else "rgb_array" if save_video else config["env"].get("render_mode", "rgb_array")
-
+def _make_env(config: dict, run_name: str, save_video: bool, render: bool, video_every: int, name_suffix: str):
+    render_mode = _resolve_render_mode(config, save_video, render)
     env = gym.make(config["env"]["name"], render_mode=render_mode)
 
     if save_video:
+        video_folder = f"{VIDEOS_DIR}/{run_name}"
+        os.makedirs(video_folder, exist_ok=True)
         env = RecordVideo(
             env,
-            video_folder=f"assets/train/videos/{policy_name}",
-            episode_trigger=lambda ep: ep % 10 == 0,
-            name_prefix=f"{policy_name}_eval",
+            video_folder=video_folder,
+            episode_trigger=lambda ep: ep % video_every == 0,
+            name_prefix=f"{run_name}{name_suffix}",
         )
+    return env
 
+
+def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bool, render: bool):
+    run_name = policy_name
+    os.makedirs(LOGS_DIR, exist_ok=True)
+    log_path = f"{LOGS_DIR}/{run_name}.csv"
+
+    env = _make_env(config, run_name, save_video, render, video_every=10, name_suffix="_train")
     policy = POLICIES[policy_name]
-
-    log_path = f"logs/train/{policy_name}/{typeOfSave}/{policy_name}_scores_{typeOfSave}.csv"
     scores = []
 
     with open(log_path, "w", newline="") as f:
@@ -65,7 +79,10 @@ def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bo
                 total_reward += reward
                 length += 1
 
-            reason = "crash" if terminated else "truncated"
+            if terminated:
+                reason = "landed" if total_reward > 0 else "crash"
+            else:
+                reason = "out_of_time"
             scores.append(total_reward)
             print(f"[ep {ep+1:03d}] score: {total_reward:8.2f} | length: {length:4d} | {reason}")
             writer.writerow([ep + 1, round(total_reward, 2), length, reason])
@@ -76,9 +93,6 @@ def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bo
     env.close()
 
 
-# Full DQN training loop: agent learns from every environment step
-# Logs per episode: score, length, termination reason, mean TD loss, epsilon
-# Saves the trained model weights at the path specified in the config
 def train_dqn(config: dict, save_video: bool, render: bool):
     from policies.dqn.agent import DQNAgent
 
@@ -87,26 +101,16 @@ def train_dqn(config: dict, save_video: bool, render: bool):
     max_steps = train_cfg["max_steps"]
     save_path = train_cfg["save_path"]
 
+    run_name = os.path.splitext(os.path.basename(save_path))[0]
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    os.makedirs("assets/train/videos/dqn", exist_ok=True)
-    os.makedirs("logs/train/dqn", exist_ok=True)
+    os.makedirs(LOGS_DIR, exist_ok=True)
+    log_path = f"{LOGS_DIR}/{run_name}.csv"
 
-    render_mode = "human" if render else "rgb_array" if save_video else config["env"].get("render_mode", "rgb_array")
-    env = gym.make(config["env"]["name"], render_mode=render_mode)
-
-    if save_video:
-        env = RecordVideo(
-            env,
-            video_folder="assets/train/videos/dqn",
-            episode_trigger=lambda ep: ep % 50 == 0,
-            name_prefix="dqn_train",
-        )
+    env = _make_env(config, run_name, save_video, render, video_every=50, name_suffix="_train")
 
     obs_dim = env.observation_space.shape[0]
     n_actions = env.action_space.n
     agent = DQNAgent(obs_dim, n_actions, config)
-
-    log_path = "logs/train/dqn/dqn_scores.csv"
 
     with open(log_path, "w", newline="") as f:
         writer = csv.writer(f, delimiter=',')
@@ -129,7 +133,11 @@ def train_dqn(config: dict, save_video: bool, render: bool):
                 total_reward += reward
                 length += 1
 
-            reason = "crash" if terminated else "truncated"
+            if terminated:
+                reason = "landed" if total_reward > 0 else "crash"
+            else:
+                reason = "out_of_time"
+
             mean_loss = sum(losses) / len(losses) if losses else 0.0
             print(
                 f"[ep {ep+1:03d}] score: {total_reward:8.2f} | length: {length:4d} "
