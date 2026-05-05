@@ -1,4 +1,4 @@
-# Start Trek
+# Start TreK
 
 Reinforcement learning agent trained to land a lunar module using the Gymnasium LunarLander-v3 environment.
 
