@@ -1,0 +1,7 @@
+phase,run,n_seeds,score_mean,score_ci95,solve_rate_mean,solve_rate_ci95,seeds
+train,random,5,-183.7996,16.5768,0.0,0.0,0;1;2;3;4
+train,heuristic,5,252.7378,0.2821,0.91,0.0,0;1;2;3;4
+train,dqn,5,177.7757,24.6066,0.6997,0.0794,0;1;2;3;4
+eval,random,5,-183.7996,16.5768,0.0,0.0,0;1;2;3;4
+eval,heuristic,5,252.7378,0.2821,0.91,0.0,0;1;2;3;4
+eval,dqn,5,242.961,41.3074,0.856,0.1362,0;1;2;3;4

@@ -1,0 +1,2033 @@
+============================================
+  Start Trek | bonus: Double DQN + wind
+============================================
+
+[1/4] Training Double DQN (no wind)...
+/home/phil/local-starttrek/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_stream, resource_exists
+[ep 001] score:  -351.59 | length:  118 | loss: 2.6321 | eps: 0.943 | crash
+[ep 002] score:  -192.36 | length:   80 | loss: 56.1410 | eps: 0.906 | crash
+[ep 003] score:  -303.56 | length:  129 | loss: 58.0093 | eps: 0.849 | crash
+[ep 004] score:  -225.12 | length:  105 | loss: 48.6314 | eps: 0.806 | crash
+[ep 005] score:   -51.50 | length:   83 | loss: 51.4786 | eps: 0.773 | crash
+[ep 006] score:   -55.68 | length:  142 | loss: 39.6577 | eps: 0.720 | crash
+[ep 007] score:   -72.14 | length:   98 | loss: 51.3151 | eps: 0.686 | crash
+[ep 008] score:  -396.04 | length:  155 | loss: 32.0265 | eps: 0.634 | crash
+[ep 009] score:   -49.26 | length:   83 | loss: 43.4235 | eps: 0.609 | crash
+[ep 010] score:  -141.18 | length:  192 | loss: 25.3491 | eps: 0.553 | crash
+[ep 011] score:   -88.77 | length:   87 | loss: 28.9647 | eps: 0.529 | crash
+[ep 012] score:  -140.58 | length:  174 | loss: 26.8014 | eps: 0.485 | crash
+[ep 013] score:  -206.50 | length:  170 | loss: 27.5233 | eps: 0.446 | crash
+[ep 014] score:   -94.13 | length:  114 | loss: 24.7615 | eps: 0.421 | crash
+[ep 015] score:    -4.15 | length:  131 | loss: 27.1775 | eps: 0.394 | crash
+[ep 016] score:   -28.39 | length:  165 | loss: 27.8071 | eps: 0.363 | crash
+[ep 017] score:   -72.88 | length:  131 | loss: 30.9890 | eps: 0.340 | crash
+[ep 018] score:  -175.41 | length:  210 | loss: 34.4175 | eps: 0.306 | crash
+[ep 019] score:  -474.59 | length:  688 | loss: 31.5043 | eps: 0.217 | crash
+[ep 020] score:  -155.55 | length:  888 | loss: 25.8846 | eps: 0.139 | crash
+[ep 021] score:  -440.43 | length:  282 | loss: 24.8040 | eps: 0.121 | crash
+[ep 022] score:   -82.02 | length: 1000 | loss: 23.2255 | eps: 0.073 | out_of_time
+[ep 023] score:  -100.33 | length: 1000 | loss: 21.8656 | eps: 0.044 | out_of_time
+[ep 024] score:   -67.80 | length: 1000 | loss: 18.5298 | eps: 0.027 | out_of_time
+[ep 025] score:   -98.33 | length: 1000 | loss: 19.6385 | eps: 0.016 | out_of_time
+[ep 026] score:   -45.98 | length: 1000 | loss: 20.6933 | eps: 0.010 | out_of_time
+[ep 027] score:   -60.54 | length: 1000 | loss: 26.0262 | eps: 0.010 | out_of_time
+[ep 028] score:   -31.65 | length: 1000 | loss: 24.4332 | eps: 0.010 | out_of_time
+[ep 029] score:  -240.06 | length:  795 | loss: 27.9948 | eps: 0.010 | crash
+[ep 030] score:    74.47 | length:  849 | loss: 36.0889 | eps: 0.010 | landed
+[ep 031] score:    67.31 | length:  968 | loss: 39.1129 | eps: 0.010 | landed
+[ep 032] score:   -16.24 | length: 1000 | loss: 37.0143 | eps: 0.010 | out_of_time
+[ep 033] score:   184.77 | length:  867 | loss: 32.4045 | eps: 0.010 | landed
+[ep 034] score:  -168.85 | length:  340 | loss: 21.6786 | eps: 0.010 | out_of_view
+[ep 035] score:   202.85 | length:  481 | loss: 30.1609 | eps: 0.010 | landed
+[ep 036] score:   226.24 | length:  206 | loss: 26.8854 | eps: 0.010 | landed
+[ep 037] score:   156.63 | length:  800 | loss: 34.3771 | eps: 0.010 | landed
+[ep 038] score:   262.90 | length:  290 | loss: 40.3078 | eps: 0.010 | landed
+[ep 039] score:  -535.26 | length:  591 | loss: 29.5180 | eps: 0.010 | crash
+[ep 040] score:   226.02 | length:  419 | loss: 31.4723 | eps: 0.010 | landed
+[ep 041] score:   133.14 | length:  978 | loss: 35.3866 | eps: 0.010 | landed
+[ep 042] score:   161.63 | length:  656 | loss: 27.6177 | eps: 0.010 | landed
+[ep 043] score:   180.33 | length:  758 | loss: 36.2146 | eps: 0.010 | landed
+[ep 044] score:     6.63 | length:  249 | loss: 41.9440 | eps: 0.010 | crash
+[ep 045] score:    56.26 | length: 1000 | loss: 38.6351 | eps: 0.010 | out_of_time
+[ep 046] score:   -89.98 | length:  648 | loss: 34.4543 | eps: 0.010 | crash
+[ep 047] score:   172.50 | length:  310 | loss: 25.7295 | eps: 0.010 | landed
+[ep 048] score:    35.12 | length:  306 | loss: 26.1310 | eps: 0.010 | crash
+[ep 049] score:    -7.81 | length: 1000 | loss: 30.5466 | eps: 0.010 | out_of_time
+[ep 050] score:   123.14 | length: 1000 | loss: 31.7723 | eps: 0.010 | out_of_time
+[ep 051] score:  -192.81 | length:  964 | loss: 30.9590 | eps: 0.010 | crash
+[ep 052] score:     2.58 | length: 1000 | loss: 28.2708 | eps: 0.010 | out_of_time
+[ep 053] score:    41.22 | length:   89 | loss: 21.7204 | eps: 0.010 | crash
+[ep 054] score:   -62.40 | length:  152 | loss: 27.8539 | eps: 0.010 | crash
+[ep 055] score:    26.46 | length:  169 | loss: 28.5042 | eps: 0.010 | crash
+[ep 056] score:   234.06 | length:  432 | loss: 28.6477 | eps: 0.010 | landed
+[ep 057] score:    11.01 | length:  147 | loss: 28.7309 | eps: 0.010 | crash
+[ep 058] score:   228.86 | length:  250 | loss: 32.1424 | eps: 0.010 | landed
+[ep 059] score:     0.28 | length:  168 | loss: 28.9401 | eps: 0.010 | crash
+[ep 060] score:   233.10 | length:  438 | loss: 32.7267 | eps: 0.010 | landed
+[ep 061] score:   233.28 | length:  367 | loss: 26.3063 | eps: 0.010 | landed
+[ep 062] score:     8.76 | length:  188 | loss: 41.3148 | eps: 0.010 | crash
+[ep 063] score:   237.67 | length:  765 | loss: 31.3035 | eps: 0.010 | landed
+[ep 064] score:     8.79 | length:  159 | loss: 38.3787 | eps: 0.010 | crash
+[ep 065] score:    29.27 | length:  106 | loss: 35.7868 | eps: 0.010 | crash
+[ep 066] score:  -102.36 | length:  569 | loss: 26.0013 | eps: 0.010 | out_of_view
+[ep 067] score:   126.71 | length: 1000 | loss: 28.5326 | eps: 0.010 | out_of_time
+[ep 068] score:   232.20 | length:  204 | loss: 27.9051 | eps: 0.010 | landed
+[ep 069] score:   133.81 | length:  909 | loss: 31.7291 | eps: 0.010 | landed
+[ep 070] score:   -17.95 | length:  161 | loss: 30.4769 | eps: 0.010 | crash
+[ep 071] score:   -13.01 | length:  116 | loss: 40.4902 | eps: 0.010 | crash
+[ep 072] score:    25.10 | length:  123 | loss: 38.3532 | eps: 0.010 | crash
+[ep 073] score:    -4.43 | length:   88 | loss: 35.7549 | eps: 0.010 | crash
+[ep 074] score:   129.66 | length: 1000 | loss: 31.2084 | eps: 0.010 | out_of_time
+[ep 075] score:    36.18 | length:  142 | loss: 26.2500 | eps: 0.010 | crash
+[ep 076] score:   254.89 | length:  592 | loss: 29.3459 | eps: 0.010 | landed
+[ep 077] score:   112.23 | length: 1000 | loss: 32.3714 | eps: 0.010 | out_of_time
+[ep 078] score:   -20.72 | length:  109 | loss: 28.6306 | eps: 0.010 | crash
+[ep 079] score:    34.19 | length:  118 | loss: 33.2499 | eps: 0.010 | crash
+[ep 080] score:   -10.26 | length:  219 | loss: 35.1879 | eps: 0.010 | crash
+[ep 081] score:   130.53 | length: 1000 | loss: 25.8619 | eps: 0.010 | out_of_time
+[ep 082] score:   -93.80 | length:  726 | loss: 30.5578 | eps: 0.010 | crash
+[ep 083] score:   291.49 | length:  250 | loss: 28.6530 | eps: 0.010 | landed
+[ep 084] score:   -17.03 | length:  123 | loss: 32.5352 | eps: 0.010 | crash
+[ep 085] score:     4.95 | length:  105 | loss: 17.8470 | eps: 0.010 | crash
+[ep 086] score:   292.00 | length:  261 | loss: 37.3560 | eps: 0.010 | landed
+[ep 087] score:   266.95 | length:  266 | loss: 28.0535 | eps: 0.010 | landed
+[ep 088] score:   -24.67 | length:  110 | loss: 14.0192 | eps: 0.010 | crash
+[ep 089] score:   269.52 | length:  232 | loss: 26.3604 | eps: 0.010 | landed
+[ep 090] score:   239.18 | length:  319 | loss: 32.9927 | eps: 0.010 | landed
+[ep 091] score:     4.09 | length:  132 | loss: 13.3946 | eps: 0.010 | crash
+[ep 092] score:     0.12 | length:  108 | loss: 17.4660 | eps: 0.010 | crash
+[ep 093] score:   -12.37 | length:  107 | loss: 24.6421 | eps: 0.010 | crash
+[ep 094] score:    -3.76 | length:  134 | loss: 22.5461 | eps: 0.010 | crash
+[ep 095] score:     0.89 | length:  120 | loss: 27.8505 | eps: 0.010 | crash
+[ep 096] score:    11.32 | length:  173 | loss: 27.8999 | eps: 0.010 | crash
+[ep 097] score:   -30.48 | length:  100 | loss: 29.9066 | eps: 0.010 | crash
+[ep 098] score:   -40.23 | length:  124 | loss: 20.8444 | eps: 0.010 | crash
+[ep 099] score:   -27.20 | length:  115 | loss: 21.9405 | eps: 0.010 | crash
+[ep 100] score:    -7.88 | length:  185 | loss: 33.7725 | eps: 0.010 | crash
+[ep 101] score:   -13.95 | length:  106 | loss: 15.4234 | eps: 0.010 | crash
+[ep 102] score:   -19.80 | length:  110 | loss: 11.4742 | eps: 0.010 | crash
+[ep 103] score:    26.64 | length:  128 | loss: 20.3919 | eps: 0.010 | crash
+[ep 104] score:   -70.57 | length:  126 | loss: 34.2847 | eps: 0.010 | crash
+[ep 105] score:   140.98 | length:  536 | loss: 26.6963 | eps: 0.010 | landed
+[ep 106] score:     9.09 | length: 1000 | loss: 24.7417 | eps: 0.010 | out_of_time
+[ep 107] score:   308.92 | length:  253 | loss: 30.0543 | eps: 0.010 | landed
+[ep 108] score:   253.25 | length:  353 | loss: 24.8238 | eps: 0.010 | landed
+[ep 109] score:    17.01 | length:  141 | loss: 30.2758 | eps: 0.010 | crash
+[ep 110] score:   -12.16 | length:  109 | loss: 27.2069 | eps: 0.010 | crash
+[ep 111] score:   229.59 | length:  543 | loss: 30.4928 | eps: 0.010 | landed
+[ep 112] score:  -232.06 | length:  177 | loss: 33.3363 | eps: 0.010 | out_of_view
+[ep 113] score:    20.39 | length:  112 | loss: 33.2390 | eps: 0.010 | crash
+[ep 114] score:   -89.81 | length:  244 | loss: 41.7486 | eps: 0.010 | crash
+[ep 115] score:   -27.24 | length:  130 | loss: 48.8908 | eps: 0.010 | crash
+[ep 116] score:   -22.66 | length:  115 | loss: 34.5539 | eps: 0.010 | crash
+[ep 117] score:   -25.57 | length:  104 | loss: 21.2605 | eps: 0.010 | crash
+[ep 118] score:  -172.84 | length:  215 | loss: 33.5732 | eps: 0.010 | out_of_view
+[ep 119] score:   -53.41 | length:   97 | loss: 31.2444 | eps: 0.010 | crash
+[ep 120] score:   134.01 | length: 1000 | loss: 34.9792 | eps: 0.010 | out_of_time
+[ep 121] score:   268.88 | length:  254 | loss: 27.4402 | eps: 0.010 | landed
+[ep 122] score:    41.29 | length:  117 | loss: 26.1434 | eps: 0.010 | crash
+[ep 123] score:   -92.55 | length:  463 | loss: 37.7344 | eps: 0.010 | crash
+[ep 124] score:   251.46 | length:  290 | loss: 29.8514 | eps: 0.010 | landed
+[ep 125] score:   257.98 | length:  162 | loss: 22.0890 | eps: 0.010 | landed
+[ep 126] score:    52.92 | length:   97 | loss: 13.6743 | eps: 0.010 | crash
+[ep 127] score:   310.98 | length:  238 | loss: 35.8673 | eps: 0.010 | landed
+[ep 128] score:    26.93 | length:  106 | loss: 47.3413 | eps: 0.010 | crash
+[ep 129] score:   260.96 | length:  467 | loss: 36.1691 | eps: 0.010 | landed
+[ep 130] score:    37.07 | length:  105 | loss: 58.3915 | eps: 0.010 | crash
+[ep 131] score:   252.79 | length:  237 | loss: 49.2804 | eps: 0.010 | landed
+[ep 132] score:   -12.00 | length:   92 | loss: 23.2657 | eps: 0.010 | crash
+[ep 133] score:   264.19 | length:  405 | loss: 53.1877 | eps: 0.010 | landed
+[ep 134] score:  -103.22 | length:  127 | loss: 31.1643 | eps: 0.010 | crash
+[ep 135] score:    49.49 | length:  111 | loss: 42.6581 | eps: 0.010 | crash
+[ep 136] score:   246.67 | length:  238 | loss: 44.8671 | eps: 0.010 | landed
+[ep 137] score:   297.12 | length:  232 | loss: 51.3620 | eps: 0.010 | landed
+[ep 138] score:   255.31 | length:  213 | loss: 29.9372 | eps: 0.010 | landed
+[ep 139] score:    20.58 | length:  130 | loss: 50.5352 | eps: 0.010 | crash
+[ep 140] score:   260.89 | length:  406 | loss: 51.6318 | eps: 0.010 | landed
+[ep 141] score:   239.54 | length:  219 | loss: 47.3184 | eps: 0.010 | landed
+[ep 142] score:   -37.41 | length:  135 | loss: 108.7605 | eps: 0.010 | crash
+[ep 143] score:   -53.03 | length:   60 | loss: 30.5720 | eps: 0.010 | crash
+[ep 144] score:   -55.61 | length:   98 | loss: 63.6404 | eps: 0.010 | crash
+[ep 145] score:   125.78 | length: 1000 | loss: 50.5775 | eps: 0.010 | out_of_time
+[ep 146] score:  -129.45 | length:  350 | loss: 56.1436 | eps: 0.010 | out_of_view
+[ep 147] score:    66.48 | length:  154 | loss: 68.4045 | eps: 0.010 | crash
+[ep 148] score:   223.58 | length:  200 | loss: 52.8733 | eps: 0.010 | landed
+[ep 149] score:    45.61 | length:  148 | loss: 32.4553 | eps: 0.010 | crash
+[ep 150] score:   246.24 | length:  527 | loss: 55.8525 | eps: 0.010 | landed
+[ep 151] score:   279.36 | length:  292 | loss: 46.5290 | eps: 0.010 | landed
+[ep 152] score:   264.64 | length:  352 | loss: 34.4507 | eps: 0.010 | landed
+[ep 153] score:   210.30 | length:  508 | loss: 44.2760 | eps: 0.010 | landed
+[ep 154] score:   -65.90 | length:  118 | loss: 22.3701 | eps: 0.010 | crash
+[ep 155] score:   -25.61 | length:  127 | loss: 51.8147 | eps: 0.010 | crash
+[ep 156] score:   -56.10 | length:   63 | loss: 55.2201 | eps: 0.010 | crash
+[ep 157] score:   266.18 | length:  243 | loss: 37.6763 | eps: 0.010 | landed
+[ep 158] score:   128.55 | length: 1000 | loss: 69.8123 | eps: 0.010 | out_of_time
+[ep 159] score:   308.82 | length:  305 | loss: 24.6753 | eps: 0.010 | landed
+[ep 160] score:   224.75 | length:  955 | loss: 52.1905 | eps: 0.010 | landed
+[ep 161] score:   -24.74 | length:  119 | loss: 27.9285 | eps: 0.010 | crash
+[ep 162] score:   252.86 | length:  270 | loss: 59.2359 | eps: 0.010 | landed
+[ep 163] score:    24.52 | length:   77 | loss: 29.4518 | eps: 0.010 | crash
+[ep 164] score:   257.01 | length:  439 | loss: 54.8359 | eps: 0.010 | landed
+[ep 165] score:   250.86 | length:  273 | loss: 44.7973 | eps: 0.010 | landed
+[ep 166] score:   227.86 | length:  262 | loss: 44.3426 | eps: 0.010 | landed
+[ep 167] score:   242.21 | length:  202 | loss: 36.7571 | eps: 0.010 | landed
+[ep 168] score:   264.51 | length:  419 | loss: 57.7797 | eps: 0.010 | landed
+[ep 169] score:   -43.57 | length:  108 | loss: 52.0379 | eps: 0.010 | crash
+[ep 170] score:   145.31 | length:  417 | loss: 69.7409 | eps: 0.010 | landed
+[ep 171] score:   209.95 | length:  459 | loss: 58.9102 | eps: 0.010 | landed
+[ep 172] score:   256.18 | length:  234 | loss: 45.8929 | eps: 0.010 | landed
+[ep 173] score:   249.20 | length:  761 | loss: 57.7378 | eps: 0.010 | landed
+[ep 174] score:     4.72 | length:  166 | loss: 60.9965 | eps: 0.010 | crash
+[ep 175] score:   -27.08 | length: 1000 | loss: 77.4394 | eps: 0.010 | out_of_time
+[ep 176] score:   279.64 | length:  310 | loss: 52.8088 | eps: 0.010 | landed
+[ep 177] score:   256.11 | length:  301 | loss: 36.3205 | eps: 0.010 | landed
+[ep 178] score:   242.42 | length:  183 | loss: 88.1155 | eps: 0.010 | landed
+[ep 179] score:   283.06 | length:  262 | loss: 59.7903 | eps: 0.010 | landed
+[ep 180] score:   226.45 | length:  304 | loss: 50.3974 | eps: 0.010 | landed
+[ep 181] score:   223.05 | length:  949 | loss: 67.7087 | eps: 0.010 | landed
+[ep 182] score:  -164.14 | length:  188 | loss: 64.9024 | eps: 0.010 | crash
+[ep 183] score:   233.57 | length:  243 | loss: 59.6411 | eps: 0.010 | landed
+[ep 184] score:    -4.41 | length:  186 | loss: 55.4532 | eps: 0.010 | crash
+[ep 185] score:   239.96 | length:  298 | loss: 101.3458 | eps: 0.010 | landed
+[ep 186] score:  -264.55 | length:  972 | loss: 84.6523 | eps: 0.010 | out_of_view
+[ep 187] score:   202.45 | length:  284 | loss: 48.8695 | eps: 0.010 | landed
+[ep 188] score:   -51.27 | length:  191 | loss: 72.8598 | eps: 0.010 | crash
+[ep 189] score:    72.33 | length: 1000 | loss: 84.5402 | eps: 0.010 | out_of_time
+[ep 190] score:    40.55 | length: 1000 | loss: 65.3152 | eps: 0.010 | out_of_time
+[ep 191] score:   183.38 | length:  569 | loss: 91.1523 | eps: 0.010 | landed
+[ep 192] score:  -113.39 | length:  177 | loss: 36.4597 | eps: 0.010 | out_of_view
+[ep 193] score:   -39.78 | length: 1000 | loss: 105.6863 | eps: 0.010 | out_of_time
+[ep 194] score:  -211.64 | length:   56 | loss: 126.5404 | eps: 0.010 | crash
+[ep 195] score:   217.60 | length:  376 | loss: 45.2303 | eps: 0.010 | landed
+[ep 196] score:   -63.70 | length:  235 | loss: 50.3192 | eps: 0.010 | out_of_view
+[ep 197] score:  -132.92 | length:  111 | loss: 93.3501 | eps: 0.010 | out_of_view
+[ep 198] score:  -195.56 | length:  475 | loss: 93.6034 | eps: 0.010 | out_of_view
+[ep 199] score:  -105.43 | length:  220 | loss: 93.9796 | eps: 0.010 | out_of_view
+[ep 200] score:  -144.26 | length:  437 | loss: 155.5090 | eps: 0.010 | out_of_view
+[ep 201] score:   170.70 | length:  493 | loss: 113.4496 | eps: 0.010 | landed
+[ep 202] score:   225.86 | length:  171 | loss: 133.1638 | eps: 0.010 | landed
+[ep 203] score:   189.79 | length:  339 | loss: 102.3659 | eps: 0.010 | landed
+[ep 204] score:  -150.14 | length:  850 | loss: 94.5866 | eps: 0.010 | crash
+[ep 205] score:   -82.55 | length:  317 | loss: 55.1657 | eps: 0.010 | crash
+[ep 206] score:   116.22 | length:  874 | loss: 101.7605 | eps: 0.010 | landed
+[ep 207] score:   -37.23 | length: 1000 | loss: 97.8631 | eps: 0.010 | out_of_time
+[ep 208] score:   -17.23 | length: 1000 | loss: 88.8408 | eps: 0.010 | out_of_time
+[ep 209] score:     1.81 | length: 1000 | loss: 105.1140 | eps: 0.010 | out_of_time
+[ep 210] score:    15.60 | length: 1000 | loss: 95.9133 | eps: 0.010 | out_of_time
+[ep 211] score:  -122.61 | length:  128 | loss: 140.6170 | eps: 0.010 | out_of_view
+[ep 212] score:   -76.82 | length: 1000 | loss: 106.5531 | eps: 0.010 | out_of_time
+[ep 213] score:   -63.65 | length: 1000 | loss: 71.9365 | eps: 0.010 | out_of_time
+[ep 214] score:   227.61 | length:  512 | loss: 70.5003 | eps: 0.010 | landed
+[ep 215] score:   -29.70 | length: 1000 | loss: 81.8144 | eps: 0.010 | out_of_time
+[ep 216] score:   -23.40 | length:  292 | loss: 60.7730 | eps: 0.010 | crash
+[ep 217] score:   -25.94 | length: 1000 | loss: 62.8044 | eps: 0.010 | out_of_time
+[ep 218] score:   -34.84 | length: 1000 | loss: 99.9818 | eps: 0.010 | out_of_time
+[ep 219] score:   -46.82 | length: 1000 | loss: 62.5204 | eps: 0.010 | out_of_time
+[ep 220] score:   -19.14 | length:  505 | loss: 55.5950 | eps: 0.010 | crash
+[ep 221] score:   206.45 | length:  422 | loss: 73.8028 | eps: 0.010 | landed
+[ep 222] score:   195.99 | length:  264 | loss: 84.9197 | eps: 0.010 | landed
+[ep 223] score:   213.90 | length:  561 | loss: 107.7606 | eps: 0.010 | landed
+[ep 224] score:   237.60 | length:  318 | loss: 42.2972 | eps: 0.010 | landed
+[ep 225] score:    -1.72 | length: 1000 | loss: 82.4582 | eps: 0.010 | out_of_time
+[ep 226] score:   167.32 | length:  963 | loss: 73.4652 | eps: 0.010 | landed
+[ep 227] score:  -222.19 | length:  292 | loss: 56.1349 | eps: 0.010 | crash
+[ep 228] score:   273.60 | length:  670 | loss: 54.3156 | eps: 0.010 | landed
+[ep 229] score:   218.98 | length:  306 | loss: 60.5702 | eps: 0.010 | landed
+[ep 230] score:   236.41 | length:  485 | loss: 73.3457 | eps: 0.010 | landed
+[ep 231] score:   175.75 | length:  502 | loss: 82.0351 | eps: 0.010 | landed
+[ep 232] score:   259.07 | length:  323 | loss: 104.8088 | eps: 0.010 | landed
+[ep 233] score:   271.63 | length:  222 | loss: 158.1084 | eps: 0.010 | landed
+[ep 234] score:   106.37 | length:  882 | loss: 81.3750 | eps: 0.010 | landed
+[ep 235] score:   238.57 | length:  625 | loss: 57.0677 | eps: 0.010 | landed
+[ep 236] score:   224.78 | length:  215 | loss: 77.4050 | eps: 0.010 | landed
+[ep 237] score:   215.59 | length:  820 | loss: 43.6876 | eps: 0.010 | landed
+[ep 238] score:  -167.42 | length:  251 | loss: 68.5650 | eps: 0.010 | out_of_view
+[ep 239] score:   212.60 | length:  380 | loss: 36.6659 | eps: 0.010 | landed
+[ep 240] score:   192.91 | length:  324 | loss: 95.6242 | eps: 0.010 | landed
+[ep 241] score:   245.78 | length:  269 | loss: 37.2689 | eps: 0.010 | landed
+[ep 242] score:   255.73 | length:  246 | loss: 154.1275 | eps: 0.010 | landed
+[ep 243] score:   276.86 | length:  357 | loss: 59.1370 | eps: 0.010 | landed
+[ep 244] score:   273.53 | length:  350 | loss: 43.8531 | eps: 0.010 | landed
+[ep 245] score:   265.01 | length:  319 | loss: 80.2224 | eps: 0.010 | landed
+[ep 246] score:  -166.03 | length:  321 | loss: 26.2105 | eps: 0.010 | crash
+[ep 247] score:   240.90 | length:  306 | loss: 25.8892 | eps: 0.010 | landed
+[ep 248] score:   228.60 | length:  563 | loss: 28.0515 | eps: 0.010 | landed
+[ep 249] score:    -4.18 | length:  125 | loss: 36.2241 | eps: 0.010 | crash
+[ep 250] score:   248.16 | length:  693 | loss: 65.9929 | eps: 0.010 | landed
+[ep 251] score:     2.81 | length:  311 | loss: 27.5472 | eps: 0.010 | crash
+[ep 252] score:   268.88 | length:  234 | loss: 71.2574 | eps: 0.010 | landed
+[ep 253] score:   298.00 | length:  326 | loss: 19.5867 | eps: 0.010 | landed
+[ep 254] score:   259.66 | length:  387 | loss: 42.9465 | eps: 0.010 | landed
+[ep 255] score:   246.50 | length:  334 | loss: 22.8651 | eps: 0.010 | landed
+[ep 256] score:   268.86 | length:  229 | loss: 22.1159 | eps: 0.010 | landed
+[ep 257] score:   233.04 | length:  289 | loss: 21.7079 | eps: 0.010 | landed
+[ep 258] score:   220.10 | length:  500 | loss: 44.6245 | eps: 0.010 | landed
+[ep 259] score:   249.99 | length:  488 | loss: 34.8030 | eps: 0.010 | landed
+[ep 260] score:   242.81 | length:  676 | loss: 24.0319 | eps: 0.010 | landed
+[ep 261] score:   276.36 | length:  219 | loss: 25.7638 | eps: 0.010 | landed
+[ep 262] score:   204.13 | length:  544 | loss: 23.6938 | eps: 0.010 | landed
+[ep 263] score:   258.91 | length:  296 | loss: 32.9351 | eps: 0.010 | landed
+[ep 264] score:   280.16 | length:  262 | loss: 33.3014 | eps: 0.010 | landed
+[ep 265] score:   261.31 | length:  258 | loss: 22.5240 | eps: 0.010 | landed
+[ep 266] score:   261.74 | length:  268 | loss: 22.6886 | eps: 0.010 | landed
+[ep 267] score:   208.95 | length:  459 | loss: 27.6413 | eps: 0.010 | landed
+[ep 268] score:   227.74 | length:  404 | loss: 39.1096 | eps: 0.010 | landed
+[ep 269] score:   177.48 | length:  523 | loss: 35.8786 | eps: 0.010 | landed
+[ep 270] score:   278.21 | length:  182 | loss: 35.8320 | eps: 0.010 | landed
+[ep 271] score:   248.61 | length:  200 | loss: 33.1050 | eps: 0.010 | landed
+[ep 272] score:   261.04 | length:  298 | loss: 22.6616 | eps: 0.010 | landed
+[ep 273] score:   204.73 | length:  855 | loss: 26.4285 | eps: 0.010 | landed
+[ep 274] score:   188.84 | length:  595 | loss: 29.4506 | eps: 0.010 | landed
+[ep 275] score:   267.10 | length:  289 | loss: 31.6534 | eps: 0.010 | landed
+[ep 276] score:   221.76 | length:  327 | loss: 34.5106 | eps: 0.010 | landed
+[ep 277] score:   273.43 | length:  220 | loss: 22.4566 | eps: 0.010 | landed
+[ep 278] score:   287.13 | length:  488 | loss: 30.2037 | eps: 0.010 | landed
+[ep 279] score:   244.63 | length:  417 | loss: 35.2751 | eps: 0.010 | landed
+[ep 280] score:   246.75 | length:  320 | loss: 33.1299 | eps: 0.010 | landed
+[ep 281] score:   260.66 | length:  501 | loss: 42.9283 | eps: 0.010 | landed
+[ep 282] score:   188.78 | length:  154 | loss: 21.9587 | eps: 0.010 | landed
+[ep 283] score:   229.01 | length:  278 | loss: 67.9449 | eps: 0.010 | landed
+[ep 284] score:    44.31 | length:  166 | loss: 49.0718 | eps: 0.010 | crash
+[ep 285] score:   263.30 | length:  307 | loss: 31.2372 | eps: 0.010 | landed
+[ep 286] score:   -18.59 | length: 1000 | loss: 23.9691 | eps: 0.010 | out_of_time
+[ep 287] score:   -76.89 | length: 1000 | loss: 27.6775 | eps: 0.010 | out_of_time
+[ep 288] score:   -73.37 | length: 1000 | loss: 29.0420 | eps: 0.010 | out_of_time
+[ep 289] score:   246.87 | length:  174 | loss: 37.1987 | eps: 0.010 | landed
+[ep 290] score:    14.40 | length:  164 | loss: 25.0330 | eps: 0.010 | crash
+[ep 291] score:   239.55 | length:  227 | loss: 43.6550 | eps: 0.010 | landed
+[ep 292] score:   253.93 | length:  291 | loss: 24.0128 | eps: 0.010 | landed
+[ep 293] score:   201.20 | length:  273 | loss: 23.5292 | eps: 0.010 | landed
+[ep 294] score:   253.53 | length:  223 | loss: 21.0115 | eps: 0.010 | landed
+[ep 295] score:    88.81 | length:  869 | loss: 32.9109 | eps: 0.010 | landed
+[ep 296] score:   213.32 | length:  366 | loss: 33.5714 | eps: 0.010 | landed
+[ep 297] score:    37.14 | length:  253 | loss: 26.1757 | eps: 0.010 | crash
+[ep 298] score:   -39.42 | length: 1000 | loss: 33.4616 | eps: 0.010 | out_of_time
+[ep 299] score:   -44.40 | length: 1000 | loss: 21.2422 | eps: 0.010 | out_of_time
+[ep 300] score:   -59.44 | length: 1000 | loss: 31.5175 | eps: 0.010 | out_of_time
+[ep 301] score:    93.53 | length: 1000 | loss: 28.5523 | eps: 0.010 | out_of_time
+[ep 302] score:   241.71 | length:  653 | loss: 29.7420 | eps: 0.010 | landed
+[ep 303] score:   239.58 | length:  437 | loss: 21.3840 | eps: 0.010 | landed
+[ep 304] score:     8.77 | length:  102 | loss: 21.2636 | eps: 0.010 | crash
+[ep 305] score:   280.30 | length:  186 | loss: 28.3099 | eps: 0.010 | landed
+[ep 306] score:   -11.70 | length:  120 | loss: 45.0277 | eps: 0.010 | crash
+[ep 307] score:   279.15 | length:  227 | loss: 29.0820 | eps: 0.010 | landed
+[ep 308] score:   172.30 | length:  600 | loss: 30.2392 | eps: 0.010 | landed
+[ep 309] score:   240.20 | length:  330 | loss: 25.9892 | eps: 0.010 | landed
+[ep 310] score:   258.76 | length:  283 | loss: 27.4276 | eps: 0.010 | landed
+[ep 311] score:   -37.18 | length: 1000 | loss: 28.1220 | eps: 0.010 | out_of_time
+[ep 312] score:   261.92 | length:  360 | loss: 31.6973 | eps: 0.010 | landed
+[ep 313] score:   238.64 | length:  397 | loss: 23.8565 | eps: 0.010 | landed
+[ep 314] score:   264.31 | length:  340 | loss: 26.4663 | eps: 0.010 | landed
+[ep 315] score:   194.87 | length:  344 | loss: 34.3713 | eps: 0.010 | landed
+[ep 316] score:   198.89 | length:  474 | loss: 23.9736 | eps: 0.010 | landed
+[ep 317] score:    20.28 | length:  136 | loss: 42.0037 | eps: 0.010 | crash
+[ep 318] score:   296.24 | length:  359 | loss: 27.0934 | eps: 0.010 | landed
+[ep 319] score:   232.49 | length:  413 | loss: 32.1303 | eps: 0.010 | landed
+[ep 320] score:   198.35 | length:  177 | loss: 19.2986 | eps: 0.010 | landed
+[ep 321] score:   272.32 | length:  253 | loss: 17.7022 | eps: 0.010 | landed
+[ep 322] score:   155.62 | length:  688 | loss: 32.1251 | eps: 0.010 | landed
+[ep 323] score:    40.22 | length:  138 | loss: 30.1283 | eps: 0.010 | crash
+[ep 324] score:   267.55 | length:  315 | loss: 26.7563 | eps: 0.010 | landed
+[ep 325] score:   243.01 | length:  240 | loss: 25.8373 | eps: 0.010 | landed
+[ep 326] score:   232.44 | length:  336 | loss: 20.8217 | eps: 0.010 | landed
+[ep 327] score:   238.94 | length:  153 | loss: 25.7582 | eps: 0.010 | landed
+[ep 328] score:   281.97 | length:  212 | loss: 21.6420 | eps: 0.010 | landed
+[ep 329] score:   289.58 | length:  224 | loss: 22.5286 | eps: 0.010 | landed
+[ep 330] score:    -2.47 | length:  109 | loss: 41.8348 | eps: 0.010 | crash
+[ep 331] score:    -8.68 | length:  129 | loss: 23.9836 | eps: 0.010 | crash
+[ep 332] score:   275.28 | length:  274 | loss: 33.8479 | eps: 0.010 | landed
+[ep 333] score:   261.19 | length:  347 | loss: 29.4351 | eps: 0.010 | landed
+[ep 334] score:    37.44 | length:  149 | loss: 37.2208 | eps: 0.010 | crash
+[ep 335] score:   246.60 | length:  214 | loss: 31.2096 | eps: 0.010 | landed
+[ep 336] score:   270.39 | length:  358 | loss: 30.9575 | eps: 0.010 | landed
+[ep 337] score:   190.67 | length:  540 | loss: 28.5963 | eps: 0.010 | landed
+[ep 338] score:   258.94 | length:  430 | loss: 30.6357 | eps: 0.010 | landed
+[ep 339] score:   265.15 | length:  286 | loss: 28.2245 | eps: 0.010 | landed
+[ep 340] score:   228.37 | length:  229 | loss: 22.9210 | eps: 0.010 | landed
+[ep 341] score:   213.62 | length:  395 | loss: 22.9966 | eps: 0.010 | landed
+[ep 342] score:   245.67 | length:  250 | loss: 29.0473 | eps: 0.010 | landed
+[ep 343] score:   216.52 | length:  343 | loss: 34.4620 | eps: 0.010 | landed
+[ep 344] score:   178.93 | length:  373 | loss: 27.8828 | eps: 0.010 | landed
+[ep 345] score:    29.42 | length:  221 | loss: 29.4247 | eps: 0.010 | crash
+[ep 346] score:   227.96 | length:  272 | loss: 21.4252 | eps: 0.010 | landed
+[ep 347] score:   304.03 | length:  227 | loss: 34.3663 | eps: 0.010 | landed
+[ep 348] score:   248.59 | length:  184 | loss: 27.2683 | eps: 0.010 | landed
+[ep 349] score:   240.36 | length:  177 | loss: 22.4971 | eps: 0.010 | landed
+[ep 350] score:   293.71 | length:  304 | loss: 17.9362 | eps: 0.010 | landed
+[ep 351] score:   248.59 | length:  203 | loss: 29.5428 | eps: 0.010 | landed
+[ep 352] score:    43.40 | length:  203 | loss: 15.5128 | eps: 0.010 | crash
+[ep 353] score:   275.57 | length:  298 | loss: 16.6409 | eps: 0.010 | landed
+[ep 354] score:   227.88 | length:  371 | loss: 32.1772 | eps: 0.010 | landed
+[ep 355] score:   245.73 | length:  551 | loss: 24.4546 | eps: 0.010 | landed
+[ep 356] score:   245.57 | length:  231 | loss: 33.0273 | eps: 0.010 | landed
+[ep 357] score:   142.86 | length: 1000 | loss: 26.8811 | eps: 0.010 | out_of_time
+[ep 358] score:   246.31 | length:  233 | loss: 22.3357 | eps: 0.010 | landed
+[ep 359] score:   313.37 | length:  248 | loss: 34.9299 | eps: 0.010 | landed
+[ep 360] score:   271.57 | length:  292 | loss: 21.3206 | eps: 0.010 | landed
+[ep 361] score:   281.55 | length:  280 | loss: 24.6074 | eps: 0.010 | landed
+[ep 362] score:   236.05 | length:  300 | loss: 25.1436 | eps: 0.010 | landed
+[ep 363] score:    -1.38 | length:  247 | loss: 35.7165 | eps: 0.010 | crash
+[ep 364] score:   246.03 | length:  251 | loss: 20.1424 | eps: 0.010 | landed
+[ep 365] score:   253.66 | length:  216 | loss: 23.0155 | eps: 0.010 | landed
+[ep 366] score:   260.23 | length:  255 | loss: 31.7599 | eps: 0.010 | landed
+[ep 367] score:   265.45 | length:  154 | loss: 26.5410 | eps: 0.010 | landed
+[ep 368] score:   224.24 | length:  477 | loss: 33.8054 | eps: 0.010 | landed
+[ep 369] score:   298.44 | length:  271 | loss: 21.6010 | eps: 0.010 | landed
+[ep 370] score:   297.30 | length:  267 | loss: 32.0037 | eps: 0.010 | landed
+[ep 371] score:   276.10 | length:  215 | loss: 28.0829 | eps: 0.010 | landed
+[ep 372] score:   272.12 | length:  224 | loss: 21.1749 | eps: 0.010 | landed
+[ep 373] score:   276.14 | length:  371 | loss: 24.5086 | eps: 0.010 | landed
+[ep 374] score:   283.32 | length:  189 | loss: 33.1389 | eps: 0.010 | landed
+[ep 375] score:   300.35 | length:  211 | loss: 24.5368 | eps: 0.010 | landed
+[ep 376] score:    15.37 | length:  298 | loss: 24.5271 | eps: 0.010 | crash
+[ep 377] score:   197.84 | length:  639 | loss: 26.1298 | eps: 0.010 | landed
+[ep 378] score:   252.60 | length:  186 | loss: 23.1839 | eps: 0.010 | landed
+[ep 379] score:   280.90 | length:  226 | loss: 19.7093 | eps: 0.010 | landed
+[ep 380] score:   296.70 | length:  222 | loss: 34.2255 | eps: 0.010 | landed
+[ep 381] score:   255.87 | length:  266 | loss: 26.9789 | eps: 0.010 | landed
+[ep 382] score:   253.61 | length:  746 | loss: 25.2504 | eps: 0.010 | landed
+[ep 383] score:   252.59 | length:  456 | loss: 27.4423 | eps: 0.010 | landed
+[ep 384] score:   271.55 | length:  425 | loss: 25.8684 | eps: 0.010 | landed
+[ep 385] score:   282.11 | length:  224 | loss: 27.8975 | eps: 0.010 | landed
+[ep 386] score:   283.64 | length:  172 | loss: 21.7623 | eps: 0.010 | landed
+[ep 387] score:   249.30 | length:  213 | loss: 19.8124 | eps: 0.010 | landed
+[ep 388] score:   264.11 | length:  198 | loss: 25.1366 | eps: 0.010 | landed
+[ep 389] score:   -23.50 | length:  194 | loss: 23.5232 | eps: 0.010 | crash
+[ep 390] score:   283.02 | length:  248 | loss: 26.3789 | eps: 0.010 | landed
+[ep 391] score:   268.90 | length:  264 | loss: 34.6020 | eps: 0.010 | landed
+[ep 392] score:   270.19 | length:  199 | loss: 22.3846 | eps: 0.010 | landed
+[ep 393] score:   251.32 | length:  201 | loss: 22.1124 | eps: 0.010 | landed
+[ep 394] score:   200.07 | length:  702 | loss: 23.6286 | eps: 0.010 | landed
+[ep 395] score:  -173.85 | length:  148 | loss: 25.7499 | eps: 0.010 | crash
+[ep 396] score:   271.80 | length:  210 | loss: 25.2458 | eps: 0.010 | landed
+[ep 397] score:   272.02 | length:  272 | loss: 21.9848 | eps: 0.010 | landed
+[ep 398] score:    -1.85 | length:  113 | loss: 13.6168 | eps: 0.010 | crash
+[ep 399] score:   274.90 | length:  190 | loss: 19.8486 | eps: 0.010 | landed
+[ep 400] score:   268.24 | length:  762 | loss: 18.9001 | eps: 0.010 | landed
+[ep 401] score:  -248.67 | length:  234 | loss: 38.4036 | eps: 0.010 | crash
+[ep 402] score:   254.50 | length:  254 | loss: 21.7823 | eps: 0.010 | landed
+[ep 403] score:   242.86 | length:  204 | loss: 27.7078 | eps: 0.010 | landed
+[ep 404] score:   281.01 | length:  220 | loss: 27.3829 | eps: 0.010 | landed
+[ep 405] score:   268.18 | length:  154 | loss: 25.8479 | eps: 0.010 | landed
+[ep 406] score:   273.94 | length:  208 | loss: 14.1964 | eps: 0.010 | landed
+[ep 407] score:   293.23 | length:  281 | loss: 21.6104 | eps: 0.010 | landed
+[ep 408] score:   267.02 | length:  186 | loss: 16.1383 | eps: 0.010 | landed
+[ep 409] score:   254.30 | length:  227 | loss: 22.6645 | eps: 0.010 | landed
+[ep 410] score:   293.37 | length:  171 | loss: 18.6276 | eps: 0.010 | landed
+[ep 411] score:   294.06 | length:  231 | loss: 16.6623 | eps: 0.010 | landed
+[ep 412] score:   296.12 | length:  340 | loss: 34.3586 | eps: 0.010 | landed
+[ep 413] score:   278.09 | length:  184 | loss: 24.2403 | eps: 0.010 | landed
+[ep 414] score:   233.59 | length:  221 | loss: 19.2009 | eps: 0.010 | landed
+[ep 415] score:   248.80 | length:  209 | loss: 23.4552 | eps: 0.010 | landed
+[ep 416] score:   280.70 | length:  200 | loss: 28.2622 | eps: 0.010 | landed
+[ep 417] score:   280.75 | length:  297 | loss: 13.6636 | eps: 0.010 | landed
+[ep 418] score:   285.56 | length:  170 | loss: 11.6986 | eps: 0.010 | landed
+[ep 419] score:   282.96 | length:  255 | loss: 18.8692 | eps: 0.010 | landed
+[ep 420] score:   276.68 | length:  249 | loss: 16.2504 | eps: 0.010 | landed
+[ep 421] score:   238.38 | length:  198 | loss: 27.9471 | eps: 0.010 | landed
+[ep 422] score:   263.02 | length:  265 | loss: 13.7583 | eps: 0.010 | landed
+[ep 423] score:   283.77 | length:  258 | loss: 28.4597 | eps: 0.010 | landed
+[ep 424] score:   244.62 | length:  196 | loss: 28.5336 | eps: 0.010 | landed
+[ep 425] score:   224.09 | length:  445 | loss: 21.1293 | eps: 0.010 | landed
+[ep 426] score:   242.30 | length:  207 | loss: 21.7435 | eps: 0.010 | landed
+[ep 427] score:   287.10 | length:  329 | loss: 13.8053 | eps: 0.010 | landed
+[ep 428] score:    -1.51 | length:  267 | loss: 19.9423 | eps: 0.010 | crash
+[ep 429] score:   260.26 | length:  199 | loss: 32.7124 | eps: 0.010 | landed
+[ep 430] score:   237.99 | length:  197 | loss: 24.4261 | eps: 0.010 | landed
+[ep 431] score:   269.14 | length:  255 | loss: 16.0063 | eps: 0.010 | landed
+[ep 432] score:   275.30 | length:  245 | loss: 23.2199 | eps: 0.010 | landed
+[ep 433] score:   254.01 | length:  304 | loss: 17.6072 | eps: 0.010 | landed
+[ep 434] score:   244.86 | length:  197 | loss: 16.2405 | eps: 0.010 | landed
+[ep 435] score:   262.38 | length:  760 | loss: 20.0320 | eps: 0.010 | landed
+[ep 436] score:   242.28 | length:  185 | loss: 25.1871 | eps: 0.010 | landed
+[ep 437] score:   287.98 | length:  220 | loss: 18.5233 | eps: 0.010 | landed
+[ep 438] score:   253.31 | length:  304 | loss: 20.1388 | eps: 0.010 | landed
+[ep 439] score:   263.52 | length:  195 | loss: 22.3148 | eps: 0.010 | landed
+[ep 440] score:   264.74 | length:  186 | loss: 16.5661 | eps: 0.010 | landed
+[ep 441] score:    -5.37 | length:  128 | loss: 24.8423 | eps: 0.010 | crash
+[ep 442] score:   287.14 | length:  217 | loss: 29.3214 | eps: 0.010 | landed
+[ep 443] score:   278.45 | length:  263 | loss: 16.0022 | eps: 0.010 | landed
+[ep 444] score:   295.06 | length:  233 | loss: 19.9668 | eps: 0.010 | landed
+[ep 445] score:   282.39 | length:  350 | loss: 19.8184 | eps: 0.010 | landed
+[ep 446] score:   259.10 | length:  185 | loss: 28.7289 | eps: 0.010 | landed
+[ep 447] score:   263.11 | length:  228 | loss: 17.2596 | eps: 0.010 | landed
+[ep 448] score:   259.53 | length:  214 | loss: 24.1527 | eps: 0.010 | landed
+[ep 449] score:   284.98 | length:  193 | loss: 31.2660 | eps: 0.010 | landed
+[ep 450] score:   286.32 | length:  239 | loss: 19.5667 | eps: 0.010 | landed
+[ep 451] score:  -174.61 | length:   96 | loss: 9.8623 | eps: 0.010 | crash
+[ep 452] score:   272.78 | length:  215 | loss: 15.1520 | eps: 0.010 | landed
+[ep 453] score:   276.29 | length:  197 | loss: 12.1807 | eps: 0.010 | landed
+[ep 454] score:  -158.93 | length:  108 | loss: 27.6607 | eps: 0.010 | crash
+[ep 455] score:    32.34 | length:  112 | loss: 14.9638 | eps: 0.010 | crash
+[ep 456] score:   278.78 | length:  207 | loss: 26.0536 | eps: 0.010 | landed
+[ep 457] score:  -130.89 | length:  287 | loss: 14.0265 | eps: 0.010 | crash
+[ep 458] score:   252.44 | length:  214 | loss: 13.8956 | eps: 0.010 | landed
+[ep 459] score:   239.01 | length:  210 | loss: 27.1969 | eps: 0.010 | landed
+[ep 460] score:   265.94 | length:  224 | loss: 20.2587 | eps: 0.010 | landed
+[ep 461] score:   272.53 | length:  198 | loss: 15.9226 | eps: 0.010 | landed
+[ep 462] score:  -266.93 | length:   80 | loss: 31.2749 | eps: 0.010 | crash
+[ep 463] score:   244.90 | length:  204 | loss: 20.3453 | eps: 0.010 | landed
+[ep 464] score:   265.84 | length:  180 | loss: 22.2830 | eps: 0.010 | landed
+[ep 465] score:  -278.40 | length:   93 | loss: 22.8204 | eps: 0.010 | crash
+[ep 466] score:   286.08 | length:  263 | loss: 17.1602 | eps: 0.010 | landed
+[ep 467] score:   290.19 | length:  187 | loss: 24.4096 | eps: 0.010 | landed
+[ep 468] score:   262.93 | length:  184 | loss: 17.2733 | eps: 0.010 | landed
+[ep 469] score:   226.69 | length:  276 | loss: 16.6306 | eps: 0.010 | landed
+[ep 470] score:   298.06 | length:  178 | loss: 20.4199 | eps: 0.010 | landed
+[ep 471] score:   271.45 | length:  216 | loss: 20.9345 | eps: 0.010 | landed
+[ep 472] score:   244.56 | length:  227 | loss: 23.3673 | eps: 0.010 | landed
+[ep 473] score:   278.64 | length:  254 | loss: 12.4309 | eps: 0.010 | landed
+[ep 474] score:   296.40 | length:  254 | loss: 27.2356 | eps: 0.010 | landed
+[ep 475] score:   302.43 | length:  263 | loss: 15.7865 | eps: 0.010 | landed
+[ep 476] score:   262.30 | length:  191 | loss: 14.8243 | eps: 0.010 | landed
+[ep 477] score:   243.85 | length:  296 | loss: 20.7640 | eps: 0.010 | landed
+[ep 478] score:   241.69 | length:  219 | loss: 10.9957 | eps: 0.010 | landed
+[ep 479] score:   299.89 | length:  213 | loss: 21.7651 | eps: 0.010 | landed
+[ep 480] score:   237.12 | length:  208 | loss: 15.4298 | eps: 0.010 | landed
+[ep 481] score:   290.37 | length:  243 | loss: 21.5568 | eps: 0.010 | landed
+[ep 482] score:  -120.12 | length:  237 | loss: 15.8599 | eps: 0.010 | crash
+[ep 483] score:   268.25 | length:  197 | loss: 19.4683 | eps: 0.010 | landed
+[ep 484] score:  -172.51 | length:   64 | loss: 25.9223 | eps: 0.010 | crash
+[ep 485] score:   293.07 | length:  305 | loss: 22.1460 | eps: 0.010 | landed
+[ep 486] score:   255.80 | length:  219 | loss: 20.9844 | eps: 0.010 | landed
+[ep 487] score:   263.89 | length:  232 | loss: 16.3571 | eps: 0.010 | landed
+[ep 488] score:   284.42 | length:  198 | loss: 21.1533 | eps: 0.010 | landed
+[ep 489] score:   288.39 | length:  242 | loss: 23.1974 | eps: 0.010 | landed
+[ep 490] score:   284.50 | length:  258 | loss: 19.1697 | eps: 0.010 | landed
+[ep 491] score:   270.01 | length:  189 | loss: 19.0503 | eps: 0.010 | landed
+[ep 492] score:   287.63 | length:  261 | loss: 23.6105 | eps: 0.010 | landed
+[ep 493] score:   256.17 | length:  208 | loss: 34.8797 | eps: 0.010 | landed
+[ep 494] score:   264.02 | length:  219 | loss: 27.3164 | eps: 0.010 | landed
+[ep 495] score:   294.00 | length:  240 | loss: 17.8479 | eps: 0.010 | landed
+[ep 496] score:     5.01 | length:  115 | loss: 26.5855 | eps: 0.010 | crash
+[ep 497] score:   241.72 | length:  179 | loss: 20.0510 | eps: 0.010 | landed
+[ep 498] score:   278.60 | length:  219 | loss: 17.3355 | eps: 0.010 | landed
+[ep 499] score:    11.11 | length: 1000 | loss: 20.9746 | eps: 0.010 | out_of_time
+[ep 500] score:    -8.02 | length:  199 | loss: 19.2153 | eps: 0.010 | crash
+[ep 501] score:   237.98 | length:  220 | loss: 23.2812 | eps: 0.010 | landed
+[ep 502] score:   282.79 | length:  221 | loss: 20.5166 | eps: 0.010 | landed
+[ep 503] score:  -237.30 | length:  227 | loss: 26.0120 | eps: 0.010 | crash
+[ep 504] score:   289.95 | length:  270 | loss: 25.0309 | eps: 0.010 | landed
+[ep 505] score:   283.37 | length:  279 | loss: 26.5337 | eps: 0.010 | landed
+[ep 506] score:   248.88 | length:  291 | loss: 25.1471 | eps: 0.010 | landed
+[ep 507] score:   294.02 | length:  284 | loss: 21.4544 | eps: 0.010 | landed
+[ep 508] score:   274.07 | length:  282 | loss: 31.7145 | eps: 0.010 | landed
+[ep 509] score:   306.68 | length:  679 | loss: 23.7711 | eps: 0.010 | landed
+[ep 510] score:   273.93 | length:  211 | loss: 34.1687 | eps: 0.010 | landed
+[ep 511] score:   263.10 | length:  218 | loss: 46.8055 | eps: 0.010 | landed
+[ep 512] score:   272.26 | length:  313 | loss: 31.1806 | eps: 0.010 | landed
+[ep 513] score:   246.44 | length:  198 | loss: 24.6638 | eps: 0.010 | landed
+[ep 514] score:   295.70 | length:  355 | loss: 31.0684 | eps: 0.010 | landed
+[ep 515] score:  -483.87 | length:   92 | loss: 29.1864 | eps: 0.010 | crash
+[ep 516] score:    13.44 | length:  233 | loss: 36.7325 | eps: 0.010 | crash
+[ep 517] score:   281.57 | length:  288 | loss: 29.4118 | eps: 0.010 | landed
+[ep 518] score:   274.30 | length:  285 | loss: 24.6792 | eps: 0.010 | landed
+[ep 519] score:   270.44 | length:  215 | loss: 38.1527 | eps: 0.010 | landed
+[ep 520] score:   264.78 | length:  237 | loss: 31.8249 | eps: 0.010 | landed
+[ep 521] score:     0.32 | length:  139 | loss: 39.7816 | eps: 0.010 | crash
+[ep 522] score:   293.04 | length:  274 | loss: 33.3916 | eps: 0.010 | landed
+[ep 523] score:   276.48 | length:  272 | loss: 53.3175 | eps: 0.010 | landed
+[ep 524] score:   266.08 | length:  235 | loss: 60.0819 | eps: 0.010 | landed
+[ep 525] score:   256.93 | length:  254 | loss: 33.5013 | eps: 0.010 | landed
+[ep 526] score:   267.71 | length:  193 | loss: 25.9632 | eps: 0.010 | landed
+[ep 527] score:   297.93 | length:  248 | loss: 37.1603 | eps: 0.010 | landed
+[ep 528] score:   287.24 | length:  237 | loss: 48.3551 | eps: 0.010 | landed
+[ep 529] score:   280.92 | length:  298 | loss: 52.8872 | eps: 0.010 | landed
+[ep 530] score:   294.93 | length:  352 | loss: 32.5006 | eps: 0.010 | landed
+[ep 531] score:   282.64 | length:  224 | loss: 28.4193 | eps: 0.010 | landed
+[ep 532] score:   269.85 | length:  325 | loss: 51.0460 | eps: 0.010 | landed
+[ep 533] score:   281.82 | length:  266 | loss: 30.1077 | eps: 0.010 | landed
+[ep 534] score:   273.05 | length:  242 | loss: 21.2018 | eps: 0.010 | landed
+[ep 535] score:   250.44 | length:  204 | loss: 49.0475 | eps: 0.010 | landed
+[ep 536] score:   261.92 | length:  167 | loss: 20.6078 | eps: 0.010 | landed
+[ep 537] score:   238.70 | length:  234 | loss: 85.8582 | eps: 0.010 | landed
+[ep 538] score:   274.94 | length:  308 | loss: 19.9600 | eps: 0.010 | landed
+[ep 539] score:   275.39 | length:  154 | loss: 23.3793 | eps: 0.010 | landed
+[ep 540] score:   249.58 | length:  264 | loss: 49.5377 | eps: 0.010 | landed
+[ep 541] score:   304.61 | length:  252 | loss: 54.7202 | eps: 0.010 | landed
+[ep 542] score:   258.51 | length:  166 | loss: 24.8878 | eps: 0.010 | landed
+[ep 543] score:   266.17 | length:  213 | loss: 34.6538 | eps: 0.010 | landed
+[ep 544] score:   271.41 | length:  194 | loss: 32.4864 | eps: 0.010 | landed
+[ep 545] score:   234.02 | length:  558 | loss: 28.6188 | eps: 0.010 | landed
+[ep 546] score:   278.45 | length:  188 | loss: 31.2240 | eps: 0.010 | landed
+[ep 547] score:   294.36 | length:  281 | loss: 21.4632 | eps: 0.010 | landed
+[ep 548] score:   245.83 | length:  205 | loss: 48.6550 | eps: 0.010 | landed
+[ep 549] score:   231.53 | length:  276 | loss: 72.9461 | eps: 0.010 | landed
+[ep 550] score:   247.32 | length:  167 | loss: 39.7653 | eps: 0.010 | landed
+[ep 551] score:    -9.80 | length:  136 | loss: 42.9000 | eps: 0.010 | crash
+[ep 552] score:    16.25 | length:  179 | loss: 53.6125 | eps: 0.010 | crash
+[ep 553] score:   264.71 | length:  231 | loss: 44.8936 | eps: 0.010 | landed
+[ep 554] score:   297.71 | length:  356 | loss: 50.7742 | eps: 0.010 | landed
+[ep 555] score:   234.95 | length:  257 | loss: 43.6493 | eps: 0.010 | landed
+[ep 556] score:   282.60 | length:  243 | loss: 71.8031 | eps: 0.010 | landed
+[ep 557] score:   265.83 | length:  163 | loss: 90.4839 | eps: 0.010 | landed
+[ep 558] score:   287.89 | length:  162 | loss: 93.5193 | eps: 0.010 | landed
+[ep 559] score:  -157.12 | length:  155 | loss: 96.0802 | eps: 0.010 | crash
+[ep 560] score:   272.75 | length:  491 | loss: 56.7318 | eps: 0.010 | landed
+[ep 561] score:   252.67 | length:  187 | loss: 30.8569 | eps: 0.010 | landed
+[ep 562] score:   235.58 | length:  264 | loss: 26.9222 | eps: 0.010 | landed
+[ep 563] score:   281.68 | length:  219 | loss: 17.8273 | eps: 0.010 | landed
+[ep 564] score:   238.47 | length:  248 | loss: 48.8541 | eps: 0.010 | landed
+[ep 565] score:   224.54 | length:  236 | loss: 40.5349 | eps: 0.010 | landed
+[ep 566] score:   216.64 | length:  224 | loss: 124.8413 | eps: 0.010 | landed
+[ep 567] score:   282.79 | length:  223 | loss: 36.7550 | eps: 0.010 | landed
+[ep 568] score:   257.44 | length:  219 | loss: 34.8216 | eps: 0.010 | landed
+[ep 569] score:   271.22 | length:  230 | loss: 23.8513 | eps: 0.010 | landed
+[ep 570] score:   255.61 | length:  196 | loss: 23.1361 | eps: 0.010 | landed
+[ep 571] score:   278.53 | length:  272 | loss: 75.5061 | eps: 0.010 | landed
+[ep 572] score:   235.21 | length:  164 | loss: 27.1601 | eps: 0.010 | landed
+[ep 573] score:   281.64 | length:  763 | loss: 47.1517 | eps: 0.010 | landed
+[ep 574] score:   248.04 | length:  314 | loss: 54.0210 | eps: 0.010 | landed
+[ep 575] score:   261.02 | length:  203 | loss: 35.3019 | eps: 0.010 | landed
+[ep 576] score:   282.20 | length:  200 | loss: 118.0507 | eps: 0.010 | landed
+[ep 577] score:     7.55 | length:   91 | loss: 94.9053 | eps: 0.010 | crash
+[ep 578] score:    42.73 | length:   83 | loss: 80.9833 | eps: 0.010 | crash
+[ep 579] score:   277.13 | length:  248 | loss: 94.6981 | eps: 0.010 | landed
+[ep 580] score:    78.01 | length:  168 | loss: 58.4120 | eps: 0.010 | crash
+[ep 581] score:   287.76 | length:  198 | loss: 30.4257 | eps: 0.010 | landed
+[ep 582] score:   264.66 | length:  150 | loss: 81.7927 | eps: 0.010 | landed
+[ep 583] score:   294.40 | length:  171 | loss: 36.6458 | eps: 0.010 | landed
+[ep 584] score:    42.47 | length:  177 | loss: 59.4624 | eps: 0.010 | crash
+[ep 585] score:   306.31 | length:  222 | loss: 72.2850 | eps: 0.010 | landed
+[ep 586] score:    -8.50 | length:  140 | loss: 72.0660 | eps: 0.010 | crash
+[ep 587] score:   303.61 | length:  284 | loss: 50.9084 | eps: 0.010 | landed
+[ep 588] score:   257.39 | length:  205 | loss: 75.7218 | eps: 0.010 | landed
+[ep 589] score:   274.96 | length:  190 | loss: 31.0253 | eps: 0.010 | landed
+[ep 590] score:   -31.48 | length:   84 | loss: 85.8473 | eps: 0.010 | crash
+[ep 591] score:   244.95 | length:  219 | loss: 58.9422 | eps: 0.010 | landed
+[ep 592] score:    22.41 | length:  227 | loss: 33.7828 | eps: 0.010 | crash
+[ep 593] score:   265.37 | length:  444 | loss: 59.4376 | eps: 0.010 | landed
+[ep 594] score:    42.47 | length:   89 | loss: 160.4125 | eps: 0.010 | crash
+[ep 595] score:   308.33 | length:  246 | loss: 35.1206 | eps: 0.010 | landed
+[ep 596] score:   233.42 | length:  228 | loss: 44.2848 | eps: 0.010 | landed
+[ep 597] score:   246.58 | length:  491 | loss: 76.8667 | eps: 0.010 | landed
+[ep 598] score:   265.39 | length:  199 | loss: 68.8685 | eps: 0.010 | landed
+[ep 599] score:   303.40 | length:  263 | loss: 57.1924 | eps: 0.010 | landed
+[ep 600] score:   248.17 | length:  159 | loss: 25.8560 | eps: 0.010 | landed
+[ep 601] score:   223.23 | length:  641 | loss: 56.5056 | eps: 0.010 | landed
+[ep 602] score:    29.50 | length:  102 | loss: 32.6784 | eps: 0.010 | crash
+[ep 603] score:   269.40 | length:  166 | loss: 38.3084 | eps: 0.010 | landed
+[ep 604] score:   243.57 | length:  224 | loss: 61.7658 | eps: 0.010 | landed
+[ep 605] score:   229.18 | length:  271 | loss: 31.9855 | eps: 0.010 | landed
+[ep 606] score:   273.61 | length:  202 | loss: 37.0014 | eps: 0.010 | landed
+[ep 607] score:   277.52 | length:  500 | loss: 30.2678 | eps: 0.010 | landed
+[ep 608] score:   289.76 | length:  245 | loss: 63.9647 | eps: 0.010 | landed
+[ep 609] score:   258.55 | length:  387 | loss: 45.8846 | eps: 0.010 | landed
+[ep 610] score:    54.93 | length:  162 | loss: 95.4708 | eps: 0.010 | crash
+[ep 611] score:   243.49 | length:  294 | loss: 39.3621 | eps: 0.010 | landed
+[ep 612] score:   280.43 | length:  471 | loss: 32.9904 | eps: 0.010 | landed
+[ep 613] score:    51.51 | length:  134 | loss: 40.5755 | eps: 0.010 | crash
+[ep 614] score:   246.84 | length:  218 | loss: 18.2049 | eps: 0.010 | landed
+[ep 615] score:   255.17 | length:  212 | loss: 41.1844 | eps: 0.010 | landed
+[ep 616] score:   247.61 | length:  223 | loss: 112.2285 | eps: 0.010 | landed
+[ep 617] score:   285.52 | length:  195 | loss: 53.7099 | eps: 0.010 | landed
+[ep 618] score:  -102.63 | length:   98 | loss: 18.3842 | eps: 0.010 | crash
+[ep 619] score:   264.87 | length:  158 | loss: 27.9310 | eps: 0.010 | landed
+[ep 620] score:   242.09 | length:  237 | loss: 26.6859 | eps: 0.010 | landed
+[ep 621] score:   249.22 | length:  233 | loss: 28.7909 | eps: 0.010 | landed
+[ep 622] score:   263.73 | length:  189 | loss: 45.6535 | eps: 0.010 | landed
+[ep 623] score:    32.12 | length:   77 | loss: 28.3905 | eps: 0.010 | crash
+[ep 624] score:   290.84 | length:  230 | loss: 42.4637 | eps: 0.010 | landed
+[ep 625] score:    45.37 | length:  134 | loss: 17.9391 | eps: 0.010 | crash
+[ep 626] score:    68.39 | length:   90 | loss: 70.0209 | eps: 0.010 | crash
+[ep 627] score:    40.81 | length:  122 | loss: 37.9984 | eps: 0.010 | crash
+[ep 628] score:   285.20 | length:  507 | loss: 40.9189 | eps: 0.010 | landed
+[ep 629] score:    18.94 | length:   87 | loss: 51.6454 | eps: 0.010 | crash
+[ep 630] score:   242.39 | length:  420 | loss: 29.6721 | eps: 0.010 | landed
+[ep 631] score:    16.02 | length:  279 | loss: 33.5766 | eps: 0.010 | crash
+[ep 632] score:   248.82 | length:  192 | loss: 37.5219 | eps: 0.010 | landed
+[ep 633] score:   269.94 | length:  337 | loss: 45.2428 | eps: 0.010 | landed
+[ep 634] score:   -15.55 | length:  140 | loss: 64.3280 | eps: 0.010 | crash
+[ep 635] score:    32.31 | length:  128 | loss: 61.2860 | eps: 0.010 | crash
+[ep 636] score:    -7.18 | length:   79 | loss: 204.1175 | eps: 0.010 | crash
+[ep 637] score:    33.86 | length:  106 | loss: 49.3179 | eps: 0.010 | crash
+[ep 638] score:   216.11 | length:  205 | loss: 53.5234 | eps: 0.010 | landed
+[ep 639] score:  -185.02 | length:  116 | loss: 38.3835 | eps: 0.010 | crash
+[ep 640] score:   297.02 | length:  250 | loss: 22.6827 | eps: 0.010 | landed
+[ep 641] score:   278.02 | length:  210 | loss: 31.7933 | eps: 0.010 | landed
+[ep 642] score:   -27.61 | length:   86 | loss: 53.7068 | eps: 0.010 | crash
+[ep 643] score:   270.43 | length:  204 | loss: 21.7580 | eps: 0.010 | landed
+[ep 644] score:    68.34 | length:  127 | loss: 56.1715 | eps: 0.010 | crash
+[ep 645] score:   -19.77 | length:  116 | loss: 46.9503 | eps: 0.010 | crash
+[ep 646] score:   237.70 | length:  335 | loss: 29.6983 | eps: 0.010 | landed
+[ep 647] score:   258.28 | length:  206 | loss: 58.3736 | eps: 0.010 | landed
+[ep 648] score:    17.81 | length:  244 | loss: 64.3266 | eps: 0.010 | crash
+[ep 649] score:    -4.48 | length:  112 | loss: 37.5098 | eps: 0.010 | crash
+[ep 650] score:   243.48 | length:  330 | loss: 24.1609 | eps: 0.010 | landed
+[ep 651] score:   -28.35 | length:  136 | loss: 88.2113 | eps: 0.010 | crash
+[ep 652] score:   261.80 | length:  198 | loss: 51.3108 | eps: 0.010 | landed
+[ep 653] score:   262.22 | length:  157 | loss: 21.1798 | eps: 0.010 | landed
+[ep 654] score:     7.98 | length:  130 | loss: 90.9679 | eps: 0.010 | crash
+[ep 655] score:    69.01 | length:  111 | loss: 108.0885 | eps: 0.010 | crash
+[ep 656] score:    15.49 | length:   88 | loss: 73.6323 | eps: 0.010 | crash
+[ep 657] score:   230.78 | length:  234 | loss: 67.1230 | eps: 0.010 | landed
+[ep 658] score:    47.44 | length:  104 | loss: 45.2523 | eps: 0.010 | crash
+[ep 659] score:   253.94 | length:  179 | loss: 64.7163 | eps: 0.010 | landed
+[ep 660] score:   257.15 | length:  195 | loss: 65.7537 | eps: 0.010 | landed
+[ep 661] score:   -40.82 | length:   81 | loss: 64.0214 | eps: 0.010 | crash
+[ep 662] score:   277.25 | length:  283 | loss: 119.5315 | eps: 0.010 | landed
+[ep 663] score:   260.44 | length:  178 | loss: 138.1654 | eps: 0.010 | landed
+[ep 664] score:   284.12 | length:  245 | loss: 78.6851 | eps: 0.010 | landed
+[ep 665] score:   299.01 | length:  239 | loss: 31.0760 | eps: 0.010 | landed
+[ep 666] score:    38.77 | length:  128 | loss: 38.2729 | eps: 0.010 | crash
+[ep 667] score:   298.85 | length:  180 | loss: 21.8680 | eps: 0.010 | landed
+[ep 668] score:    24.18 | length:  136 | loss: 27.6039 | eps: 0.010 | crash
+[ep 669] score:    22.69 | length:  124 | loss: 101.1657 | eps: 0.010 | crash
+[ep 670] score:   226.84 | length:  178 | loss: 65.3752 | eps: 0.010 | landed
+[ep 671] score:   245.76 | length:  194 | loss: 36.7101 | eps: 0.010 | landed
+[ep 672] score:    46.82 | length:  125 | loss: 89.5347 | eps: 0.010 | crash
+[ep 673] score:  -392.95 | length:  157 | loss: 85.0160 | eps: 0.010 | out_of_view
+[ep 674] score:   293.66 | length:  198 | loss: 40.1098 | eps: 0.010 | landed
+[ep 675] score:   254.75 | length:  295 | loss: 38.8583 | eps: 0.010 | landed
+[ep 676] score:   237.10 | length:  230 | loss: 40.3201 | eps: 0.010 | landed
+[ep 677] score:   292.09 | length:  178 | loss: 56.1997 | eps: 0.010 | landed
+[ep 678] score:   271.85 | length:  231 | loss: 41.4841 | eps: 0.010 | landed
+[ep 679] score:    14.04 | length:  128 | loss: 32.4168 | eps: 0.010 | crash
+[ep 680] score:   262.49 | length:  359 | loss: 44.7108 | eps: 0.010 | landed
+[ep 681] score:   -10.53 | length:   68 | loss: 27.0117 | eps: 0.010 | crash
+[ep 682] score:   278.12 | length:  151 | loss: 47.8288 | eps: 0.010 | landed
+[ep 683] score:    -6.85 | length:   60 | loss: 57.6124 | eps: 0.010 | crash
+[ep 684] score:   -15.14 | length:   81 | loss: 14.0118 | eps: 0.010 | crash
+[ep 685] score:   257.78 | length:  171 | loss: 51.6920 | eps: 0.010 | landed
+[ep 686] score:    36.09 | length:  103 | loss: 102.5424 | eps: 0.010 | crash
+[ep 687] score:    75.94 | length:  161 | loss: 34.4327 | eps: 0.010 | crash
+[ep 688] score:   215.28 | length:  163 | loss: 52.0675 | eps: 0.010 | landed
+[ep 689] score:    -7.62 | length:  113 | loss: 23.1237 | eps: 0.010 | crash
+[ep 690] score:   283.25 | length:  186 | loss: 57.4144 | eps: 0.010 | landed
+[ep 691] score:    49.98 | length:   97 | loss: 41.9614 | eps: 0.010 | crash
+[ep 692] score:   246.50 | length:  191 | loss: 65.6017 | eps: 0.010 | landed
+[ep 693] score:   230.79 | length:  161 | loss: 115.1015 | eps: 0.010 | landed
+[ep 694] score:   273.62 | length:  263 | loss: 91.0795 | eps: 0.010 | landed
+[ep 695] score:   -34.15 | length:  109 | loss: 14.1748 | eps: 0.010 | crash
+[ep 696] score:   237.82 | length:  204 | loss: 47.8166 | eps: 0.010 | landed
+[ep 697] score:   240.26 | length:  211 | loss: 43.1108 | eps: 0.010 | landed
+[ep 698] score:    49.82 | length:  132 | loss: 72.6756 | eps: 0.010 | crash
+[ep 699] score:   213.73 | length:  442 | loss: 67.4984 | eps: 0.010 | landed
+[ep 700] score:   271.79 | length:  261 | loss: 53.6751 | eps: 0.010 | landed
+[ep 701] score:    82.42 | length:  181 | loss: 47.0528 | eps: 0.010 | crash
+[ep 702] score:    48.17 | length:  150 | loss: 73.2747 | eps: 0.010 | crash
+[ep 703] score:     9.52 | length:   90 | loss: 85.8068 | eps: 0.010 | crash
+[ep 704] score:   255.56 | length:  254 | loss: 122.4018 | eps: 0.010 | landed
+[ep 705] score:   253.23 | length:  170 | loss: 93.2069 | eps: 0.010 | landed
+[ep 706] score:   289.94 | length:  168 | loss: 41.6249 | eps: 0.010 | landed
+[ep 707] score:   286.45 | length:  205 | loss: 63.0879 | eps: 0.010 | landed
+[ep 708] score:   280.09 | length:  229 | loss: 64.6875 | eps: 0.010 | landed
+[ep 709] score:    22.77 | length:  122 | loss: 95.4098 | eps: 0.010 | crash
+[ep 710] score:   275.83 | length:  175 | loss: 36.4956 | eps: 0.010 | landed
+[ep 711] score:   278.97 | length:  173 | loss: 65.1371 | eps: 0.010 | landed
+[ep 712] score:   294.56 | length:  176 | loss: 66.5054 | eps: 0.010 | landed
+[ep 713] score:   258.66 | length:  489 | loss: 89.1797 | eps: 0.010 | landed
+[ep 714] score:   267.44 | length:  271 | loss: 38.1589 | eps: 0.010 | landed
+[ep 715] score:   266.83 | length:  285 | loss: 34.8318 | eps: 0.010 | landed
+[ep 716] score:   246.49 | length:  186 | loss: 38.5120 | eps: 0.010 | landed
+[ep 717] score:   -87.93 | length:   68 | loss: 44.4397 | eps: 0.010 | crash
+[ep 718] score:   258.51 | length:  176 | loss: 48.4099 | eps: 0.010 | landed
+[ep 719] score:   -57.02 | length:   73 | loss: 150.6159 | eps: 0.010 | crash
+[ep 720] score:   255.15 | length:  193 | loss: 57.2728 | eps: 0.010 | landed
+[ep 721] score:    -1.88 | length:  111 | loss: 33.0201 | eps: 0.010 | crash
+[ep 722] score:   254.82 | length:  384 | loss: 38.5809 | eps: 0.010 | landed
+[ep 723] score:   297.09 | length:  167 | loss: 43.9084 | eps: 0.010 | landed
+[ep 724] score:   238.03 | length:  163 | loss: 33.3833 | eps: 0.010 | landed
+[ep 725] score:    21.46 | length:   94 | loss: 54.4653 | eps: 0.010 | crash
+[ep 726] score:   247.75 | length:  161 | loss: 43.4374 | eps: 0.010 | landed
+[ep 727] score:   -13.93 | length:  161 | loss: 96.9896 | eps: 0.010 | crash
+[ep 728] score:   -63.38 | length:   99 | loss: 64.5280 | eps: 0.010 | crash
+[ep 729] score:   -43.49 | length:  106 | loss: 25.6545 | eps: 0.010 | crash
+[ep 730] score:   240.85 | length:  293 | loss: 40.7129 | eps: 0.010 | landed
+[ep 731] score:  -161.58 | length:  112 | loss: 63.1116 | eps: 0.010 | crash
+[ep 732] score:   277.04 | length:  286 | loss: 46.4600 | eps: 0.010 | landed
+[ep 733] score:   230.74 | length:  275 | loss: 55.2998 | eps: 0.010 | landed
+[ep 734] score:   282.54 | length:  219 | loss: 67.1576 | eps: 0.010 | landed
+[ep 735] score:    11.11 | length:   85 | loss: 50.3155 | eps: 0.010 | crash
+[ep 736] score:   270.84 | length:  176 | loss: 44.0839 | eps: 0.010 | landed
+[ep 737] score:    -3.35 | length:  124 | loss: 102.4742 | eps: 0.010 | crash
+[ep 738] score:  -220.42 | length:  107 | loss: 33.4411 | eps: 0.010 | crash
+[ep 739] score:   215.87 | length:  225 | loss: 112.6576 | eps: 0.010 | landed
+[ep 740] score:   262.19 | length:  190 | loss: 56.0681 | eps: 0.010 | landed
+[ep 741] score:   274.72 | length:  188 | loss: 41.8581 | eps: 0.010 | landed
+[ep 742] score:   277.68 | length:  194 | loss: 53.0856 | eps: 0.010 | landed
+[ep 743] score:   287.68 | length:  200 | loss: 37.0366 | eps: 0.010 | landed
+[ep 744] score:   247.52 | length:  217 | loss: 47.0092 | eps: 0.010 | landed
+[ep 745] score:   233.65 | length:  350 | loss: 49.4697 | eps: 0.010 | landed
+[ep 746] score:   255.67 | length:  163 | loss: 39.2472 | eps: 0.010 | landed
+[ep 747] score:   274.66 | length:  193 | loss: 55.5737 | eps: 0.010 | landed
+[ep 748] score:   -76.11 | length:   88 | loss: 49.0697 | eps: 0.010 | crash
+[ep 749] score:   216.19 | length:  315 | loss: 42.5984 | eps: 0.010 | landed
+[ep 750] score:    60.13 | length:   83 | loss: 23.6665 | eps: 0.010 | crash
+[ep 751] score:   -74.73 | length:   96 | loss: 39.7060 | eps: 0.010 | crash
+[ep 752] score:   -61.65 | length:   67 | loss: 26.5214 | eps: 0.010 | crash
+[ep 753] score:   264.81 | length:  168 | loss: 36.3458 | eps: 0.010 | landed
+[ep 754] score:   293.52 | length:  175 | loss: 54.7498 | eps: 0.010 | landed
+[ep 755] score:   260.47 | length:  170 | loss: 42.4145 | eps: 0.010 | landed
+[ep 756] score:   -63.49 | length:   68 | loss: 37.3719 | eps: 0.010 | crash
+[ep 757] score:   266.15 | length:  278 | loss: 43.5296 | eps: 0.010 | landed
+[ep 758] score:   269.23 | length:  227 | loss: 39.2588 | eps: 0.010 | landed
+[ep 759] score:  -115.15 | length:   99 | loss: 42.2070 | eps: 0.010 | crash
+[ep 760] score:   -58.23 | length:   72 | loss: 57.3842 | eps: 0.010 | crash
+[ep 761] score:   256.86 | length:  372 | loss: 38.9971 | eps: 0.010 | landed
+[ep 762] score:    51.95 | length:  126 | loss: 41.9422 | eps: 0.010 | crash
+[ep 763] score:   262.18 | length:  183 | loss: 53.5668 | eps: 0.010 | landed
+[ep 764] score:   270.60 | length:  198 | loss: 39.7543 | eps: 0.010 | landed
+[ep 765] score:   -58.79 | length:   67 | loss: 197.3575 | eps: 0.010 | crash
+[ep 766] score:   269.29 | length:  161 | loss: 45.7216 | eps: 0.010 | landed
+[ep 767] score:   275.06 | length:  213 | loss: 38.9898 | eps: 0.010 | landed
+[ep 768] score:   246.57 | length:  176 | loss: 48.8701 | eps: 0.010 | landed
+[ep 769] score:   257.82 | length:  267 | loss: 47.7512 | eps: 0.010 | landed
+[ep 770] score:   -33.00 | length:   89 | loss: 49.8321 | eps: 0.010 | crash
+[ep 771] score:   274.34 | length:  265 | loss: 54.9275 | eps: 0.010 | landed
+[ep 772] score:   290.39 | length:  266 | loss: 62.4179 | eps: 0.010 | landed
+[ep 773] score:   296.82 | length:  181 | loss: 89.0319 | eps: 0.010 | landed
+[ep 774] score:   259.62 | length:  193 | loss: 51.9551 | eps: 0.010 | landed
+[ep 775] score:   253.69 | length:  201 | loss: 55.6006 | eps: 0.010 | landed
+[ep 776] score:   247.92 | length:  307 | loss: 60.3228 | eps: 0.010 | landed
+[ep 777] score:    48.77 | length:  103 | loss: 50.5700 | eps: 0.010 | crash
+[ep 778] score:   222.68 | length:  641 | loss: 68.9394 | eps: 0.010 | landed
+[ep 779] score:   267.45 | length:  189 | loss: 44.1248 | eps: 0.010 | landed
+[ep 780] score:   234.81 | length:  381 | loss: 72.2829 | eps: 0.010 | landed
+[ep 781] score:   -42.33 | length:  108 | loss: 38.0253 | eps: 0.010 | crash
+[ep 782] score:   279.15 | length:  357 | loss: 58.8416 | eps: 0.010 | landed
+[ep 783] score:     9.52 | length:  120 | loss: 43.9379 | eps: 0.010 | crash
+[ep 784] score:   255.67 | length:  222 | loss: 66.2003 | eps: 0.010 | landed
+[ep 785] score:   314.99 | length:  170 | loss: 39.6784 | eps: 0.010 | landed
+[ep 786] score:   295.74 | length:  165 | loss: 59.7869 | eps: 0.010 | landed
+[ep 787] score:   259.40 | length:  289 | loss: 65.6034 | eps: 0.010 | landed
+[ep 788] score:   281.55 | length:  231 | loss: 52.3695 | eps: 0.010 | landed
+[ep 789] score:   283.81 | length:  201 | loss: 54.0739 | eps: 0.010 | landed
+[ep 790] score:   269.13 | length:  150 | loss: 51.0674 | eps: 0.010 | landed
+[ep 791] score:   250.20 | length:  265 | loss: 52.8446 | eps: 0.010 | landed
+[ep 792] score:   281.06 | length:  179 | loss: 61.9768 | eps: 0.010 | landed
+[ep 793] score:   291.85 | length:  225 | loss: 52.6079 | eps: 0.010 | landed
+[ep 794] score:   255.69 | length:  172 | loss: 38.1253 | eps: 0.010 | landed
+[ep 795] score:   268.77 | length:  181 | loss: 118.9740 | eps: 0.010 | landed
+[ep 796] score:   271.27 | length:  176 | loss: 107.2077 | eps: 0.010 | landed
+[ep 797] score:   274.62 | length:  197 | loss: 43.4806 | eps: 0.010 | landed
+[ep 798] score:   269.00 | length:  184 | loss: 49.4822 | eps: 0.010 | landed
+[ep 799] score:   306.10 | length:  189 | loss: 51.2108 | eps: 0.010 | landed
+[ep 800] score:   288.02 | length:  196 | loss: 43.3021 | eps: 0.010 | landed
+
+Model saved to models/ddqn.pt
+Logs saved to logs/train/ddqn.csv
+
+[2/4] Evaluating Double DQN (no wind)...
+/home/phil/local-starttrek/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_stream, resource_exists
+[ep 001] score:   150.93 | length: 1000 | out_of_time
+[ep 002] score:   219.53 | length:  630 | landed
+[ep 003] score:   291.55 | length:  256 | landed
+[ep 004] score:   150.23 | length: 1000 | out_of_time
+[ep 005] score:   177.77 | length: 1000 | out_of_time
+[ep 006] score:   144.90 | length: 1000 | out_of_time
+[ep 007] score:   226.55 | length:  500 | landed
+[ep 008] score:   237.08 | length:  774 | landed
+[ep 009] score:   137.53 | length: 1000 | out_of_time
+[ep 010] score:   189.62 | length:  804 | landed
+[ep 011] score:   148.74 | length: 1000 | out_of_time
+[ep 012] score:   239.20 | length:  951 | landed
+[ep 013] score:   122.23 | length: 1000 | out_of_time
+[ep 014] score:   202.09 | length:  905 | landed
+[ep 015] score:   288.67 | length:  198 | landed
+[ep 016] score:   290.88 | length:  481 | landed
+[ep 017] score:   212.32 | length:  752 | landed
+[ep 018] score:   106.87 | length: 1000 | out_of_time
+[ep 019] score:   147.83 | length: 1000 | out_of_time
+[ep 020] score:   250.36 | length:  199 | landed
+[ep 021] score:   272.85 | length:  188 | landed
+[ep 022] score:    97.65 | length: 1000 | out_of_time
+[ep 023] score:   171.83 | length: 1000 | out_of_time
+[ep 024] score:   272.77 | length:  879 | landed
+[ep 025] score:   219.29 | length:  910 | landed
+[ep 026] score:   263.60 | length:  559 | landed
+[ep 027] score:   281.13 | length:  237 | landed
+[ep 028] score:   288.79 | length:  238 | landed
+[ep 029] score:   229.85 | length:  670 | landed
+[ep 030] score:   256.28 | length:  174 | landed
+[ep 031] score:   146.60 | length: 1000 | out_of_time
+[ep 032] score:   239.09 | length:  312 | landed
+[ep 033] score:   169.88 | length: 1000 | out_of_time
+[ep 034] score:   286.45 | length:  387 | landed
+[ep 035] score:   250.90 | length:  333 | landed
+[ep 036] score:   191.00 | length:  844 | landed
+[ep 037] score:   149.87 | length: 1000 | out_of_time
+[ep 038] score:   285.81 | length:  219 | landed
+[ep 039] score:   148.07 | length: 1000 | out_of_time
+[ep 040] score:   273.58 | length:  316 | landed
+[ep 041] score:   284.51 | length:  345 | landed
+[ep 042] score:   236.24 | length:  991 | landed
+[ep 043] score:   243.43 | length:  291 | landed
+[ep 044] score:   149.85 | length: 1000 | out_of_time
+[ep 045] score:   249.33 | length:  190 | landed
+[ep 046] score:   126.10 | length: 1000 | out_of_time
+[ep 047] score:   148.94 | length: 1000 | out_of_time
+[ep 048] score:   280.98 | length:  220 | landed
+[ep 049] score:   131.40 | length: 1000 | out_of_time
+[ep 050] score:   167.20 | length: 1000 | out_of_time
+[ep 051] score:   216.26 | length:  933 | landed
+[ep 052] score:   237.14 | length:  502 | landed
+[ep 053] score:   280.03 | length:  348 | landed
+[ep 054] score:   266.42 | length:  260 | landed
+[ep 055] score:   128.96 | length: 1000 | out_of_time
+[ep 056] score:   259.44 | length:  269 | landed
+[ep 057] score:   122.81 | length: 1000 | out_of_time
+[ep 058] score:   253.29 | length:  506 | landed
+[ep 059] score:   137.98 | length: 1000 | out_of_time
+[ep 060] score:   262.32 | length:  619 | landed
+[ep 061] score:   156.44 | length: 1000 | out_of_time
+[ep 062] score:   263.38 | length:  302 | landed
+[ep 063] score:   257.60 | length:  785 | landed
+[ep 064] score:   111.24 | length: 1000 | out_of_time
+[ep 065] score:    49.37 | length: 1000 | out_of_time
+[ep 066] score:   155.70 | length: 1000 | out_of_time
+[ep 067] score:   148.15 | length: 1000 | out_of_time
+[ep 068] score:   160.66 | length: 1000 | out_of_time
+[ep 069] score:   263.41 | length:  272 | landed
+[ep 070] score:   142.01 | length: 1000 | out_of_time
+[ep 071] score:   291.26 | length:  259 | landed
+[ep 072] score:   134.91 | length: 1000 | out_of_time
+[ep 073] score:   151.85 | length: 1000 | out_of_time
+[ep 074] score:   252.41 | length:  494 | landed
+[ep 075] score:    87.32 | length:  204 | crash
+[ep 076] score:   164.30 | length: 1000 | out_of_time
+[ep 077] score:   147.64 | length: 1000 | out_of_time
+[ep 078] score:   251.49 | length:  198 | landed
+[ep 079] score:   268.00 | length:  240 | landed
+[ep 080] score:   289.74 | length:  260 | landed
+[ep 081] score:   162.54 | length: 1000 | out_of_time
+[ep 082] score:   171.62 | length: 1000 | out_of_time
+[ep 083] score:   271.27 | length:  186 | landed
+[ep 084] score:   226.72 | length:  587 | landed
+[ep 085] score:   220.50 | length:  864 | landed
+[ep 086] score:   212.61 | length:  620 | landed
+[ep 087] score:   260.85 | length:  481 | landed
+[ep 088] score:   265.19 | length:  277 | landed
+[ep 089] score:   160.79 | length: 1000 | out_of_time
+[ep 090] score:   170.86 | length: 1000 | out_of_time
+[ep 091] score:   256.85 | length:  239 | landed
+[ep 092] score:   214.83 | length:  874 | landed
+[ep 093] score:   128.24 | length: 1000 | out_of_time
+[ep 094] score:   280.47 | length:  255 | landed
+[ep 095] score:   108.71 | length: 1000 | out_of_time
+[ep 096] score:   246.43 | length:  995 | landed
+[ep 097] score:   127.89 | length: 1000 | out_of_time
+[ep 098] score:   129.09 | length: 1000 | out_of_time
+[ep 099] score:   284.43 | length:  249 | landed
+[ep 100] score:   239.91 | length:  693 | landed
+
+Mean score over 100 episodes: 204.99
+Logs saved to logs/eval/ddqn.csv
+
+[3/4] Training Double DQN (with wind)...
+/home/phil/local-starttrek/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_stream, resource_exists
+[ep 001] score:  -167.30 | length:  104 | loss: 9.6614 | eps: 0.949 | crash
+[ep 002] score:  -397.10 | length:   90 | loss: 82.6041 | eps: 0.908 | crash
+[ep 003] score:  -263.70 | length:  107 | loss: 94.4293 | eps: 0.860 | crash
+[ep 004] score:  -194.73 | length:   97 | loss: 87.7254 | eps: 0.820 | crash
+[ep 005] score:   -79.12 | length:   74 | loss: 91.0875 | eps: 0.790 | crash
+[ep 006] score:  -389.53 | length:  103 | loss: 78.6465 | eps: 0.750 | crash
+[ep 007] score:  -224.11 | length:   94 | loss: 62.7620 | eps: 0.716 | crash
+[ep 008] score:  -317.22 | length:  101 | loss: 57.3290 | eps: 0.680 | crash
+[ep 009] score:    31.97 | length:   87 | loss: 41.0707 | eps: 0.651 | crash
+[ep 010] score:  -227.90 | length:  123 | loss: 60.0736 | eps: 0.613 | crash
+[ep 011] score:  -168.86 | length:   61 | loss: 68.3614 | eps: 0.594 | crash
+[ep 012] score:  -321.05 | length:  150 | loss: 56.0391 | eps: 0.551 | crash
+[ep 013] score:  -340.44 | length:   78 | loss: 62.9778 | eps: 0.530 | crash
+[ep 014] score:   -63.68 | length:   99 | loss: 61.5150 | eps: 0.505 | crash
+[ep 015] score:  -318.05 | length:   90 | loss: 61.8155 | eps: 0.482 | crash
+[ep 016] score:  -355.21 | length:  125 | loss: 43.7041 | eps: 0.453 | crash
+[ep 017] score:  -215.26 | length:  116 | loss: 51.6014 | eps: 0.428 | out_of_view
+[ep 018] score:  -250.32 | length:   99 | loss: 60.2464 | eps: 0.407 | crash
+[ep 019] score:  -164.88 | length:  138 | loss: 49.3163 | eps: 0.380 | crash
+[ep 020] score:  -332.74 | length:  257 | loss: 45.4873 | eps: 0.334 | out_of_view
+[ep 021] score:  -106.51 | length:  194 | loss: 36.9910 | eps: 0.303 | crash
+[ep 022] score:  -111.63 | length:  127 | loss: 42.4548 | eps: 0.284 | crash
+[ep 023] score:   -81.72 | length:   94 | loss: 48.1183 | eps: 0.271 | crash
+[ep 024] score:    53.02 | length:  190 | loss: 45.3496 | eps: 0.247 | crash
+[ep 025] score:   -29.63 | length:  206 | loss: 44.9824 | eps: 0.223 | crash
+[ep 026] score:  -200.76 | length:  446 | loss: 56.7453 | eps: 0.178 | out_of_view
+[ep 027] score:  -204.97 | length:  204 | loss: 48.0550 | eps: 0.161 | crash
+[ep 028] score:  -252.05 | length:  343 | loss: 49.0221 | eps: 0.135 | crash
+[ep 029] score:   -91.24 | length:  263 | loss: 51.9430 | eps: 0.119 | crash
+[ep 030] score:  -301.96 | length:  752 | loss: 44.2956 | eps: 0.082 | out_of_view
+[ep 031] score:  -319.11 | length:  519 | loss: 46.6941 | eps: 0.063 | out_of_view
+[ep 032] score:  -271.20 | length:  887 | loss: 53.5137 | eps: 0.040 | out_of_view
+[ep 033] score:  -218.53 | length:  346 | loss: 49.8586 | eps: 0.034 | out_of_view
+[ep 034] score:  -231.84 | length:  919 | loss: 73.4618 | eps: 0.021 | out_of_view
+[ep 035] score:  -277.04 | length:  465 | loss: 71.3871 | eps: 0.017 | crash
+[ep 036] score:  -184.63 | length:  287 | loss: 76.6350 | eps: 0.015 | out_of_view
+[ep 037] score:  -142.88 | length:  217 | loss: 69.0711 | eps: 0.013 | crash
+[ep 038] score:   -93.90 | length:  273 | loss: 70.3428 | eps: 0.012 | crash
+[ep 039] score:  -155.92 | length:  324 | loss: 87.0309 | eps: 0.010 | out_of_view
+[ep 040] score:  -134.15 | length:  819 | loss: 82.5255 | eps: 0.010 | crash
+[ep 041] score:  -149.12 | length:  426 | loss: 92.5509 | eps: 0.010 | out_of_view
+[ep 042] score:  -153.31 | length:  294 | loss: 80.8597 | eps: 0.010 | out_of_view
+[ep 043] score:  -264.58 | length:  500 | loss: 99.5642 | eps: 0.010 | out_of_view
+[ep 044] score:  -185.93 | length:  143 | loss: 99.2876 | eps: 0.010 | out_of_view
+[ep 045] score:    63.31 | length:  694 | loss: 92.7116 | eps: 0.010 | landed
+[ep 046] score:  -175.76 | length:   86 | loss: 51.2107 | eps: 0.010 | out_of_view
+[ep 047] score:  -139.32 | length:  517 | loss: 124.6058 | eps: 0.010 | crash
+[ep 048] score:  -159.03 | length:  222 | loss: 154.1866 | eps: 0.010 | out_of_view
+[ep 049] score:  -166.79 | length:  451 | loss: 94.2541 | eps: 0.010 | out_of_view
+[ep 050] score:  -184.67 | length:  129 | loss: 98.1908 | eps: 0.010 | crash
+[ep 051] score:  -195.88 | length:  469 | loss: 125.4401 | eps: 0.010 | out_of_view
+[ep 052] score:  -153.04 | length:  266 | loss: 123.8571 | eps: 0.010 | out_of_view
+[ep 053] score:  -158.49 | length:  514 | loss: 99.0165 | eps: 0.010 | out_of_view
+[ep 054] score:  -219.18 | length:  302 | loss: 117.5295 | eps: 0.010 | out_of_view
+[ep 055] score:  -151.47 | length:  370 | loss: 98.8022 | eps: 0.010 | out_of_view
+[ep 056] score:  -232.73 | length:  321 | loss: 139.4119 | eps: 0.010 | out_of_view
+[ep 057] score:  -130.43 | length:  260 | loss: 97.2308 | eps: 0.010 | out_of_view
+[ep 058] score:  -177.96 | length: 1000 | loss: 105.7574 | eps: 0.010 | out_of_time
+[ep 059] score:  -103.45 | length: 1000 | loss: 106.6493 | eps: 0.010 | out_of_time
+[ep 060] score:  -142.04 | length:  203 | loss: 142.4326 | eps: 0.010 | out_of_view
+[ep 061] score:  -223.80 | length:  430 | loss: 107.8782 | eps: 0.010 | out_of_view
+[ep 062] score:  -112.94 | length:  170 | loss: 62.2571 | eps: 0.010 | out_of_view
+[ep 063] score:  -204.95 | length:  157 | loss: 127.6131 | eps: 0.010 | crash
+[ep 064] score:  -207.01 | length:  147 | loss: 67.9857 | eps: 0.010 | out_of_view
+[ep 065] score:  -140.72 | length:  109 | loss: 73.9366 | eps: 0.010 | out_of_view
+[ep 066] score:    36.00 | length:  142 | loss: 116.1782 | eps: 0.010 | crash
+[ep 067] score:  -201.02 | length:  125 | loss: 176.1070 | eps: 0.010 | out_of_view
+[ep 068] score:     1.06 | length:  279 | loss: 150.6516 | eps: 0.010 | crash
+[ep 069] score:   -86.92 | length:  170 | loss: 112.4486 | eps: 0.010 | out_of_view
+[ep 070] score:  -188.16 | length:  603 | loss: 141.7703 | eps: 0.010 | out_of_view
+[ep 071] score:   -84.71 | length:  206 | loss: 79.5420 | eps: 0.010 | crash
+[ep 072] score:  -178.35 | length:  371 | loss: 122.8211 | eps: 0.010 | out_of_view
+[ep 073] score:  -129.24 | length:  216 | loss: 159.6268 | eps: 0.010 | out_of_view
+[ep 074] score:    14.09 | length:  246 | loss: 185.4004 | eps: 0.010 | crash
+[ep 075] score:  -121.54 | length:   93 | loss: 103.0664 | eps: 0.010 | out_of_view
+[ep 076] score:  -160.79 | length:  697 | loss: 134.4175 | eps: 0.010 | out_of_view
+[ep 077] score:  -141.70 | length:  656 | loss: 124.3054 | eps: 0.010 | crash
+[ep 078] score:   -80.17 | length:   88 | loss: 52.4582 | eps: 0.010 | crash
+[ep 079] score:   -28.95 | length:  393 | loss: 131.4353 | eps: 0.010 | crash
+[ep 080] score:   -71.84 | length:  142 | loss: 84.8301 | eps: 0.010 | out_of_view
+[ep 081] score:   -43.67 | length:  122 | loss: 129.7775 | eps: 0.010 | crash
+[ep 082] score:  -124.03 | length:  107 | loss: 82.7151 | eps: 0.010 | out_of_view
+[ep 083] score:  -109.27 | length:  241 | loss: 103.0923 | eps: 0.010 | crash
+[ep 084] score:  -166.50 | length:  118 | loss: 88.5512 | eps: 0.010 | out_of_view
+[ep 085] score:  -262.10 | length:  963 | loss: 97.9793 | eps: 0.010 | out_of_view
+[ep 086] score:   -77.96 | length:  114 | loss: 156.3478 | eps: 0.010 | out_of_view
+[ep 087] score:  -154.39 | length:  260 | loss: 85.1478 | eps: 0.010 | crash
+[ep 088] score:  -145.33 | length:  178 | loss: 129.6430 | eps: 0.010 | crash
+[ep 089] score:   -93.11 | length:  197 | loss: 98.1805 | eps: 0.010 | crash
+[ep 090] score:  -276.11 | length:  153 | loss: 130.7452 | eps: 0.010 | crash
+[ep 091] score:  -129.67 | length:  145 | loss: 96.5980 | eps: 0.010 | out_of_view
+[ep 092] score:  -196.25 | length:  144 | loss: 109.0606 | eps: 0.010 | out_of_view
+[ep 093] score:  -167.64 | length:  719 | loss: 188.8094 | eps: 0.010 | out_of_view
+[ep 094] score:   -63.32 | length:  353 | loss: 119.2225 | eps: 0.010 | crash
+[ep 095] score:  -211.22 | length:  602 | loss: 84.2932 | eps: 0.010 | out_of_view
+[ep 096] score:  -149.24 | length:  157 | loss: 88.7829 | eps: 0.010 | crash
+[ep 097] score:   -77.41 | length: 1000 | loss: 84.8354 | eps: 0.010 | out_of_time
+[ep 098] score:  -161.45 | length:  227 | loss: 65.5411 | eps: 0.010 | out_of_view
+[ep 099] score:  -156.79 | length:  127 | loss: 106.7084 | eps: 0.010 | out_of_view
+[ep 100] score:  -265.23 | length:  862 | loss: 105.9463 | eps: 0.010 | crash
+[ep 101] score:  -142.67 | length:  528 | loss: 94.9077 | eps: 0.010 | out_of_view
+[ep 102] score:  -231.67 | length:  706 | loss: 63.2986 | eps: 0.010 | out_of_view
+[ep 103] score:   -31.87 | length: 1000 | loss: 96.0013 | eps: 0.010 | out_of_time
+[ep 104] score:   -48.95 | length:  532 | loss: 50.4734 | eps: 0.010 | crash
+[ep 105] score:  -214.96 | length:  439 | loss: 70.7746 | eps: 0.010 | out_of_view
+[ep 106] score:   -95.24 | length:  318 | loss: 113.5150 | eps: 0.010 | out_of_view
+[ep 107] score:  -183.75 | length:  763 | loss: 102.9265 | eps: 0.010 | out_of_view
+[ep 108] score:  -218.34 | length:  260 | loss: 84.4323 | eps: 0.010 | crash
+[ep 109] score:   -47.27 | length:  378 | loss: 95.0163 | eps: 0.010 | crash
+[ep 110] score:  -260.55 | length:  897 | loss: 97.2023 | eps: 0.010 | out_of_view
+[ep 111] score:  -165.16 | length:  200 | loss: 88.0660 | eps: 0.010 | crash
+[ep 112] score:   -90.66 | length:  277 | loss: 46.7961 | eps: 0.010 | out_of_view
+[ep 113] score:  -246.17 | length:  206 | loss: 99.6582 | eps: 0.010 | crash
+[ep 114] score:    -3.37 | length: 1000 | loss: 114.0846 | eps: 0.010 | out_of_time
+[ep 115] score:  -106.16 | length:  196 | loss: 83.0379 | eps: 0.010 | out_of_view
+[ep 116] score:  -133.91 | length: 1000 | loss: 107.3702 | eps: 0.010 | out_of_time
+[ep 117] score:   -23.43 | length: 1000 | loss: 64.7268 | eps: 0.010 | out_of_time
+[ep 118] score:  -194.37 | length:  663 | loss: 55.2309 | eps: 0.010 | out_of_view
+[ep 119] score:  -123.50 | length: 1000 | loss: 115.4303 | eps: 0.010 | out_of_time
+[ep 120] score:   -62.40 | length: 1000 | loss: 137.6351 | eps: 0.010 | out_of_time
+[ep 121] score:  -130.93 | length: 1000 | loss: 93.8649 | eps: 0.010 | out_of_time
+[ep 122] score:    -4.64 | length:  162 | loss: 63.3194 | eps: 0.010 | crash
+[ep 123] score:  -193.88 | length:  237 | loss: 126.0060 | eps: 0.010 | crash
+[ep 124] score:  -125.23 | length:  195 | loss: 99.4054 | eps: 0.010 | crash
+[ep 125] score:  -210.01 | length:  437 | loss: 123.0579 | eps: 0.010 | out_of_view
+[ep 126] score:  -265.54 | length:  946 | loss: 112.4282 | eps: 0.010 | out_of_view
+[ep 127] score:  -105.36 | length:  303 | loss: 39.8247 | eps: 0.010 | out_of_view
+[ep 128] score:  -229.54 | length:  744 | loss: 62.8215 | eps: 0.010 | out_of_view
+[ep 129] score:   -40.92 | length: 1000 | loss: 98.8977 | eps: 0.010 | out_of_time
+[ep 130] score:   -70.90 | length: 1000 | loss: 106.4463 | eps: 0.010 | out_of_time
+[ep 131] score:   179.63 | length:  597 | loss: 82.8043 | eps: 0.010 | landed
+[ep 132] score:  -279.27 | length:  568 | loss: 55.5749 | eps: 0.010 | crash
+[ep 133] score:    37.29 | length: 1000 | loss: 148.7540 | eps: 0.010 | out_of_time
+[ep 134] score:   -99.72 | length:  282 | loss: 108.4000 | eps: 0.010 | out_of_view
+[ep 135] score:  -199.44 | length:  463 | loss: 119.8441 | eps: 0.010 | out_of_view
+[ep 136] score:  -147.32 | length:  465 | loss: 106.7787 | eps: 0.010 | out_of_view
+[ep 137] score:  -117.76 | length:  285 | loss: 85.8084 | eps: 0.010 | crash
+[ep 138] score:   -30.23 | length:  172 | loss: 115.8568 | eps: 0.010 | crash
+[ep 139] score:  -189.43 | length:  412 | loss: 75.5275 | eps: 0.010 | out_of_view
+[ep 140] score:  -135.42 | length:  496 | loss: 103.0817 | eps: 0.010 | out_of_view
+[ep 141] score:  -161.34 | length:  210 | loss: 92.6018 | eps: 0.010 | out_of_view
+[ep 142] score:    -8.37 | length:  154 | loss: 97.8912 | eps: 0.010 | crash
+[ep 143] score:  -177.30 | length:  510 | loss: 169.9161 | eps: 0.010 | out_of_view
+[ep 144] score:  -175.46 | length:  601 | loss: 73.8078 | eps: 0.010 | out_of_view
+[ep 145] score:     3.98 | length: 1000 | loss: 77.3328 | eps: 0.010 | out_of_time
+[ep 146] score:  -149.98 | length:  386 | loss: 121.4719 | eps: 0.010 | out_of_view
+[ep 147] score:  -144.53 | length:  157 | loss: 38.3455 | eps: 0.010 | crash
+[ep 148] score:  -228.45 | length:  445 | loss: 37.2392 | eps: 0.010 | out_of_view
+[ep 149] score:   209.03 | length:  584 | loss: 87.7139 | eps: 0.010 | landed
+[ep 150] score:  -169.33 | length:  627 | loss: 70.9130 | eps: 0.010 | out_of_view
+[ep 151] score:  -159.95 | length:  389 | loss: 80.7227 | eps: 0.010 | out_of_view
+[ep 152] score:  -166.44 | length:  582 | loss: 48.6466 | eps: 0.010 | out_of_view
+[ep 153] score:  -189.65 | length:  406 | loss: 97.5002 | eps: 0.010 | out_of_view
+[ep 154] score:   -14.09 | length:  197 | loss: 199.9340 | eps: 0.010 | crash
+[ep 155] score:  -210.93 | length:  498 | loss: 110.9102 | eps: 0.010 | crash
+[ep 156] score:  -145.15 | length:  273 | loss: 54.8657 | eps: 0.010 | out_of_view
+[ep 157] score:  -380.51 | length:  625 | loss: 58.7721 | eps: 0.010 | crash
+[ep 158] score:  -159.43 | length:  817 | loss: 92.8921 | eps: 0.010 | out_of_view
+[ep 159] score:   211.85 | length:  397 | loss: 84.5494 | eps: 0.010 | landed
+[ep 160] score:     3.42 | length:  301 | loss: 50.7583 | eps: 0.010 | crash
+[ep 161] score:   137.73 | length:  633 | loss: 116.2057 | eps: 0.010 | landed
+[ep 162] score:   -66.44 | length:  239 | loss: 94.0215 | eps: 0.010 | crash
+[ep 163] score:   -98.60 | length:  555 | loss: 97.6619 | eps: 0.010 | crash
+[ep 164] score:  -241.35 | length:  618 | loss: 54.8018 | eps: 0.010 | out_of_view
+[ep 165] score:   274.13 | length:  302 | loss: 67.7961 | eps: 0.010 | landed
+[ep 166] score:   -33.91 | length:  195 | loss: 63.9237 | eps: 0.010 | crash
+[ep 167] score:  -384.93 | length:  817 | loss: 71.2011 | eps: 0.010 | crash
+[ep 168] score:   -11.42 | length: 1000 | loss: 109.8660 | eps: 0.010 | out_of_time
+[ep 169] score:   -45.61 | length:  615 | loss: 68.1256 | eps: 0.010 | crash
+[ep 170] score:  -136.82 | length: 1000 | loss: 42.4130 | eps: 0.010 | out_of_time
+[ep 171] score:   -92.58 | length: 1000 | loss: 90.0823 | eps: 0.010 | out_of_time
+[ep 172] score:   -90.29 | length:  580 | loss: 57.5737 | eps: 0.010 | crash
+[ep 173] score:   -58.27 | length:  174 | loss: 60.6393 | eps: 0.010 | crash
+[ep 174] score:   206.78 | length:  616 | loss: 53.8403 | eps: 0.010 | landed
+[ep 175] score:  -155.95 | length:  213 | loss: 83.6000 | eps: 0.010 | crash
+[ep 176] score:  -248.58 | length:  397 | loss: 69.7244 | eps: 0.010 | crash
+[ep 177] score:   174.12 | length:  691 | loss: 58.8955 | eps: 0.010 | landed
+[ep 178] score:   -21.82 | length:  230 | loss: 80.8687 | eps: 0.010 | crash
+[ep 179] score:   -26.67 | length:  279 | loss: 126.9037 | eps: 0.010 | crash
+[ep 180] score:   -59.82 | length:  270 | loss: 75.2072 | eps: 0.010 | crash
+[ep 181] score:  -175.34 | length:  859 | loss: 44.1101 | eps: 0.010 | crash
+[ep 182] score:   -63.77 | length:  438 | loss: 50.4960 | eps: 0.010 | crash
+[ep 183] score:   -66.01 | length:  217 | loss: 87.8071 | eps: 0.010 | crash
+[ep 184] score:   -65.40 | length:  350 | loss: 63.7628 | eps: 0.010 | crash
+[ep 185] score:   -71.68 | length:  541 | loss: 57.8707 | eps: 0.010 | crash
+[ep 186] score:  -110.69 | length:  388 | loss: 43.3660 | eps: 0.010 | crash
+[ep 187] score:   -71.10 | length:  597 | loss: 57.8878 | eps: 0.010 | crash
+[ep 188] score:  -228.27 | length:  327 | loss: 38.2601 | eps: 0.010 | crash
+[ep 189] score:  -162.40 | length:  545 | loss: 45.7061 | eps: 0.010 | crash
+[ep 190] score:   -36.43 | length: 1000 | loss: 49.2734 | eps: 0.010 | out_of_time
+[ep 191] score:   -93.05 | length:  500 | loss: 69.9350 | eps: 0.010 | crash
+[ep 192] score:  -170.36 | length:  725 | loss: 51.9898 | eps: 0.010 | crash
+[ep 193] score:   185.65 | length:  701 | loss: 41.7830 | eps: 0.010 | landed
+[ep 194] score:  -104.13 | length: 1000 | loss: 36.4456 | eps: 0.010 | out_of_time
+[ep 195] score:  -102.33 | length: 1000 | loss: 86.4268 | eps: 0.010 | out_of_time
+[ep 196] score:   -96.58 | length:  136 | loss: 33.9558 | eps: 0.010 | out_of_view
+[ep 197] score:  -113.95 | length: 1000 | loss: 63.7757 | eps: 0.010 | out_of_time
+[ep 198] score:   284.54 | length:  330 | loss: 90.9167 | eps: 0.010 | landed
+[ep 199] score:   -22.78 | length: 1000 | loss: 67.3229 | eps: 0.010 | out_of_time
+[ep 200] score:  -226.59 | length:  169 | loss: 103.2450 | eps: 0.010 | crash
+[ep 201] score:  -108.66 | length: 1000 | loss: 60.0504 | eps: 0.010 | out_of_time
+[ep 202] score:  -114.34 | length: 1000 | loss: 39.9483 | eps: 0.010 | out_of_time
+[ep 203] score:  -240.42 | length:  876 | loss: 64.1909 | eps: 0.010 | out_of_view
+[ep 204] score:  -158.80 | length:  788 | loss: 93.4924 | eps: 0.010 | crash
+[ep 205] score:  -238.16 | length:  882 | loss: 107.6336 | eps: 0.010 | out_of_view
+[ep 206] score:   -51.35 | length: 1000 | loss: 140.1746 | eps: 0.010 | out_of_time
+[ep 207] score:   253.44 | length:  362 | loss: 62.3060 | eps: 0.010 | landed
+[ep 208] score:   191.45 | length:  682 | loss: 97.6919 | eps: 0.010 | landed
+[ep 209] score:    48.68 | length: 1000 | loss: 52.8887 | eps: 0.010 | out_of_time
+[ep 210] score:   -96.98 | length: 1000 | loss: 127.0711 | eps: 0.010 | out_of_time
+[ep 211] score:   -37.49 | length: 1000 | loss: 146.2189 | eps: 0.010 | out_of_time
+[ep 212] score:  -162.58 | length: 1000 | loss: 68.1395 | eps: 0.010 | out_of_time
+[ep 213] score:   -70.48 | length: 1000 | loss: 108.7905 | eps: 0.010 | out_of_time
+[ep 214] score:   -61.25 | length: 1000 | loss: 72.7568 | eps: 0.010 | out_of_time
+[ep 215] score:  -108.30 | length: 1000 | loss: 102.3147 | eps: 0.010 | out_of_time
+[ep 216] score:    56.00 | length: 1000 | loss: 89.5892 | eps: 0.010 | out_of_time
+[ep 217] score:   -42.49 | length: 1000 | loss: 86.2541 | eps: 0.010 | out_of_time
+[ep 218] score:   -41.55 | length: 1000 | loss: 116.6839 | eps: 0.010 | out_of_time
+[ep 219] score:  -288.61 | length:  893 | loss: 87.9576 | eps: 0.010 | out_of_view
+[ep 220] score:  -105.37 | length: 1000 | loss: 58.6123 | eps: 0.010 | out_of_time
+[ep 221] score:   214.58 | length:  520 | loss: 102.6109 | eps: 0.010 | landed
+[ep 222] score:   -68.99 | length:  322 | loss: 88.5346 | eps: 0.010 | crash
+[ep 223] score:   -77.33 | length:  161 | loss: 109.9920 | eps: 0.010 | crash
+[ep 224] score:  -105.74 | length:  503 | loss: 57.7699 | eps: 0.010 | crash
+[ep 225] score:  -220.44 | length:  686 | loss: 126.6759 | eps: 0.010 | out_of_view
+[ep 226] score:  -173.00 | length:  457 | loss: 81.1897 | eps: 0.010 | crash
+[ep 227] score:   114.56 | length:  999 | loss: 103.4053 | eps: 0.010 | landed
+[ep 228] score:  -121.45 | length: 1000 | loss: 122.2285 | eps: 0.010 | out_of_time
+[ep 229] score:   -58.98 | length: 1000 | loss: 117.2300 | eps: 0.010 | out_of_time
+[ep 230] score:   194.43 | length:  710 | loss: 74.1127 | eps: 0.010 | landed
+[ep 231] score:   -49.25 | length: 1000 | loss: 93.8622 | eps: 0.010 | out_of_time
+[ep 232] score:   -99.13 | length: 1000 | loss: 110.1534 | eps: 0.010 | out_of_time
+[ep 233] score:   -23.15 | length: 1000 | loss: 84.4942 | eps: 0.010 | out_of_time
+[ep 234] score:  -106.66 | length: 1000 | loss: 126.6086 | eps: 0.010 | out_of_time
+[ep 235] score:   -96.07 | length: 1000 | loss: 129.2359 | eps: 0.010 | out_of_time
+[ep 236] score:    47.95 | length:  970 | loss: 104.8144 | eps: 0.010 | landed
+[ep 237] score:  -128.23 | length: 1000 | loss: 102.2442 | eps: 0.010 | out_of_time
+[ep 238] score:   -67.84 | length:  477 | loss: 77.0978 | eps: 0.010 | crash
+[ep 239] score:   -90.57 | length:  391 | loss: 89.0877 | eps: 0.010 | crash
+[ep 240] score:   130.41 | length:  460 | loss: 105.1296 | eps: 0.010 | landed
+[ep 241] score:   174.87 | length:  687 | loss: 122.4947 | eps: 0.010 | landed
+[ep 242] score:  -111.08 | length:  604 | loss: 93.7697 | eps: 0.010 | crash
+[ep 243] score:  -109.89 | length: 1000 | loss: 85.0911 | eps: 0.010 | out_of_time
+[ep 244] score:   -78.20 | length: 1000 | loss: 75.2442 | eps: 0.010 | out_of_time
+[ep 245] score:    23.72 | length: 1000 | loss: 162.8025 | eps: 0.010 | out_of_time
+[ep 246] score:  -134.89 | length:  200 | loss: 181.8174 | eps: 0.010 | out_of_view
+[ep 247] score:   161.84 | length:  688 | loss: 126.7576 | eps: 0.010 | landed
+[ep 248] score:  -131.10 | length:  144 | loss: 179.8285 | eps: 0.010 | out_of_view
+[ep 249] score:   224.27 | length:  531 | loss: 92.7816 | eps: 0.010 | landed
+[ep 250] score:    -5.63 | length:  293 | loss: 81.7802 | eps: 0.010 | crash
+[ep 251] score:    18.25 | length:  207 | loss: 241.2285 | eps: 0.010 | crash
+[ep 252] score:    13.55 | length:  265 | loss: 81.8106 | eps: 0.010 | crash
+[ep 253] score:   -25.92 | length:  489 | loss: 205.8033 | eps: 0.010 | crash
+[ep 254] score:     4.99 | length:  237 | loss: 187.7091 | eps: 0.010 | crash
+[ep 255] score:   210.95 | length:  728 | loss: 148.5845 | eps: 0.010 | landed
+[ep 256] score:   190.90 | length:  343 | loss: 125.5743 | eps: 0.010 | landed
+[ep 257] score:  -118.77 | length: 1000 | loss: 48.4570 | eps: 0.010 | out_of_time
+[ep 258] score:   134.38 | length:  742 | loss: 103.4152 | eps: 0.010 | landed
+[ep 259] score:  -106.11 | length:  148 | loss: 102.1249 | eps: 0.010 | crash
+[ep 260] score:  -217.66 | length:  901 | loss: 95.2211 | eps: 0.010 | out_of_view
+[ep 261] score:   260.99 | length:  341 | loss: 54.4466 | eps: 0.010 | landed
+[ep 262] score:    33.05 | length:  273 | loss: 54.2025 | eps: 0.010 | crash
+[ep 263] score:   -12.96 | length:  202 | loss: 77.3472 | eps: 0.010 | crash
+[ep 264] score:   -62.02 | length:  695 | loss: 123.8276 | eps: 0.010 | crash
+[ep 265] score:   183.91 | length:  719 | loss: 88.7986 | eps: 0.010 | landed
+[ep 266] score:   145.31 | length:  623 | loss: 87.8348 | eps: 0.010 | landed
+[ep 267] score:    -2.48 | length:  205 | loss: 99.5798 | eps: 0.010 | crash
+[ep 268] score:  -155.95 | length:  533 | loss: 110.1083 | eps: 0.010 | out_of_view
+[ep 269] score:    56.66 | length: 1000 | loss: 99.3493 | eps: 0.010 | out_of_time
+[ep 270] score:   187.83 | length:  654 | loss: 67.7301 | eps: 0.010 | landed
+[ep 271] score:   -61.67 | length:  413 | loss: 105.2555 | eps: 0.010 | crash
+[ep 272] score:   150.95 | length:  609 | loss: 63.7304 | eps: 0.010 | landed
+[ep 273] score:   175.68 | length:  691 | loss: 85.5389 | eps: 0.010 | landed
+[ep 274] score:   229.35 | length:  735 | loss: 73.4904 | eps: 0.010 | landed
+[ep 275] score:   -11.72 | length: 1000 | loss: 64.0525 | eps: 0.010 | out_of_time
+[ep 276] score:  -176.33 | length:  228 | loss: 122.8112 | eps: 0.010 | out_of_view
+[ep 277] score:   193.21 | length:  620 | loss: 65.5261 | eps: 0.010 | landed
+[ep 278] score:   194.51 | length:  782 | loss: 42.0371 | eps: 0.010 | landed
+[ep 279] score:  -347.48 | length:  251 | loss: 39.9576 | eps: 0.010 | crash
+[ep 280] score:   194.91 | length:  873 | loss: 63.6555 | eps: 0.010 | landed
+[ep 281] score:   -24.69 | length:  182 | loss: 36.8585 | eps: 0.010 | crash
+[ep 282] score:  -326.65 | length:  773 | loss: 41.8768 | eps: 0.010 | out_of_view
+[ep 283] score:   -86.46 | length:  477 | loss: 41.6792 | eps: 0.010 | crash
+[ep 284] score:   261.73 | length:  799 | loss: 53.8340 | eps: 0.010 | landed
+[ep 285] score:   -63.52 | length:  127 | loss: 60.7426 | eps: 0.010 | crash
+[ep 286] score:    17.64 | length:  355 | loss: 45.4417 | eps: 0.010 | crash
+[ep 287] score:   -29.37 | length:  173 | loss: 39.2038 | eps: 0.010 | crash
+[ep 288] score:   264.48 | length:  558 | loss: 40.0052 | eps: 0.010 | landed
+[ep 289] score:   -60.59 | length:  245 | loss: 56.9922 | eps: 0.010 | crash
+[ep 290] score:  -145.80 | length:  831 | loss: 43.2308 | eps: 0.010 | crash
+[ep 291] score:    79.98 | length: 1000 | loss: 41.9403 | eps: 0.010 | out_of_time
+[ep 292] score:   -93.58 | length:  322 | loss: 41.3086 | eps: 0.010 | crash
+[ep 293] score:   193.11 | length:  605 | loss: 45.5564 | eps: 0.010 | landed
+[ep 294] score:   -74.33 | length:  257 | loss: 39.7393 | eps: 0.010 | crash
+[ep 295] score:   -63.66 | length:  102 | loss: 28.6396 | eps: 0.010 | crash
+[ep 296] score:   -94.04 | length:  282 | loss: 53.4151 | eps: 0.010 | out_of_view
+[ep 297] score:    54.85 | length:  132 | loss: 59.8581 | eps: 0.010 | crash
+[ep 298] score:    26.95 | length:  135 | loss: 39.2276 | eps: 0.010 | crash
+[ep 299] score:    47.21 | length:  116 | loss: 74.6121 | eps: 0.010 | crash
+[ep 300] score:    39.41 | length:  200 | loss: 38.8499 | eps: 0.010 | crash
+[ep 301] score:    14.79 | length:  334 | loss: 30.4127 | eps: 0.010 | crash
+[ep 302] score:  -116.90 | length:  727 | loss: 41.1753 | eps: 0.010 | crash
+[ep 303] score:  -126.76 | length:  331 | loss: 37.8317 | eps: 0.010 | crash
+[ep 304] score:  -163.35 | length:  248 | loss: 48.0174 | eps: 0.010 | out_of_view
+[ep 305] score:   208.75 | length:  441 | loss: 45.4735 | eps: 0.010 | landed
+[ep 306] score:  -476.42 | length:  134 | loss: 90.6081 | eps: 0.010 | crash
+[ep 307] score:   252.67 | length:  472 | loss: 44.5081 | eps: 0.010 | landed
+[ep 308] score:  -111.92 | length:  383 | loss: 98.9668 | eps: 0.010 | crash
+[ep 309] score:   -43.55 | length:  102 | loss: 61.8626 | eps: 0.010 | crash
+[ep 310] score:  -221.22 | length:  474 | loss: 64.8235 | eps: 0.010 | out_of_view
+[ep 311] score:   231.65 | length:  311 | loss: 100.2407 | eps: 0.010 | landed
+[ep 312] score:   214.29 | length:  369 | loss: 53.4546 | eps: 0.010 | landed
+[ep 313] score:    46.42 | length:  161 | loss: 74.0862 | eps: 0.010 | crash
+[ep 314] score:    12.03 | length:  230 | loss: 36.3950 | eps: 0.010 | crash
+[ep 315] score:   260.39 | length:  377 | loss: 62.2519 | eps: 0.010 | landed
+[ep 316] score:     6.55 | length:  220 | loss: 49.4104 | eps: 0.010 | crash
+[ep 317] score:   -56.44 | length:  243 | loss: 61.7008 | eps: 0.010 | crash
+[ep 318] score:   269.50 | length:  462 | loss: 56.5423 | eps: 0.010 | landed
+[ep 319] score:   224.47 | length:  258 | loss: 64.3766 | eps: 0.010 | landed
+[ep 320] score:   188.24 | length:  328 | loss: 60.6155 | eps: 0.010 | landed
+[ep 321] score:   -29.87 | length:  137 | loss: 38.7982 | eps: 0.010 | crash
+[ep 322] score:   -15.23 | length:  292 | loss: 27.9407 | eps: 0.010 | crash
+[ep 323] score:    -3.76 | length:  220 | loss: 43.7753 | eps: 0.010 | crash
+[ep 324] score:    30.67 | length:  197 | loss: 54.8876 | eps: 0.010 | crash
+[ep 325] score:   -13.11 | length:  393 | loss: 46.6554 | eps: 0.010 | crash
+[ep 326] score:  -115.94 | length:  370 | loss: 67.4005 | eps: 0.010 | crash
+[ep 327] score:   223.16 | length:  563 | loss: 62.0359 | eps: 0.010 | landed
+[ep 328] score:     0.66 | length:  136 | loss: 80.8426 | eps: 0.010 | crash
+[ep 329] score:    36.68 | length:  152 | loss: 35.0868 | eps: 0.010 | crash
+[ep 330] score:  -271.90 | length:  469 | loss: 77.1492 | eps: 0.010 | out_of_view
+[ep 331] score:   -98.45 | length:  231 | loss: 50.2661 | eps: 0.010 | crash
+[ep 332] score:   153.61 | length:  607 | loss: 62.5285 | eps: 0.010 | landed
+[ep 333] score:   -42.35 | length:  252 | loss: 47.4226 | eps: 0.010 | crash
+[ep 334] score:   -72.30 | length:  173 | loss: 40.5880 | eps: 0.010 | crash
+[ep 335] score:   224.21 | length:  382 | loss: 72.4441 | eps: 0.010 | landed
+[ep 336] score:   114.51 | length:  849 | loss: 66.9167 | eps: 0.010 | landed
+[ep 337] score:   -10.64 | length:  117 | loss: 45.0335 | eps: 0.010 | crash
+[ep 338] score:   243.97 | length:  303 | loss: 45.1867 | eps: 0.010 | landed
+[ep 339] score:  -101.47 | length:  127 | loss: 20.5575 | eps: 0.010 | crash
+[ep 340] score:    12.76 | length:  150 | loss: 46.1696 | eps: 0.010 | crash
+[ep 341] score:   -66.56 | length:  237 | loss: 48.9502 | eps: 0.010 | crash
+[ep 342] score:   -28.49 | length:  165 | loss: 98.7738 | eps: 0.010 | crash
+[ep 343] score:   -42.01 | length:   92 | loss: 58.3204 | eps: 0.010 | crash
+[ep 344] score:  -365.22 | length:  122 | loss: 50.4467 | eps: 0.010 | crash
+[ep 345] score:    44.70 | length:  192 | loss: 52.5105 | eps: 0.010 | crash
+[ep 346] score:   241.45 | length:  319 | loss: 46.5358 | eps: 0.010 | landed
+[ep 347] score:  -197.70 | length:   56 | loss: 29.0323 | eps: 0.010 | crash
+[ep 348] score:   -94.14 | length:  124 | loss: 59.9254 | eps: 0.010 | crash
+[ep 349] score:   -29.94 | length:  155 | loss: 34.2195 | eps: 0.010 | crash
+[ep 350] score:   -75.18 | length:  152 | loss: 166.5345 | eps: 0.010 | crash
+[ep 351] score:   -80.69 | length:  116 | loss: 119.8284 | eps: 0.010 | crash
+[ep 352] score:  -132.10 | length:  120 | loss: 44.7163 | eps: 0.010 | crash
+[ep 353] score:   -44.86 | length:  254 | loss: 63.1088 | eps: 0.010 | crash
+[ep 354] score:   -54.17 | length:  146 | loss: 105.0423 | eps: 0.010 | crash
+[ep 355] score:   -27.99 | length:  118 | loss: 50.7628 | eps: 0.010 | crash
+[ep 356] score:   -40.26 | length:  146 | loss: 51.0895 | eps: 0.010 | crash
+[ep 357] score:    11.83 | length:  131 | loss: 32.8110 | eps: 0.010 | crash
+[ep 358] score:  -125.06 | length:  244 | loss: 62.7475 | eps: 0.010 | crash
+[ep 359] score:    78.58 | length:  190 | loss: 137.0264 | eps: 0.010 | crash
+[ep 360] score:   -27.39 | length:  360 | loss: 54.3372 | eps: 0.010 | crash
+[ep 361] score:   208.54 | length:  379 | loss: 61.8743 | eps: 0.010 | landed
+[ep 362] score:  -142.68 | length:  148 | loss: 86.4188 | eps: 0.010 | crash
+[ep 363] score:   291.04 | length:  204 | loss: 56.1616 | eps: 0.010 | landed
+[ep 364] score:   267.68 | length:  266 | loss: 125.2268 | eps: 0.010 | landed
+[ep 365] score:   240.41 | length:  298 | loss: 93.9377 | eps: 0.010 | landed
+[ep 366] score:    42.38 | length:  198 | loss: 54.8604 | eps: 0.010 | crash
+[ep 367] score:   231.22 | length:  407 | loss: 106.3725 | eps: 0.010 | landed
+[ep 368] score:    29.68 | length:  141 | loss: 45.2246 | eps: 0.010 | crash
+[ep 369] score:   -53.25 | length:  143 | loss: 53.4163 | eps: 0.010 | crash
+[ep 370] score:    25.89 | length:  214 | loss: 93.8177 | eps: 0.010 | crash
+[ep 371] score:    16.43 | length:  172 | loss: 264.3440 | eps: 0.010 | crash
+[ep 372] score:   -76.55 | length:  255 | loss: 100.5522 | eps: 0.010 | crash
+[ep 373] score:   287.61 | length:  265 | loss: 66.0515 | eps: 0.010 | landed
+[ep 374] score:    22.40 | length:  150 | loss: 38.8405 | eps: 0.010 | crash
+[ep 375] score:   246.33 | length:  380 | loss: 101.9179 | eps: 0.010 | landed
+[ep 376] score:    86.94 | length:  169 | loss: 61.5456 | eps: 0.010 | crash
+[ep 377] score:   -85.33 | length:  203 | loss: 254.8140 | eps: 0.010 | crash
+[ep 378] score:   176.48 | length:  554 | loss: 70.4792 | eps: 0.010 | landed
+[ep 379] score:   -49.21 | length:  184 | loss: 225.7723 | eps: 0.010 | crash
+[ep 380] score:   -80.20 | length:  596 | loss: 107.4999 | eps: 0.010 | crash
+[ep 381] score:   -83.89 | length:  127 | loss: 67.7470 | eps: 0.010 | crash
+[ep 382] score:   -39.53 | length:  177 | loss: 122.4426 | eps: 0.010 | crash
+[ep 383] score:   -34.27 | length:  305 | loss: 59.9594 | eps: 0.010 | crash
+[ep 384] score:   -74.44 | length:  392 | loss: 46.7252 | eps: 0.010 | crash
+[ep 385] score:   181.37 | length:  487 | loss: 51.2003 | eps: 0.010 | landed
+[ep 386] score:   249.92 | length:  317 | loss: 120.6347 | eps: 0.010 | landed
+[ep 387] score:  -107.85 | length:  149 | loss: 42.8864 | eps: 0.010 | crash
+[ep 388] score:    17.73 | length:  148 | loss: 152.7588 | eps: 0.010 | crash
+[ep 389] score:  -261.41 | length:  131 | loss: 55.4937 | eps: 0.010 | crash
+[ep 390] score:   -22.02 | length:  221 | loss: 88.2158 | eps: 0.010 | crash
+[ep 391] score:   232.33 | length:  575 | loss: 194.7321 | eps: 0.010 | landed
+[ep 392] score:   142.22 | length: 1000 | loss: 155.9123 | eps: 0.010 | out_of_time
+[ep 393] score:   -32.28 | length:  179 | loss: 233.6429 | eps: 0.010 | crash
+[ep 394] score:   -18.41 | length:  149 | loss: 63.7926 | eps: 0.010 | crash
+[ep 395] score:   245.95 | length:  290 | loss: 216.7044 | eps: 0.010 | landed
+[ep 396] score:     4.94 | length:  153 | loss: 51.4572 | eps: 0.010 | crash
+[ep 397] score:    17.73 | length:  204 | loss: 140.5116 | eps: 0.010 | crash
+[ep 398] score:   264.86 | length:  339 | loss: 170.1051 | eps: 0.010 | landed
+[ep 399] score:   251.40 | length:  445 | loss: 81.3963 | eps: 0.010 | landed
+[ep 400] score:   235.01 | length:  659 | loss: 109.1938 | eps: 0.010 | landed
+[ep 401] score:  -183.87 | length:  171 | loss: 234.7597 | eps: 0.010 | crash
+[ep 402] score:   174.78 | length:  446 | loss: 126.4827 | eps: 0.010 | landed
+[ep 403] score:   220.35 | length:  227 | loss: 203.0675 | eps: 0.010 | landed
+[ep 404] score:    27.77 | length:  137 | loss: 146.5095 | eps: 0.010 | crash
+[ep 405] score:   186.01 | length:  502 | loss: 196.6924 | eps: 0.010 | landed
+[ep 406] score:   182.51 | length:  546 | loss: 76.2854 | eps: 0.010 | landed
+[ep 407] score:   275.60 | length:  225 | loss: 487.5531 | eps: 0.010 | landed
+[ep 408] score:   253.02 | length:  416 | loss: 59.5585 | eps: 0.010 | landed
+[ep 409] score:   239.89 | length:  414 | loss: 46.5966 | eps: 0.010 | landed
+[ep 410] score:   231.96 | length:  218 | loss: 89.9390 | eps: 0.010 | landed
+[ep 411] score:   151.74 | length:  507 | loss: 242.3239 | eps: 0.010 | landed
+[ep 412] score:  -158.39 | length:  564 | loss: 151.1265 | eps: 0.010 | out_of_view
+[ep 413] score:     9.69 | length:  217 | loss: 369.0990 | eps: 0.010 | crash
+[ep 414] score:  -336.22 | length:  136 | loss: 124.8383 | eps: 0.010 | crash
+[ep 415] score:   -27.44 | length:  152 | loss: 22.4127 | eps: 0.010 | crash
+[ep 416] score:   195.77 | length:  234 | loss: 53.7957 | eps: 0.010 | landed
+[ep 417] score:   -90.07 | length:  139 | loss: 55.0666 | eps: 0.010 | crash
+[ep 418] score:  -202.61 | length:  125 | loss: 285.3396 | eps: 0.010 | crash
+[ep 419] score:   248.92 | length:  372 | loss: 330.5162 | eps: 0.010 | landed
+[ep 420] score:   -56.49 | length:  277 | loss: 71.2977 | eps: 0.010 | crash
+[ep 421] score:   132.65 | length:  615 | loss: 181.6206 | eps: 0.010 | landed
+[ep 422] score:   191.45 | length:  399 | loss: 453.7436 | eps: 0.010 | landed
+[ep 423] score:   199.23 | length:  430 | loss: 159.5007 | eps: 0.010 | landed
+[ep 424] score:   176.30 | length:  512 | loss: 189.9756 | eps: 0.010 | landed
+[ep 425] score:   235.59 | length:  379 | loss: 65.4949 | eps: 0.010 | landed
+[ep 426] score:   211.86 | length:  474 | loss: 300.3703 | eps: 0.010 | landed
+[ep 427] score:   235.70 | length:  515 | loss: 92.0805 | eps: 0.010 | landed
+[ep 428] score:   226.68 | length:  802 | loss: 125.6705 | eps: 0.010 | landed
+[ep 429] score:  -200.02 | length:  218 | loss: 74.9517 | eps: 0.010 | crash
+[ep 430] score:  -196.08 | length: 1000 | loss: 85.8838 | eps: 0.010 | out_of_time
+[ep 431] score:  -203.27 | length:  711 | loss: 183.9361 | eps: 0.010 | out_of_view
+[ep 432] score:   246.60 | length:  270 | loss: 75.8947 | eps: 0.010 | landed
+[ep 433] score:  -218.95 | length:  185 | loss: 61.0302 | eps: 0.010 | crash
+[ep 434] score:  -234.18 | length:  239 | loss: 102.7954 | eps: 0.010 | out_of_view
+[ep 435] score:   272.55 | length:  314 | loss: 157.4017 | eps: 0.010 | landed
+[ep 436] score:   249.18 | length:  269 | loss: 57.9697 | eps: 0.010 | landed
+[ep 437] score:  -168.16 | length:  570 | loss: 250.7220 | eps: 0.010 | out_of_view
+[ep 438] score:   184.69 | length:  669 | loss: 240.8455 | eps: 0.010 | landed
+[ep 439] score:   190.62 | length:  721 | loss: 168.5478 | eps: 0.010 | landed
+[ep 440] score:   -21.56 | length: 1000 | loss: 79.5599 | eps: 0.010 | out_of_time
+[ep 441] score:   238.89 | length:  299 | loss: 150.3310 | eps: 0.010 | landed
+[ep 442] score:  -169.43 | length:  606 | loss: 63.0617 | eps: 0.010 | out_of_view
+[ep 443] score:   212.35 | length:  908 | loss: 243.2635 | eps: 0.010 | landed
+[ep 444] score:   261.20 | length:  286 | loss: 344.2266 | eps: 0.010 | landed
+[ep 445] score:   206.54 | length:  354 | loss: 210.7901 | eps: 0.010 | landed
+[ep 446] score:   230.52 | length:  349 | loss: 57.1479 | eps: 0.010 | landed
+[ep 447] score:  -159.32 | length:  460 | loss: 65.6572 | eps: 0.010 | out_of_view
+[ep 448] score:   225.13 | length:  394 | loss: 101.3212 | eps: 0.010 | landed
+[ep 449] score:   256.80 | length:  295 | loss: 71.3392 | eps: 0.010 | landed
+[ep 450] score:  -205.57 | length:  434 | loss: 178.6430 | eps: 0.010 | crash
+[ep 451] score:   295.12 | length:  203 | loss: 70.3729 | eps: 0.010 | landed
+[ep 452] score:   241.45 | length:  273 | loss: 334.0737 | eps: 0.010 | landed
+[ep 453] score:   200.81 | length:  340 | loss: 140.9206 | eps: 0.010 | landed
+[ep 454] score:   252.66 | length:  528 | loss: 47.6293 | eps: 0.010 | landed
+[ep 455] score:   206.24 | length:  301 | loss: 66.5339 | eps: 0.010 | landed
+[ep 456] score:    29.72 | length:  168 | loss: 122.4122 | eps: 0.010 | crash
+[ep 457] score:   310.27 | length:  343 | loss: 83.6196 | eps: 0.010 | landed
+[ep 458] score:   167.81 | length:  761 | loss: 144.5851 | eps: 0.010 | landed
+[ep 459] score:   139.64 | length:  488 | loss: 202.4207 | eps: 0.010 | landed
+[ep 460] score:   198.14 | length:  499 | loss: 128.2387 | eps: 0.010 | landed
+[ep 461] score:   202.96 | length:  319 | loss: 291.5994 | eps: 0.010 | landed
+[ep 462] score:    26.47 | length:  156 | loss: 43.7622 | eps: 0.010 | crash
+[ep 463] score:   202.44 | length:  540 | loss: 254.9894 | eps: 0.010 | landed
+[ep 464] score:   110.19 | length:  587 | loss: 150.2851 | eps: 0.010 | landed
+[ep 465] score:    85.89 | length:  129 | loss: 73.3988 | eps: 0.010 | crash
+[ep 466] score:  -232.29 | length:  262 | loss: 137.2584 | eps: 0.010 | crash
+[ep 467] score:   267.63 | length:  337 | loss: 80.8929 | eps: 0.010 | landed
+[ep 468] score:   -44.32 | length:  320 | loss: 91.6699 | eps: 0.010 | crash
+[ep 469] score:   118.15 | length:  660 | loss: 79.1634 | eps: 0.010 | landed
+[ep 470] score:   289.30 | length:  240 | loss: 235.9623 | eps: 0.010 | landed
+[ep 471] score:  -201.13 | length: 1000 | loss: 92.7994 | eps: 0.010 | out_of_time
+[ep 472] score:   204.17 | length:  503 | loss: 276.7810 | eps: 0.010 | landed
+[ep 473] score:    -0.92 | length:  230 | loss: 395.4788 | eps: 0.010 | crash
+[ep 474] score:   250.38 | length:  840 | loss: 217.2637 | eps: 0.010 | landed
+[ep 475] score:   -18.90 | length:   87 | loss: 76.2280 | eps: 0.010 | crash
+[ep 476] score:   255.86 | length:  223 | loss: 189.2570 | eps: 0.010 | landed
+[ep 477] score:   -26.01 | length:  236 | loss: 110.4816 | eps: 0.010 | crash
+[ep 478] score:   -21.60 | length:  154 | loss: 100.1858 | eps: 0.010 | crash
+[ep 479] score:   230.43 | length:  633 | loss: 170.4663 | eps: 0.010 | landed
+[ep 480] score:   -31.41 | length:  275 | loss: 54.1055 | eps: 0.010 | crash
+[ep 481] score:   236.80 | length:  603 | loss: 173.8923 | eps: 0.010 | landed
+[ep 482] score:    21.21 | length:  189 | loss: 91.4438 | eps: 0.010 | crash
+[ep 483] score:    80.59 | length:  877 | loss: 162.3677 | eps: 0.010 | landed
+[ep 484] score:    23.92 | length:  261 | loss: 119.4316 | eps: 0.010 | crash
+[ep 485] score:  -100.66 | length:  188 | loss: 88.6600 | eps: 0.010 | out_of_view
+[ep 486] score:   220.19 | length:  301 | loss: 275.7064 | eps: 0.010 | landed
+[ep 487] score:    -6.85 | length:  127 | loss: 62.1383 | eps: 0.010 | crash
+[ep 488] score:   277.28 | length:  214 | loss: 78.3368 | eps: 0.010 | landed
+[ep 489] score:   -49.34 | length:  226 | loss: 320.7110 | eps: 0.010 | crash
+[ep 490] score:    28.09 | length:  318 | loss: 178.6377 | eps: 0.010 | crash
+[ep 491] score:   109.29 | length:  555 | loss: 147.1817 | eps: 0.010 | landed
+[ep 492] score:   292.65 | length:  250 | loss: 63.0910 | eps: 0.010 | landed
+[ep 493] score:   -41.64 | length:  155 | loss: 262.8091 | eps: 0.010 | crash
+[ep 494] score:   261.16 | length:  339 | loss: 284.3721 | eps: 0.010 | landed
+[ep 495] score:    44.39 | length:  236 | loss: 52.6229 | eps: 0.010 | crash
+[ep 496] score:     9.95 | length:  181 | loss: 432.5070 | eps: 0.010 | crash
+[ep 497] score:   210.01 | length:  269 | loss: 150.6314 | eps: 0.010 | landed
+[ep 498] score:   252.67 | length:  330 | loss: 83.8412 | eps: 0.010 | landed
+[ep 499] score:    32.34 | length:  197 | loss: 532.5233 | eps: 0.010 | crash
+[ep 500] score:   -38.44 | length:  107 | loss: 37.0515 | eps: 0.010 | crash
+[ep 501] score:   -40.78 | length:  167 | loss: 61.1295 | eps: 0.010 | crash
+[ep 502] score:   190.06 | length:  464 | loss: 295.9886 | eps: 0.010 | landed
+[ep 503] score:   251.23 | length:  426 | loss: 362.3026 | eps: 0.010 | landed
+[ep 504] score:   -36.56 | length:  248 | loss: 46.4435 | eps: 0.010 | crash
+[ep 505] score:    14.97 | length:  247 | loss: 263.9989 | eps: 0.010 | crash
+[ep 506] score:    12.42 | length: 1000 | loss: 130.0881 | eps: 0.010 | out_of_time
+[ep 507] score:   302.28 | length:  206 | loss: 103.1875 | eps: 0.010 | landed
+[ep 508] score:   244.88 | length:  249 | loss: 345.1258 | eps: 0.010 | landed
+[ep 509] score:    61.68 | length:  138 | loss: 42.8216 | eps: 0.010 | crash
+[ep 510] score:   237.18 | length:  367 | loss: 259.4812 | eps: 0.010 | landed
+[ep 511] score:   235.14 | length:  441 | loss: 118.7047 | eps: 0.010 | landed
+[ep 512] score:    22.51 | length:  193 | loss: 207.3679 | eps: 0.010 | crash
+[ep 513] score:   203.52 | length:  445 | loss: 56.0001 | eps: 0.010 | landed
+[ep 514] score:   159.41 | length:  426 | loss: 301.4959 | eps: 0.010 | landed
+[ep 515] score:   169.01 | length:  643 | loss: 125.2342 | eps: 0.010 | landed
+[ep 516] score:   -67.35 | length:  198 | loss: 60.2369 | eps: 0.010 | out_of_view
+[ep 517] score:   289.61 | length:  232 | loss: 323.9602 | eps: 0.010 | landed
+[ep 518] score:   240.61 | length:  392 | loss: 62.0571 | eps: 0.010 | landed
+[ep 519] score:   232.88 | length:  236 | loss: 67.1926 | eps: 0.010 | landed
+[ep 520] score:   256.93 | length:  281 | loss: 138.9958 | eps: 0.010 | landed
+[ep 521] score:   -51.02 | length:  340 | loss: 109.3432 | eps: 0.010 | crash
+[ep 522] score:   255.95 | length:  228 | loss: 84.3464 | eps: 0.010 | landed
+[ep 523] score:    46.00 | length:  114 | loss: 92.0827 | eps: 0.010 | crash
+[ep 524] score:   252.58 | length:  223 | loss: 106.6876 | eps: 0.010 | landed
+[ep 525] score:   138.17 | length:  999 | loss: 205.2918 | eps: 0.010 | landed
+[ep 526] score:   -38.23 | length:  198 | loss: 85.2099 | eps: 0.010 | crash
+[ep 527] score:   204.12 | length:  488 | loss: 381.1546 | eps: 0.010 | landed
+[ep 528] score:    39.62 | length:  122 | loss: 126.3400 | eps: 0.010 | crash
+[ep 529] score:    33.79 | length:  202 | loss: 204.7483 | eps: 0.010 | crash
+[ep 530] score:   286.06 | length:  400 | loss: 507.5098 | eps: 0.010 | landed
+[ep 531] score:   274.30 | length:  300 | loss: 310.3858 | eps: 0.010 | landed
+[ep 532] score:   290.94 | length:  298 | loss: 86.6514 | eps: 0.010 | landed
+[ep 533] score:   -48.39 | length:  395 | loss: 143.5481 | eps: 0.010 | crash
+[ep 534] score:    60.67 | length:  146 | loss: 51.0705 | eps: 0.010 | crash
+[ep 535] score:    29.44 | length:  110 | loss: 139.6843 | eps: 0.010 | crash
+[ep 536] score:   -46.32 | length:  104 | loss: 69.4264 | eps: 0.010 | crash
+[ep 537] score:    32.36 | length:  156 | loss: 88.4460 | eps: 0.010 | crash
+[ep 538] score:   -22.00 | length:  190 | loss: 166.3100 | eps: 0.010 | crash
+[ep 539] score:   275.64 | length:  188 | loss: 66.5473 | eps: 0.010 | landed
+[ep 540] score:   275.72 | length:  282 | loss: 62.9971 | eps: 0.010 | landed
+[ep 541] score:    62.04 | length:  265 | loss: 55.4027 | eps: 0.010 | crash
+[ep 542] score:   258.07 | length:  209 | loss: 514.9339 | eps: 0.010 | landed
+[ep 543] score:   244.02 | length:  355 | loss: 126.2647 | eps: 0.010 | landed
+[ep 544] score:    -8.34 | length:  138 | loss: 114.2334 | eps: 0.010 | crash
+[ep 545] score:    20.65 | length:  253 | loss: 107.6059 | eps: 0.010 | crash
+[ep 546] score:   252.13 | length:  301 | loss: 117.2411 | eps: 0.010 | landed
+[ep 547] score:   260.14 | length:  382 | loss: 157.7248 | eps: 0.010 | landed
+[ep 548] score:    -6.54 | length:  265 | loss: 376.5732 | eps: 0.010 | crash
+[ep 549] score:  -274.60 | length:  373 | loss: 65.0809 | eps: 0.010 | crash
+[ep 550] score:   210.03 | length:  349 | loss: 116.3109 | eps: 0.010 | landed
+[ep 551] score:     3.19 | length:  292 | loss: 156.5625 | eps: 0.010 | crash
+[ep 552] score:    -5.27 | length:  279 | loss: 106.6030 | eps: 0.010 | crash
+[ep 553] score:   229.41 | length:  369 | loss: 481.7398 | eps: 0.010 | landed
+[ep 554] score:  -121.72 | length:  243 | loss: 295.5094 | eps: 0.010 | crash
+[ep 555] score:    45.81 | length:  176 | loss: 298.3201 | eps: 0.010 | crash
+[ep 556] score:   -37.61 | length:  346 | loss: 151.3278 | eps: 0.010 | crash
+[ep 557] score:   277.86 | length:  247 | loss: 338.3892 | eps: 0.010 | landed
+[ep 558] score:   238.73 | length:  229 | loss: 46.2200 | eps: 0.010 | landed
+[ep 559] score:   232.54 | length:  577 | loss: 133.7468 | eps: 0.010 | landed
+[ep 560] score:    19.15 | length:  307 | loss: 111.9435 | eps: 0.010 | crash
+[ep 561] score:   210.49 | length:  307 | loss: 80.1431 | eps: 0.010 | landed
+[ep 562] score:    31.55 | length:  112 | loss: 106.1271 | eps: 0.010 | crash
+[ep 563] score:   211.93 | length:  500 | loss: 75.8212 | eps: 0.010 | landed
+[ep 564] score:   263.88 | length:  324 | loss: 168.1321 | eps: 0.010 | landed
+[ep 565] score:   160.35 | length:  267 | loss: 53.1626 | eps: 0.010 | landed
+[ep 566] score:   266.54 | length:  263 | loss: 121.0800 | eps: 0.010 | landed
+[ep 567] score:    19.85 | length:  214 | loss: 405.0521 | eps: 0.010 | crash
+[ep 568] score:   221.37 | length:  762 | loss: 187.2431 | eps: 0.010 | landed
+[ep 569] score:  -155.56 | length:  123 | loss: 189.0097 | eps: 0.010 | out_of_view
+[ep 570] score:   279.17 | length:  184 | loss: 103.2318 | eps: 0.010 | landed
+[ep 571] score:   267.17 | length:  461 | loss: 240.0814 | eps: 0.010 | landed
+[ep 572] score:   284.12 | length:  300 | loss: 54.6218 | eps: 0.010 | landed
+[ep 573] score:   -59.23 | length:  143 | loss: 202.7951 | eps: 0.010 | crash
+[ep 574] score:    29.85 | length:  156 | loss: 35.1372 | eps: 0.010 | crash
+[ep 575] score:   241.03 | length:  372 | loss: 177.4173 | eps: 0.010 | landed
+[ep 576] score:   277.88 | length:  249 | loss: 147.1515 | eps: 0.010 | landed
+[ep 577] score:   285.61 | length:  169 | loss: 73.3677 | eps: 0.010 | landed
+[ep 578] score:    25.08 | length:  128 | loss: 538.0991 | eps: 0.010 | crash
+[ep 579] score:   269.55 | length:  264 | loss: 96.6605 | eps: 0.010 | landed
+[ep 580] score:   227.03 | length:  317 | loss: 72.4376 | eps: 0.010 | landed
+[ep 581] score:   279.37 | length:  247 | loss: 226.6266 | eps: 0.010 | landed
+[ep 582] score:   194.89 | length:  447 | loss: 78.8305 | eps: 0.010 | landed
+[ep 583] score:   -17.99 | length:  291 | loss: 84.2012 | eps: 0.010 | crash
+[ep 584] score:    68.61 | length:  117 | loss: 83.3192 | eps: 0.010 | crash
+[ep 585] score:   280.67 | length:  311 | loss: 99.0699 | eps: 0.010 | landed
+[ep 586] score:   182.55 | length:  313 | loss: 71.0563 | eps: 0.010 | landed
+[ep 587] score:    55.10 | length:  107 | loss: 73.4423 | eps: 0.010 | crash
+[ep 588] score:   -18.00 | length:  129 | loss: 57.9641 | eps: 0.010 | crash
+[ep 589] score:   -17.18 | length:  117 | loss: 425.7129 | eps: 0.010 | crash
+[ep 590] score:     4.99 | length:  135 | loss: 126.0078 | eps: 0.010 | crash
+[ep 591] score:   294.04 | length:  213 | loss: 150.6219 | eps: 0.010 | landed
+[ep 592] score:   -67.49 | length:  485 | loss: 264.1816 | eps: 0.010 | crash
+[ep 593] score:     6.89 | length:  109 | loss: 611.1507 | eps: 0.010 | crash
+[ep 594] score:   273.02 | length:  538 | loss: 108.1918 | eps: 0.010 | landed
+[ep 595] score:    49.37 | length:  260 | loss: 89.2608 | eps: 0.010 | crash
+[ep 596] score:    44.76 | length:  205 | loss: 172.2741 | eps: 0.010 | crash
+[ep 597] score:   227.70 | length:  439 | loss: 184.3484 | eps: 0.010 | landed
+[ep 598] score:   218.23 | length:  395 | loss: 97.5108 | eps: 0.010 | landed
+[ep 599] score:   -12.76 | length:  113 | loss: 40.5568 | eps: 0.010 | crash
+[ep 600] score:   194.22 | length:  458 | loss: 69.0056 | eps: 0.010 | landed
+[ep 601] score:   -28.64 | length:  236 | loss: 120.2247 | eps: 0.010 | crash
+[ep 602] score:   193.83 | length:  313 | loss: 140.0794 | eps: 0.010 | landed
+[ep 603] score:   223.71 | length:  371 | loss: 78.5462 | eps: 0.010 | landed
+[ep 604] score:     2.01 | length:  153 | loss: 46.2827 | eps: 0.010 | crash
+[ep 605] score:   257.81 | length:  188 | loss: 41.8399 | eps: 0.010 | landed
+[ep 606] score:   254.14 | length:  297 | loss: 266.4172 | eps: 0.010 | landed
+[ep 607] score:   271.63 | length:  326 | loss: 155.8225 | eps: 0.010 | landed
+[ep 608] score:    35.90 | length:  144 | loss: 100.9294 | eps: 0.010 | crash
+[ep 609] score:   254.26 | length:  391 | loss: 101.7146 | eps: 0.010 | landed
+[ep 610] score:   260.96 | length:  231 | loss: 339.0570 | eps: 0.010 | landed
+[ep 611] score:   220.44 | length:  325 | loss: 122.7083 | eps: 0.010 | landed
+[ep 612] score:   288.06 | length:  170 | loss: 287.4863 | eps: 0.010 | landed
+[ep 613] score:   281.34 | length:  214 | loss: 82.9831 | eps: 0.010 | landed
+[ep 614] score:    63.30 | length:   97 | loss: 74.6822 | eps: 0.010 | crash
+[ep 615] score:   214.60 | length:  297 | loss: 121.8563 | eps: 0.010 | landed
+[ep 616] score:   246.50 | length:  193 | loss: 174.2438 | eps: 0.010 | landed
+[ep 617] score:   290.64 | length:  166 | loss: 104.3594 | eps: 0.010 | landed
+[ep 618] score:   249.14 | length:  679 | loss: 88.2266 | eps: 0.010 | landed
+[ep 619] score:   266.11 | length:  215 | loss: 51.6767 | eps: 0.010 | landed
+[ep 620] score:   291.35 | length:  293 | loss: 105.7750 | eps: 0.010 | landed
+[ep 621] score:   249.81 | length:  238 | loss: 346.3195 | eps: 0.010 | landed
+[ep 622] score:   234.66 | length:  332 | loss: 285.9776 | eps: 0.010 | landed
+[ep 623] score:   281.99 | length:  204 | loss: 56.9787 | eps: 0.010 | landed
+[ep 624] score:    -3.37 | length:  127 | loss: 55.5420 | eps: 0.010 | crash
+[ep 625] score:     8.50 | length:  206 | loss: 125.6671 | eps: 0.010 | crash
+[ep 626] score:   257.84 | length:  223 | loss: 100.8974 | eps: 0.010 | landed
+[ep 627] score:   198.74 | length:  707 | loss: 154.3020 | eps: 0.010 | landed
+[ep 628] score:   236.94 | length:  215 | loss: 202.7082 | eps: 0.010 | landed
+[ep 629] score:    30.60 | length:  135 | loss: 211.1243 | eps: 0.010 | crash
+[ep 630] score:   224.06 | length:  744 | loss: 134.5928 | eps: 0.010 | landed
+[ep 631] score:    16.02 | length:  139 | loss: 307.4142 | eps: 0.010 | crash
+[ep 632] score:   231.13 | length:  228 | loss: 96.5404 | eps: 0.010 | landed
+[ep 633] score:    27.47 | length:  137 | loss: 136.3690 | eps: 0.010 | crash
+[ep 634] score:    44.39 | length:  231 | loss: 70.0450 | eps: 0.010 | crash
+[ep 635] score:   248.10 | length:  312 | loss: 91.1143 | eps: 0.010 | landed
+[ep 636] score:    53.84 | length:  118 | loss: 98.7530 | eps: 0.010 | crash
+[ep 637] score:   -21.64 | length:  116 | loss: 42.1004 | eps: 0.010 | crash
+[ep 638] score:   251.15 | length:  288 | loss: 82.3237 | eps: 0.010 | landed
+[ep 639] score:   178.41 | length:  566 | loss: 87.1687 | eps: 0.010 | landed
+[ep 640] score:   -35.83 | length:  177 | loss: 138.7034 | eps: 0.010 | crash
+[ep 641] score:    20.76 | length:  137 | loss: 78.7409 | eps: 0.010 | crash
+[ep 642] score:   250.51 | length:  276 | loss: 53.3080 | eps: 0.010 | landed
+[ep 643] score:    27.09 | length:  136 | loss: 72.2912 | eps: 0.010 | crash
+[ep 644] score:   252.87 | length:  293 | loss: 77.8263 | eps: 0.010 | landed
+[ep 645] score:  -104.47 | length:  184 | loss: 103.7444 | eps: 0.010 | out_of_view
+[ep 646] score:   272.41 | length:  238 | loss: 55.3445 | eps: 0.010 | landed
+[ep 647] score:    49.94 | length:  115 | loss: 171.7780 | eps: 0.010 | crash
+[ep 648] score:   293.01 | length:  196 | loss: 204.8506 | eps: 0.010 | landed
+[ep 649] score:    80.18 | length:  236 | loss: 96.1632 | eps: 0.010 | crash
+[ep 650] score:     4.91 | length:  226 | loss: 112.2145 | eps: 0.010 | crash
+[ep 651] score:   235.39 | length:  836 | loss: 123.2641 | eps: 0.010 | landed
+[ep 652] score:   239.64 | length:  318 | loss: 147.8534 | eps: 0.010 | landed
+[ep 653] score:    -4.47 | length:   89 | loss: 95.4935 | eps: 0.010 | crash
+[ep 654] score:  -215.47 | length:  448 | loss: 111.4259 | eps: 0.010 | out_of_view
+[ep 655] score:   282.20 | length:  193 | loss: 81.4652 | eps: 0.010 | landed
+[ep 656] score:   306.54 | length:  327 | loss: 71.8336 | eps: 0.010 | landed
+[ep 657] score:   277.95 | length:  273 | loss: 69.1423 | eps: 0.010 | landed
+[ep 658] score:   -69.64 | length:  215 | loss: 49.3351 | eps: 0.010 | crash
+[ep 659] score:   250.76 | length:  237 | loss: 96.4895 | eps: 0.010 | landed
+[ep 660] score:   234.49 | length:  217 | loss: 63.3377 | eps: 0.010 | landed
+[ep 661] score:    -6.06 | length:  102 | loss: 65.3945 | eps: 0.010 | crash
+[ep 662] score:   273.11 | length:  187 | loss: 220.7227 | eps: 0.010 | landed
+[ep 663] score:   250.25 | length:  180 | loss: 128.0411 | eps: 0.010 | landed
+[ep 664] score:   222.57 | length:  628 | loss: 47.9685 | eps: 0.010 | landed
+[ep 665] score:    47.98 | length:  143 | loss: 88.5444 | eps: 0.010 | crash
+[ep 666] score:   257.47 | length:  208 | loss: 50.7722 | eps: 0.010 | landed
+[ep 667] score:   281.13 | length:  207 | loss: 44.4363 | eps: 0.010 | landed
+[ep 668] score:   227.35 | length:  464 | loss: 127.3261 | eps: 0.010 | landed
+[ep 669] score:   201.82 | length:  480 | loss: 79.9347 | eps: 0.010 | landed
+[ep 670] score:   -27.64 | length:  173 | loss: 43.1534 | eps: 0.010 | crash
+[ep 671] score:    34.76 | length:  124 | loss: 65.2084 | eps: 0.010 | crash
+[ep 672] score:   -92.80 | length:  415 | loss: 85.6568 | eps: 0.010 | crash
+[ep 673] score:    27.71 | length:  212 | loss: 73.3948 | eps: 0.010 | crash
+[ep 674] score:   142.23 | length:  321 | loss: 81.8449 | eps: 0.010 | landed
+[ep 675] score:   251.15 | length:  294 | loss: 57.1288 | eps: 0.010 | landed
+[ep 676] score:  -101.26 | length:  451 | loss: 53.1849 | eps: 0.010 | crash
+[ep 677] score:    27.05 | length:  121 | loss: 92.3658 | eps: 0.010 | crash
+[ep 678] score:  -312.38 | length:  191 | loss: 51.5554 | eps: 0.010 | crash
+[ep 679] score:   217.24 | length:  251 | loss: 43.0052 | eps: 0.010 | landed
+[ep 680] score:   -10.54 | length:  101 | loss: 76.9240 | eps: 0.010 | crash
+[ep 681] score:   293.49 | length:  261 | loss: 67.8988 | eps: 0.010 | landed
+[ep 682] score:    16.02 | length:  102 | loss: 46.4752 | eps: 0.010 | crash
+[ep 683] score:   290.12 | length:  299 | loss: 99.0867 | eps: 0.010 | landed
+[ep 684] score:    65.38 | length:  149 | loss: 107.3975 | eps: 0.010 | crash
+[ep 685] score:   -82.90 | length:  195 | loss: 59.4812 | eps: 0.010 | crash
+[ep 686] score:   276.79 | length:  283 | loss: 37.1381 | eps: 0.010 | landed
+[ep 687] score:   196.67 | length:  516 | loss: 55.6763 | eps: 0.010 | landed
+[ep 688] score:   212.79 | length:  182 | loss: 47.0208 | eps: 0.010 | landed
+[ep 689] score:   273.02 | length:  260 | loss: 46.1191 | eps: 0.010 | landed
+[ep 690] score:   225.09 | length:  357 | loss: 70.1662 | eps: 0.010 | landed
+[ep 691] score:   313.38 | length:  215 | loss: 54.9271 | eps: 0.010 | landed
+[ep 692] score:   223.56 | length:  437 | loss: 72.2860 | eps: 0.010 | landed
+[ep 693] score:   -41.85 | length:  127 | loss: 81.3553 | eps: 0.010 | crash
+[ep 694] score:  -209.44 | length:  157 | loss: 47.0591 | eps: 0.010 | crash
+[ep 695] score:   283.44 | length:  365 | loss: 57.0738 | eps: 0.010 | landed
+[ep 696] score:   -28.11 | length:  109 | loss: 47.8214 | eps: 0.010 | crash
+[ep 697] score:   -16.68 | length:  183 | loss: 45.9223 | eps: 0.010 | crash
+[ep 698] score:   266.66 | length:  252 | loss: 42.1514 | eps: 0.010 | landed
+[ep 699] score:     1.83 | length:  109 | loss: 30.8390 | eps: 0.010 | crash
+[ep 700] score:   -27.46 | length:  278 | loss: 50.6896 | eps: 0.010 | crash
+[ep 701] score:   217.97 | length:  563 | loss: 55.9756 | eps: 0.010 | landed
+[ep 702] score:  -216.13 | length:  378 | loss: 66.4544 | eps: 0.010 | crash
+[ep 703] score:    75.90 | length:  120 | loss: 43.0454 | eps: 0.010 | crash
+[ep 704] score:   -79.88 | length:  170 | loss: 68.6872 | eps: 0.010 | crash
+[ep 705] score:     9.35 | length:  104 | loss: 122.2007 | eps: 0.010 | crash
+[ep 706] score:   269.36 | length:  180 | loss: 83.4390 | eps: 0.010 | landed
+[ep 707] score:   267.87 | length:  248 | loss: 53.2120 | eps: 0.010 | landed
+[ep 708] score:   302.16 | length:  185 | loss: 70.1089 | eps: 0.010 | landed
+[ep 709] score:  -109.94 | length:   91 | loss: 47.5996 | eps: 0.010 | crash
+[ep 710] score:    10.78 | length:  111 | loss: 43.5710 | eps: 0.010 | crash
+[ep 711] score:   258.98 | length:  213 | loss: 60.8751 | eps: 0.010 | landed
+[ep 712] score:   -23.87 | length:  247 | loss: 54.8268 | eps: 0.010 | crash
+[ep 713] score:   -62.30 | length:  200 | loss: 58.9851 | eps: 0.010 | crash
+[ep 714] score:   285.61 | length:  281 | loss: 46.9225 | eps: 0.010 | landed
+[ep 715] score:     5.52 | length:  139 | loss: 108.8175 | eps: 0.010 | crash
+[ep 716] score:  -119.50 | length:  192 | loss: 56.7216 | eps: 0.010 | crash
+[ep 717] score:   -46.11 | length:   77 | loss: 19.8975 | eps: 0.010 | crash
+[ep 718] score:   -19.48 | length:  117 | loss: 47.3424 | eps: 0.010 | crash
+[ep 719] score:   227.60 | length:  252 | loss: 50.3489 | eps: 0.010 | landed
+[ep 720] score:   -49.26 | length:  126 | loss: 48.9719 | eps: 0.010 | crash
+[ep 721] score:   221.78 | length:  351 | loss: 48.7974 | eps: 0.010 | landed
+[ep 722] score:    21.61 | length:  298 | loss: 44.3646 | eps: 0.010 | crash
+[ep 723] score:   277.28 | length:  254 | loss: 52.3304 | eps: 0.010 | landed
+[ep 724] score:   196.39 | length:  242 | loss: 39.5641 | eps: 0.010 | landed
+[ep 725] score:   -20.20 | length:  115 | loss: 46.8876 | eps: 0.010 | crash
+[ep 726] score:   220.81 | length:  210 | loss: 84.8924 | eps: 0.010 | landed
+[ep 727] score:   275.17 | length:  219 | loss: 77.9377 | eps: 0.010 | landed
+[ep 728] score:   277.08 | length:  254 | loss: 112.8533 | eps: 0.010 | landed
+[ep 729] score:   207.62 | length:  327 | loss: 44.0643 | eps: 0.010 | landed
+[ep 730] score:   303.39 | length:  194 | loss: 85.9294 | eps: 0.010 | landed
+[ep 731] score:  -191.95 | length:  107 | loss: 36.6519 | eps: 0.010 | crash
+[ep 732] score:   296.29 | length:  245 | loss: 81.9506 | eps: 0.010 | landed
+[ep 733] score:   215.71 | length:  317 | loss: 89.5059 | eps: 0.010 | landed
+[ep 734] score:   281.67 | length:  209 | loss: 52.3843 | eps: 0.010 | landed
+[ep 735] score:   254.80 | length:  251 | loss: 69.0895 | eps: 0.010 | landed
+[ep 736] score:   -46.53 | length:  228 | loss: 87.7174 | eps: 0.010 | crash
+[ep 737] score:   -81.43 | length:  109 | loss: 47.6618 | eps: 0.010 | crash
+[ep 738] score:   253.54 | length:  355 | loss: 44.6652 | eps: 0.010 | landed
+[ep 739] score:    40.92 | length:  142 | loss: 93.2458 | eps: 0.010 | crash
+[ep 740] score:   173.50 | length:  850 | loss: 62.7445 | eps: 0.010 | landed
+[ep 741] score:   135.22 | length:  410 | loss: 39.4889 | eps: 0.010 | landed
+[ep 742] score:   220.78 | length:  253 | loss: 51.1554 | eps: 0.010 | landed
+[ep 743] score:     5.46 | length:  172 | loss: 61.6653 | eps: 0.010 | crash
+[ep 744] score:   -20.45 | length:  116 | loss: 39.1917 | eps: 0.010 | crash
+[ep 745] score:   -85.09 | length:  111 | loss: 132.2314 | eps: 0.010 | crash
+[ep 746] score:     0.23 | length:  165 | loss: 37.2747 | eps: 0.010 | crash
+[ep 747] score:   -32.79 | length:  233 | loss: 43.8667 | eps: 0.010 | crash
+[ep 748] score:    21.86 | length:  178 | loss: 62.8337 | eps: 0.010 | crash
+[ep 749] score:   -25.71 | length:  133 | loss: 64.2106 | eps: 0.010 | crash
+[ep 750] score:    -7.39 | length:  108 | loss: 61.7737 | eps: 0.010 | crash
+[ep 751] score:  -182.98 | length:  213 | loss: 36.0984 | eps: 0.010 | crash
+[ep 752] score:   225.91 | length:  284 | loss: 79.4674 | eps: 0.010 | landed
+[ep 753] score:   244.52 | length:  296 | loss: 95.1140 | eps: 0.010 | landed
+[ep 754] score:   282.76 | length:  296 | loss: 111.4327 | eps: 0.010 | landed
+[ep 755] score:   158.07 | length:  282 | loss: 99.4077 | eps: 0.010 | landed
+[ep 756] score:   279.93 | length:  373 | loss: 93.7702 | eps: 0.010 | landed
+[ep 757] score:   207.95 | length:  687 | loss: 67.6538 | eps: 0.010 | landed
+[ep 758] score:   219.79 | length:  314 | loss: 57.7485 | eps: 0.010 | landed
+[ep 759] score:   261.63 | length:  637 | loss: 91.7049 | eps: 0.010 | landed
+[ep 760] score:   264.05 | length:  391 | loss: 51.2964 | eps: 0.010 | landed
+[ep 761] score:   301.31 | length:  231 | loss: 55.0081 | eps: 0.010 | landed
+[ep 762] score:   298.56 | length:  265 | loss: 57.3524 | eps: 0.010 | landed
+[ep 763] score:   266.57 | length:  199 | loss: 75.9216 | eps: 0.010 | landed
+[ep 764] score:   -19.96 | length:  135 | loss: 90.0990 | eps: 0.010 | crash
+[ep 765] score:   209.32 | length:  394 | loss: 103.2185 | eps: 0.010 | landed
+[ep 766] score:   236.29 | length:  448 | loss: 34.5192 | eps: 0.010 | landed
+[ep 767] score:   225.71 | length:  411 | loss: 61.0346 | eps: 0.010 | landed
+[ep 768] score:   -61.15 | length:  131 | loss: 47.7618 | eps: 0.010 | crash
+[ep 769] score:  -157.06 | length:  113 | loss: 33.2425 | eps: 0.010 | out_of_view
+[ep 770] score:   289.94 | length:  209 | loss: 50.9760 | eps: 0.010 | landed
+[ep 771] score:   248.58 | length:  260 | loss: 160.3831 | eps: 0.010 | landed
+[ep 772] score:   295.69 | length:  225 | loss: 80.6440 | eps: 0.010 | landed
+[ep 773] score:   309.85 | length:  293 | loss: 111.6194 | eps: 0.010 | landed
+[ep 774] score:   237.19 | length:  334 | loss: 130.7468 | eps: 0.010 | landed
+[ep 775] score:   -12.81 | length:  130 | loss: 68.2747 | eps: 0.010 | crash
+[ep 776] score:   256.04 | length:  186 | loss: 41.9098 | eps: 0.010 | landed
+[ep 777] score:   -27.61 | length:  101 | loss: 35.2023 | eps: 0.010 | crash
+[ep 778] score:   295.15 | length:  236 | loss: 238.5084 | eps: 0.010 | landed
+[ep 779] score:   275.60 | length:  241 | loss: 49.1268 | eps: 0.010 | landed
+[ep 780] score:   293.43 | length:  213 | loss: 32.3316 | eps: 0.010 | landed
+[ep 781] score:  -306.43 | length:   90 | loss: 41.9482 | eps: 0.010 | out_of_view
+[ep 782] score:     8.36 | length:  238 | loss: 85.0631 | eps: 0.010 | crash
+[ep 783] score:   219.03 | length:  319 | loss: 45.8158 | eps: 0.010 | landed
+[ep 784] score:   159.06 | length:  371 | loss: 116.3810 | eps: 0.010 | landed
+[ep 785] score:   299.67 | length:  203 | loss: 30.4250 | eps: 0.010 | landed
+[ep 786] score:    17.03 | length:  151 | loss: 107.7618 | eps: 0.010 | crash
+[ep 787] score:   288.60 | length:  240 | loss: 105.4239 | eps: 0.010 | landed
+[ep 788] score:   -59.51 | length:  114 | loss: 84.2091 | eps: 0.010 | crash
+[ep 789] score:    31.19 | length:   98 | loss: 39.2832 | eps: 0.010 | crash
+[ep 790] score:   192.52 | length:  288 | loss: 44.5190 | eps: 0.010 | landed
+[ep 791] score:   -46.30 | length:  140 | loss: 141.6382 | eps: 0.010 | crash
+[ep 792] score:   267.28 | length:  728 | loss: 151.9943 | eps: 0.010 | landed
+[ep 793] score:   306.84 | length:  321 | loss: 145.1691 | eps: 0.010 | landed
+[ep 794] score:   244.83 | length:  238 | loss: 85.8131 | eps: 0.010 | landed
+[ep 795] score:   256.63 | length:  278 | loss: 63.4243 | eps: 0.010 | landed
+[ep 796] score:   -32.02 | length:  230 | loss: 165.5580 | eps: 0.010 | crash
+[ep 797] score:    24.64 | length:  133 | loss: 44.5925 | eps: 0.010 | crash
+[ep 798] score:   240.22 | length:  338 | loss: 131.8460 | eps: 0.010 | landed
+[ep 799] score:   249.42 | length:  300 | loss: 52.2376 | eps: 0.010 | landed
+[ep 800] score:   288.23 | length:  231 | loss: 38.3948 | eps: 0.010 | landed
+[ep 801] score:   237.54 | length:  189 | loss: 92.9717 | eps: 0.010 | landed
+[ep 802] score:   191.92 | length:  291 | loss: 56.5449 | eps: 0.010 | landed
+[ep 803] score:   -59.03 | length:  146 | loss: 50.6857 | eps: 0.010 | crash
+[ep 804] score:   203.96 | length:  253 | loss: 76.1273 | eps: 0.010 | landed
+[ep 805] score:   239.83 | length:  199 | loss: 45.4463 | eps: 0.010 | landed
+[ep 806] score:  -109.41 | length:  226 | loss: 54.5847 | eps: 0.010 | out_of_view
+[ep 807] score:    19.06 | length:  304 | loss: 57.3043 | eps: 0.010 | crash
+[ep 808] score:   252.69 | length:  529 | loss: 124.1591 | eps: 0.010 | landed
+[ep 809] score:   284.86 | length:  249 | loss: 56.8160 | eps: 0.010 | landed
+[ep 810] score:   -59.61 | length:  175 | loss: 35.8118 | eps: 0.010 | crash
+[ep 811] score:   266.09 | length:  354 | loss: 121.0117 | eps: 0.010 | landed
+[ep 812] score:   299.15 | length:  200 | loss: 56.1049 | eps: 0.010 | landed
+[ep 813] score:  -207.30 | length:  167 | loss: 72.5683 | eps: 0.010 | crash
+[ep 814] score:   237.45 | length:  456 | loss: 107.9417 | eps: 0.010 | landed
+[ep 815] score:     8.73 | length:  132 | loss: 168.3812 | eps: 0.010 | crash
+[ep 816] score:    80.68 | length:  175 | loss: 48.8721 | eps: 0.010 | crash
+[ep 817] score:   245.76 | length:  321 | loss: 50.3623 | eps: 0.010 | landed
+[ep 818] score:   232.59 | length:  245 | loss: 34.0845 | eps: 0.010 | landed
+[ep 819] score:   -91.75 | length:  608 | loss: 90.2673 | eps: 0.010 | crash
+[ep 820] score:   224.94 | length:  224 | loss: 45.9795 | eps: 0.010 | landed
+[ep 821] score:   259.99 | length:  206 | loss: 66.8749 | eps: 0.010 | landed
+[ep 822] score:   258.77 | length:  184 | loss: 78.9074 | eps: 0.010 | landed
+[ep 823] score:   188.99 | length:  339 | loss: 58.0818 | eps: 0.010 | landed
+[ep 824] score:    -2.61 | length:  342 | loss: 131.2196 | eps: 0.010 | crash
+[ep 825] score:  -234.91 | length:  240 | loss: 209.1676 | eps: 0.010 | crash
+[ep 826] score:   226.38 | length:  267 | loss: 155.8337 | eps: 0.010 | landed
+[ep 827] score:    30.07 | length:  102 | loss: 66.4406 | eps: 0.010 | crash
+[ep 828] score:   270.79 | length:  190 | loss: 136.2979 | eps: 0.010 | landed
+[ep 829] score:   251.85 | length:  283 | loss: 148.4286 | eps: 0.010 | landed
+[ep 830] score:    39.77 | length:  127 | loss: 52.5500 | eps: 0.010 | crash
+[ep 831] score:   -85.07 | length:   94 | loss: 45.2885 | eps: 0.010 | crash
+[ep 832] score:   224.05 | length:  233 | loss: 160.2554 | eps: 0.010 | landed
+[ep 833] score:   -94.09 | length:  153 | loss: 376.2590 | eps: 0.010 | out_of_view
+[ep 834] score:   259.48 | length:  203 | loss: 76.7569 | eps: 0.010 | landed
+[ep 835] score:  -145.03 | length:  157 | loss: 61.8043 | eps: 0.010 | out_of_view
+[ep 836] score:   200.04 | length:  461 | loss: 68.0343 | eps: 0.010 | landed
+[ep 837] score:   157.63 | length:  682 | loss: 96.1008 | eps: 0.010 | landed
+[ep 838] score:   218.18 | length:  313 | loss: 105.8123 | eps: 0.010 | landed
+[ep 839] score:   -82.19 | length:  164 | loss: 451.7687 | eps: 0.010 | out_of_view
+[ep 840] score:   176.84 | length:  496 | loss: 91.7312 | eps: 0.010 | landed
+[ep 841] score:   -69.48 | length:  210 | loss: 110.1575 | eps: 0.010 | crash
+[ep 842] score:    -8.29 | length:  125 | loss: 175.1510 | eps: 0.010 | crash
+[ep 843] score:   257.71 | length:  452 | loss: 160.1643 | eps: 0.010 | landed
+[ep 844] score:   272.02 | length:  308 | loss: 121.7833 | eps: 0.010 | landed
+[ep 845] score:    30.74 | length:  127 | loss: 197.1903 | eps: 0.010 | crash
+[ep 846] score:   244.03 | length:  452 | loss: 201.2673 | eps: 0.010 | landed
+[ep 847] score:  -250.37 | length:  364 | loss: 62.8705 | eps: 0.010 | crash
+[ep 848] score:   314.14 | length:  339 | loss: 58.7636 | eps: 0.010 | landed
+[ep 849] score:   234.49 | length:  249 | loss: 51.2287 | eps: 0.010 | landed
+[ep 850] score:   285.84 | length:  287 | loss: 117.0557 | eps: 0.010 | landed
+[ep 851] score:     9.81 | length:  160 | loss: 74.3543 | eps: 0.010 | crash
+[ep 852] score:   206.45 | length:  242 | loss: 304.4296 | eps: 0.010 | landed
+[ep 853] score:   -96.44 | length:  664 | loss: 140.3192 | eps: 0.010 | crash
+[ep 854] score:   291.99 | length:  287 | loss: 49.1392 | eps: 0.010 | landed
+[ep 855] score:   -40.70 | length:  143 | loss: 56.4208 | eps: 0.010 | crash
+[ep 856] score:   276.51 | length:  217 | loss: 61.0166 | eps: 0.010 | landed
+[ep 857] score:    -2.67 | length:  111 | loss: 261.9117 | eps: 0.010 | crash
+[ep 858] score:     4.76 | length:  123 | loss: 39.6282 | eps: 0.010 | crash
+[ep 859] score:    -3.49 | length:  143 | loss: 593.1695 | eps: 0.010 | crash
+[ep 860] score:    36.53 | length:  106 | loss: 85.1667 | eps: 0.010 | crash
+[ep 861] score:   216.04 | length:  588 | loss: 153.1171 | eps: 0.010 | landed
+[ep 862] score:  -186.25 | length:   84 | loss: 93.3317 | eps: 0.010 | out_of_view
+[ep 863] score:  -161.03 | length:  108 | loss: 38.8295 | eps: 0.010 | out_of_view
+[ep 864] score:  -164.30 | length:   88 | loss: 42.4993 | eps: 0.010 | crash
+[ep 865] score:    62.44 | length:  167 | loss: 32.3600 | eps: 0.010 | crash
+[ep 866] score:   264.88 | length:  198 | loss: 108.4424 | eps: 0.010 | landed
+[ep 867] score:   -49.10 | length:  306 | loss: 94.5534 | eps: 0.010 | out_of_view
+[ep 868] score:   316.71 | length:  200 | loss: 194.0774 | eps: 0.010 | landed
+[ep 869] score:   148.62 | length:  467 | loss: 232.8436 | eps: 0.010 | landed
+[ep 870] score:   211.20 | length:  405 | loss: 80.2066 | eps: 0.010 | landed
+[ep 871] score:   250.10 | length:  205 | loss: 187.4437 | eps: 0.010 | landed
+[ep 872] score:   217.82 | length:  266 | loss: 338.0588 | eps: 0.010 | landed
+[ep 873] score:   294.77 | length:  234 | loss: 457.0216 | eps: 0.010 | landed
+[ep 874] score:   260.56 | length:  253 | loss: 329.6686 | eps: 0.010 | landed
+[ep 875] score:   208.93 | length:  306 | loss: 233.0513 | eps: 0.010 | landed
+[ep 876] score:   243.14 | length:  265 | loss: 501.6575 | eps: 0.010 | landed
+[ep 877] score:    69.43 | length:  124 | loss: 593.4815 | eps: 0.010 | crash
+[ep 878] score:   225.82 | length:  225 | loss: 199.8883 | eps: 0.010 | landed
+[ep 879] score:   274.07 | length:  269 | loss: 195.9407 | eps: 0.010 | landed
+[ep 880] score:   209.39 | length:  717 | loss: 391.4250 | eps: 0.010 | landed
+[ep 881] score:  -269.71 | length:  897 | loss: 168.5229 | eps: 0.010 | out_of_view
+[ep 882] score:   259.68 | length:  273 | loss: 349.4482 | eps: 0.010 | landed
+[ep 883] score:    17.64 | length:  269 | loss: 116.9308 | eps: 0.010 | crash
+[ep 884] score:    33.78 | length:  147 | loss: 89.0914 | eps: 0.010 | crash
+[ep 885] score:   -23.73 | length:  200 | loss: 645.5014 | eps: 0.010 | crash
+[ep 886] score:    29.93 | length:  180 | loss: 96.3752 | eps: 0.010 | crash
+[ep 887] score:   226.63 | length:  222 | loss: 84.6881 | eps: 0.010 | landed
+[ep 888] score:    22.83 | length:  195 | loss: 85.3172 | eps: 0.010 | crash
+[ep 889] score:    43.48 | length:  113 | loss: 187.5421 | eps: 0.010 | crash
+[ep 890] score:   250.04 | length:  367 | loss: 264.0260 | eps: 0.010 | landed
+[ep 891] score:     3.89 | length:  119 | loss: 139.0836 | eps: 0.010 | crash
+[ep 892] score:   271.08 | length:  343 | loss: 336.3645 | eps: 0.010 | landed
+[ep 893] score:   276.63 | length:  415 | loss: 247.3061 | eps: 0.010 | landed
+[ep 894] score:   -99.37 | length:  667 | loss: 450.9103 | eps: 0.010 | crash
+[ep 895] score:   248.43 | length:  205 | loss: 70.9186 | eps: 0.010 | landed
+[ep 896] score:   281.27 | length:  238 | loss: 93.4755 | eps: 0.010 | landed
+[ep 897] score:    14.25 | length:  140 | loss: 342.9338 | eps: 0.010 | crash
+[ep 898] score:   224.62 | length:  455 | loss: 381.9689 | eps: 0.010 | landed
+[ep 899] score:   300.71 | length:  250 | loss: 283.2735 | eps: 0.010 | landed
+[ep 900] score:  -100.37 | length:  203 | loss: 337.5199 | eps: 0.010 | crash
+[ep 901] score:    27.70 | length:  248 | loss: 1555.7713 | eps: 0.010 | crash
+[ep 902] score:    12.23 | length:  142 | loss: 154.5442 | eps: 0.010 | crash
+[ep 903] score:   255.53 | length:  215 | loss: 364.9086 | eps: 0.010 | landed
+[ep 904] score:     6.43 | length:  123 | loss: 138.7213 | eps: 0.010 | crash
+[ep 905] score:   263.41 | length:  253 | loss: 113.1908 | eps: 0.010 | landed
+[ep 906] score:    30.24 | length:  161 | loss: 736.3617 | eps: 0.010 | crash
+[ep 907] score:    70.08 | length:  139 | loss: 940.1799 | eps: 0.010 | crash
+[ep 908] score:    61.70 | length:  164 | loss: 85.4654 | eps: 0.010 | crash
+[ep 909] score:   -27.08 | length:  195 | loss: 84.7718 | eps: 0.010 | crash
+[ep 910] score:    29.37 | length:  250 | loss: 499.7604 | eps: 0.010 | crash
+[ep 911] score:    54.60 | length:  147 | loss: 86.3655 | eps: 0.010 | crash
+[ep 912] score:   287.30 | length:  224 | loss: 226.4618 | eps: 0.010 | landed
+[ep 913] score:   -21.65 | length:  132 | loss: 925.8535 | eps: 0.010 | crash
+[ep 914] score:   278.86 | length:  281 | loss: 94.1576 | eps: 0.010 | landed
+[ep 915] score:    34.02 | length:  140 | loss: 92.6721 | eps: 0.010 | crash
+[ep 916] score:   278.98 | length:  251 | loss: 103.3324 | eps: 0.010 | landed
+[ep 917] score:    27.02 | length:  235 | loss: 138.6491 | eps: 0.010 | crash
+[ep 918] score:   217.96 | length:  799 | loss: 392.6418 | eps: 0.010 | landed
+[ep 919] score:   264.69 | length:  291 | loss: 137.0524 | eps: 0.010 | landed
+[ep 920] score:     8.60 | length:  171 | loss: 160.8795 | eps: 0.010 | crash
+[ep 921] score:   263.78 | length:  228 | loss: 811.9265 | eps: 0.010 | landed
+[ep 922] score:    -7.40 | length:  154 | loss: 62.6727 | eps: 0.010 | crash
+[ep 923] score:   227.74 | length:  425 | loss: 170.7252 | eps: 0.010 | landed
+[ep 924] score:   280.16 | length:  199 | loss: 764.4458 | eps: 0.010 | landed
+[ep 925] score:   282.84 | length:  195 | loss: 348.9857 | eps: 0.010 | landed
+[ep 926] score:   272.88 | length:  213 | loss: 187.6836 | eps: 0.010 | landed
+[ep 927] score:   265.26 | length:  284 | loss: 542.2696 | eps: 0.010 | landed
+[ep 928] score:   242.03 | length:  275 | loss: 373.3234 | eps: 0.010 | landed
+[ep 929] score:    53.81 | length:  148 | loss: 94.3522 | eps: 0.010 | crash
+[ep 930] score:   278.10 | length:  326 | loss: 221.5122 | eps: 0.010 | landed
+[ep 931] score:  -127.70 | length:  163 | loss: 139.9989 | eps: 0.010 | crash
+[ep 932] score:   252.10 | length:  212 | loss: 704.9169 | eps: 0.010 | landed
+[ep 933] score:   221.42 | length:  257 | loss: 383.3070 | eps: 0.010 | landed
+[ep 934] score:    50.87 | length:  130 | loss: 38.5862 | eps: 0.010 | crash
+[ep 935] score:   244.13 | length:  372 | loss: 655.8102 | eps: 0.010 | landed
+[ep 936] score:   300.30 | length:  244 | loss: 76.3260 | eps: 0.010 | landed
+[ep 937] score:   247.86 | length:  249 | loss: 137.2358 | eps: 0.010 | landed
+[ep 938] score:   258.32 | length:  326 | loss: 58.1598 | eps: 0.010 | landed
+[ep 939] score:   250.76 | length:  225 | loss: 224.3270 | eps: 0.010 | landed
+[ep 940] score:   238.09 | length:  212 | loss: 450.0573 | eps: 0.010 | landed
+[ep 941] score:   284.71 | length:  241 | loss: 144.1682 | eps: 0.010 | landed
+[ep 942] score:   273.74 | length:  308 | loss: 450.4178 | eps: 0.010 | landed
+[ep 943] score:    15.71 | length:  163 | loss: 445.5573 | eps: 0.010 | crash
+[ep 944] score:   268.87 | length:  200 | loss: 46.4323 | eps: 0.010 | landed
+[ep 945] score:   255.76 | length:  262 | loss: 283.7125 | eps: 0.010 | landed
+[ep 946] score:   304.73 | length:  219 | loss: 465.1337 | eps: 0.010 | landed
+[ep 947] score:   186.56 | length:  421 | loss: 761.3259 | eps: 0.010 | landed
+[ep 948] score:    61.07 | length:  179 | loss: 88.9446 | eps: 0.010 | crash
+[ep 949] score:   266.84 | length:  310 | loss: 788.9040 | eps: 0.010 | landed
+[ep 950] score:   257.55 | length:  207 | loss: 50.5053 | eps: 0.010 | landed
+[ep 951] score:   278.81 | length:  296 | loss: 509.3969 | eps: 0.010 | landed
+[ep 952] score:   218.42 | length:  273 | loss: 89.4585 | eps: 0.010 | landed
+[ep 953] score:   193.12 | length:  343 | loss: 230.8837 | eps: 0.010 | landed
+[ep 954] score:   260.95 | length:  492 | loss: 254.5929 | eps: 0.010 | landed
+[ep 955] score:   197.45 | length:  318 | loss: 106.6745 | eps: 0.010 | landed
+[ep 956] score:   256.58 | length:  280 | loss: 51.3847 | eps: 0.010 | landed
+[ep 957] score:   230.82 | length:  344 | loss: 177.0099 | eps: 0.010 | landed
+[ep 958] score:   216.45 | length:  284 | loss: 74.4800 | eps: 0.010 | landed
+[ep 959] score:   287.26 | length:  259 | loss: 97.6808 | eps: 0.010 | landed
+[ep 960] score:   -54.03 | length:  154 | loss: 1443.5035 | eps: 0.010 | crash
+[ep 961] score:    10.64 | length:  253 | loss: 48.7942 | eps: 0.010 | crash
+[ep 962] score:   -22.74 | length:  205 | loss: 550.2755 | eps: 0.010 | crash
+[ep 963] score:    70.66 | length:  176 | loss: 1266.0510 | eps: 0.010 | crash
+[ep 964] score:   237.95 | length:  239 | loss: 530.6581 | eps: 0.010 | landed
+[ep 965] score:    46.52 | length:  186 | loss: 425.9685 | eps: 0.010 | crash
+[ep 966] score:    13.35 | length:  214 | loss: 481.6380 | eps: 0.010 | crash
+[ep 967] score:   219.34 | length:  472 | loss: 570.5857 | eps: 0.010 | landed
+[ep 968] score:   247.17 | length:  370 | loss: 547.2741 | eps: 0.010 | landed
+[ep 969] score:   295.40 | length:  380 | loss: 178.6690 | eps: 0.010 | landed
+[ep 970] score:   211.03 | length:  394 | loss: 499.8571 | eps: 0.010 | landed
+[ep 971] score:   249.95 | length:  285 | loss: 1045.8556 | eps: 0.010 | landed
+[ep 972] score:   265.30 | length:  478 | loss: 522.3683 | eps: 0.010 | landed
+[ep 973] score:   226.76 | length:  317 | loss: 366.4452 | eps: 0.010 | landed
+[ep 974] score:   290.89 | length:  300 | loss: 277.5456 | eps: 0.010 | landed
+[ep 975] score:    19.08 | length:  194 | loss: 236.9758 | eps: 0.010 | crash
+[ep 976] score:   238.97 | length:  386 | loss: 302.0798 | eps: 0.010 | landed
+[ep 977] score:   273.59 | length:  300 | loss: 245.8491 | eps: 0.010 | landed
+[ep 978] score:   290.50 | length:  249 | loss: 64.5000 | eps: 0.010 | landed
+[ep 979] score:   181.94 | length:  759 | loss: 407.2441 | eps: 0.010 | landed
+[ep 980] score:   -19.41 | length:  164 | loss: 48.3678 | eps: 0.010 | crash
+[ep 981] score:   284.84 | length:  353 | loss: 482.9042 | eps: 0.010 | landed
+[ep 982] score:   268.44 | length:  271 | loss: 1046.8411 | eps: 0.010 | landed
+[ep 983] score:   263.73 | length:  538 | loss: 995.3592 | eps: 0.010 | landed
+[ep 984] score:   259.63 | length:  373 | loss: 820.6899 | eps: 0.010 | landed
+[ep 985] score:   312.04 | length:  230 | loss: 215.6629 | eps: 0.010 | landed
+[ep 986] score:    -8.23 | length:  168 | loss: 885.6816 | eps: 0.010 | crash
+[ep 987] score:   286.01 | length:  215 | loss: 304.9868 | eps: 0.010 | landed
+[ep 988] score:   276.95 | length:  221 | loss: 572.7449 | eps: 0.010 | landed
+[ep 989] score:   255.25 | length:  267 | loss: 113.4038 | eps: 0.010 | landed
+[ep 990] score:   282.59 | length:  276 | loss: 110.4841 | eps: 0.010 | landed
+[ep 991] score:    16.34 | length:  178 | loss: 929.0480 | eps: 0.010 | crash
+[ep 992] score:   267.02 | length:  208 | loss: 58.1421 | eps: 0.010 | landed
+[ep 993] score:   261.60 | length:  308 | loss: 450.0714 | eps: 0.010 | landed
+[ep 994] score:   214.96 | length:  286 | loss: 843.1051 | eps: 0.010 | landed
+[ep 995] score:   271.31 | length:  222 | loss: 145.6386 | eps: 0.010 | landed
+[ep 996] score:   302.45 | length:  265 | loss: 895.6476 | eps: 0.010 | landed
+[ep 997] score:   277.50 | length:  220 | loss: 952.9315 | eps: 0.010 | landed
+[ep 998] score:   243.23 | length:  269 | loss: 841.6993 | eps: 0.010 | landed
+[ep 999] score:   257.51 | length:  263 | loss: 277.9988 | eps: 0.010 | landed
+[ep 1000] score:   -33.13 | length:  144 | loss: 4215.5024 | eps: 0.010 | crash
+
+Model saved to models/ddqn_wind.pt
+Logs saved to logs/train/ddqn_wind.csv
+
+[4/4] Evaluating Double DQN (with wind)...
+/home/phil/local-starttrek/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_stream, resource_exists
+[ep 001] score:    27.27 | length:  134 | crash
+[ep 002] score:   280.04 | length:  207 | landed
+[ep 003] score:   316.90 | length:  228 | landed
+[ep 004] score:   247.47 | length:  247 | landed
+[ep 005] score:   284.87 | length:  201 | landed
+[ep 006] score:   240.12 | length:  233 | landed
+[ep 007] score:   233.61 | length:  188 | landed
+[ep 008] score:   266.27 | length:  200 | landed
+[ep 009] score:    30.97 | length:  142 | crash
+[ep 010] score:   286.73 | length:  243 | landed
+[ep 011] score:   283.36 | length:  312 | landed
+[ep 012] score:   210.60 | length:  216 | landed
+[ep 013] score:    39.66 | length:  245 | crash
+[ep 014] score:   261.71 | length:  226 | landed
+[ep 015] score:   286.96 | length:  216 | landed
+[ep 016] score:    63.63 | length:  177 | crash
+[ep 017] score:   167.70 | length: 1000 | out_of_time
+[ep 018] score:   221.16 | length:  249 | landed
+[ep 019] score:    16.18 | length:  125 | crash
+[ep 020] score:   246.03 | length:  240 | landed
+[ep 021] score:    37.18 | length:  137 | crash
+[ep 022] score:   290.44 | length:  187 | landed
+[ep 023] score:   288.62 | length:  209 | landed
+[ep 024] score:   278.50 | length:  253 | landed
+[ep 025] score:   280.90 | length:  232 | landed
+[ep 026] score:   -13.07 | length:  227 | crash
+[ep 027] score:   297.46 | length:  216 | landed
+[ep 028] score:    93.01 | length:  161 | crash
+[ep 029] score:   286.78 | length:  197 | landed
+[ep 030] score:    29.88 | length:  173 | crash
+[ep 031] score:   262.17 | length:  189 | landed
+[ep 032] score:   257.64 | length:  221 | landed
+[ep 033] score:   255.93 | length:  322 | landed
+[ep 034] score:  -231.45 | length:  478 | out_of_view
+[ep 035] score:   271.40 | length:  189 | landed
+[ep 036] score:   144.18 | length: 1000 | out_of_time
+[ep 037] score:   255.85 | length:  303 | landed
+[ep 038] score:    13.28 | length:  142 | crash
+[ep 039] score:   -29.03 | length:  163 | crash
+[ep 040] score:   264.14 | length:  293 | landed
+[ep 041] score:   301.57 | length:  209 | landed
+[ep 042] score:   264.23 | length:  203 | landed
+[ep 043] score:    44.03 | length:  125 | crash
+[ep 044] score:   -66.02 | length:  291 | out_of_view
+[ep 045] score:    23.44 | length:  170 | crash
+[ep 046] score:    -7.24 | length:  128 | crash
+[ep 047] score:   267.79 | length:  189 | landed
+[ep 048] score:    39.17 | length:  144 | crash
+[ep 049] score:   236.23 | length:  225 | landed
+[ep 050] score:    11.24 | length:  154 | crash
+[ep 051] score:    90.56 | length: 1000 | out_of_time
+[ep 052] score:   294.88 | length:  192 | landed
+[ep 053] score:    64.82 | length:  125 | crash
+[ep 054] score:   125.18 | length: 1000 | out_of_time
+[ep 055] score:   282.88 | length:  293 | landed
+[ep 056] score:   270.26 | length:  207 | landed
+[ep 057] score:   279.31 | length:  199 | landed
+[ep 058] score:     7.42 | length:  158 | crash
+[ep 059] score:   227.36 | length:  253 | landed
+[ep 060] score:   270.59 | length:  175 | landed
+[ep 061] score:   222.26 | length:  206 | landed
+[ep 062] score:    90.51 | length: 1000 | out_of_time
+[ep 063] score:   273.32 | length:  268 | landed
+[ep 064] score:   189.43 | length:  252 | landed
+[ep 065] score:   291.96 | length:  260 | landed
+[ep 066] score:   275.94 | length:  200 | landed
+[ep 067] score:     0.99 | length:  229 | crash
+[ep 068] score:   234.52 | length:  224 | landed
+[ep 069] score:   176.66 | length: 1000 | out_of_time
+[ep 070] score:  -127.84 | length:  563 | out_of_view
+[ep 071] score:   248.00 | length:  735 | landed
+[ep 072] score:   269.13 | length:  175 | landed
+[ep 073] score:   242.70 | length:  748 | landed
+[ep 074] score:    23.95 | length:  142 | crash
+[ep 075] score:   296.29 | length:  344 | landed
+[ep 076] score:   287.57 | length:  264 | landed
+[ep 077] score:   262.79 | length:  196 | landed
+[ep 078] score:   254.95 | length:  347 | landed
+[ep 079] score:    44.71 | length:  121 | crash
+[ep 080] score:   181.13 | length: 1000 | out_of_time
+[ep 081] score:   278.79 | length:  210 | landed
+[ep 082] score:   286.97 | length:  230 | landed
+[ep 083] score:   304.36 | length:  186 | landed
+[ep 084] score:   121.97 | length: 1000 | out_of_time
+[ep 085] score:   209.73 | length:  791 | landed
+[ep 086] score:   177.14 | length: 1000 | out_of_time
+[ep 087] score:   272.88 | length:  229 | landed
+[ep 088] score:  -542.46 | length:  222 | crash
+[ep 089] score:    30.96 | length:  146 | crash
+[ep 090] score:   267.86 | length:  237 | landed
+[ep 091] score:   232.64 | length:  343 | landed
+[ep 092] score:   254.23 | length:  335 | landed
+[ep 093] score:   290.45 | length:  205 | landed
+[ep 094] score:   245.18 | length:  213 | landed
+[ep 095] score:   291.48 | length:  209 | landed
+[ep 096] score:   187.77 | length:  274 | landed
+[ep 097] score:   274.65 | length:  179 | landed
+[ep 098] score:   214.57 | length:  486 | landed
+[ep 099] score:   213.58 | length:  518 | landed
+[ep 100] score:   221.21 | length:  428 | landed
+
+Mean score over 100 episodes: 179.46
+Logs saved to logs/eval/ddqn_wind.csv
+
+Done. CSVs in logs/, models in models/.

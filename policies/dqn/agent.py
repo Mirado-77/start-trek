@@ -43,11 +43,13 @@ class RunningNormalizer:
 class DQNAgent:
     """DQN agent with experience replay and a target network.
 
-    Supports two ablation flags via config:
+    Supports several flags via config:
     - algo.soft_update (bool, default False): if True, uses Polyak averaging
       instead of a hard copy for the target network. Requires algo.tau.
     - algo.obs_norm (bool, default False): if True, normalizes observations
       online using a running mean/std (Welford's algorithm).
+    - algo.double_dqn (bool, default False): if True, uses the Double DQN
+      target (action chosen by the online net, evaluated by the target net).
 
     Hard update: target <- online every target_update_freq steps.
     Soft update: target <- tau * online + (1 - tau) * target every step.
@@ -64,10 +66,11 @@ class DQNAgent:
         self.epsilon_end = algo["epsilon_end"]
         self.epsilon_decay = algo["epsilon_decay"]
 
-        # Ablation flags
+        # Optional flags
         self.soft_update = algo.get("soft_update", False)
         self.tau         = algo.get("tau", 0.005)
         self.obs_norm    = algo.get("obs_norm", False)
+        self.double_dqn  = algo.get("double_dqn", False)
 
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -142,7 +145,14 @@ class DQNAgent:
         q_pred = self.online_net(obs_t).gather(1, actions_t.unsqueeze(1)).squeeze(1)
  
         with torch.no_grad():
-            q_next   = self.target_net(next_obs_t).max(dim=1).values
+            if self.double_dqn:
+                # Double DQN: action chosen by the online net,
+                # value read from the target net (decouples selection
+                # from evaluation, reduces the max-operator bias).
+                next_actions = self.online_net(next_obs_t).argmax(dim=1, keepdim=True)
+                q_next = self.target_net(next_obs_t).gather(1, next_actions).squeeze(1)
+            else:
+                q_next = self.target_net(next_obs_t).max(dim=1).values
             q_target = rewards_t + self.gamma * (1.0 - dones_t) * q_next
  
         loss = self.loss_fn(q_pred, q_target)

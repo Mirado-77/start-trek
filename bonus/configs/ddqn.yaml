@@ -1,0 +1,22 @@
+env:
+  name: "LunarLander-v3"
+  seed: 42
+  render_mode: "rgb_array"
+
+train:
+  n_episodes: 800
+  max_steps: 1000
+  save_path: "models/ddqn.pt"
+
+algo:
+  gamma: 0.99
+  lr: 1.0e-3
+  batch_size: 64
+  buffer_size: 100000
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay: 0.9995
+  target_update_freq: 500
+  soft_update: false
+  obs_norm: false
+  double_dqn: true
