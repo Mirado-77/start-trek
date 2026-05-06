@@ -9,7 +9,6 @@ train:
   save_path: "models/dqn_ablation_soft_update.pt"
 
 algo:
-  name: "dqn"
   gamma: 0.99
   lr: 1.0e-3
   batch_size: 64

@@ -1,0 +1,3 @@
+phase,run,n_seeds,score_mean,score_ci95,solve_rate_mean,solve_rate_ci95,seeds
+train,ddqn,5,108.7844,154.4554,0.5603,0.2526,0;1;2;3;4
+eval,ddqn,5,-167.0667,1120.303,0.648,0.462,0;1;2;3;4

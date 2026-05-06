@@ -1,0 +1,25 @@
+env:
+  name: "LunarLander-v3"
+  seed: 42
+  render_mode: "rgb_array"
+  enable_wind: true
+  wind_power: 15.0
+  turbulence_power: 1.5
+
+train:
+  n_episodes: 1000
+  max_steps: 1000
+  save_path: "models/ddqn_wind.pt"
+
+algo:
+  gamma: 0.99
+  lr: 1.0e-3
+  batch_size: 64
+  buffer_size: 100000
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay: 0.9995
+  target_update_freq: 500
+  soft_update: false
+  obs_norm: false
+  double_dqn: true

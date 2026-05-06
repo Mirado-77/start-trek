@@ -26,6 +26,12 @@ Reinforcement learning agent that lands a lunar module on the Gymnasium `LunarLa
 |       |-- network.py       # Q network (MLP)
 |       `-- replay_buffer.py
 |-- models/                  # saved DQN weights (.pt)
+|-- bonus/
+|   |-- configs/
+|   |   |-- ddqn.yaml        # Double DQN, no wind
+|   |   `-- ddqn_wind.yaml   # Double DQN + wind perturbation
+|   |-- run.sh               # train + eval both bonus runs
+|   `-- seeds.sh             # 5-seed Double DQN study
 |-- logs/
 |   |-- train/<run>.csv
 |   |-- eval/<run>.csv
@@ -57,6 +63,7 @@ Three entry points cover every use case:
 one-click.sh | > logs/scripts/one-click.log   # baselines + DQN + plots (full repro)
 ablation.sh | > logs/scripts/ablation.log    # DQN baseline + 3 ablations
 seeds.sh | > logs/scripts/seeds.log       # 5 seeds (0..4) + mean +/- 95% CI
+bonus/run.sh | > logs/scripts/bonus.log     # bonus: Double DQN, with and without wind
 ```
 
 ## Usage
@@ -102,10 +109,12 @@ Reads every CSV under `logs/{train,eval}/` and writes PNGs to
 python aggregate.py
 ```
 
-Looks for every `logs/{train,eval}/<run>_s<N>.csv`, computes the mean
-score and the 95% CI half-width (Student's t with n-1 df), reports
-the solve rate (score >= 200), and writes the summary to
-`logs/seeds_summary.csv`.
+Iterates over the runs given via `--runs` (default: `random heuristic dqn`)
+and looks for every matching `logs/{train,eval}/<run>_s<N>.csv`,
+computes the mean score and the 95% CI half-width (Student's t with n-1 df),
+reports the solve rate (score >= 200), and writes the summary to
+`logs/seeds_summary.csv` (use `--out` to redirect, `--phases` to filter).
+Example for the bonus DDQN study: `python aggregate.py --runs ddqn`.
 
 ## Configuration
 
@@ -133,15 +142,17 @@ YAML files live in `config/`. Each run can override any of:
 
 Every run produces a CSV with one row per episode:
 
-| Column | Always | DQN only |
-|--------|:------:|:--------:|
-| `episode`, `score`, `length`, `termination_reason` | yes | yes |
-| `mean_loss`, `epsilon` |   | yes |
+| Column | All runs | DQN training only |
+|--------|:--------:|:-----------------:|
+| `episode`, `score`, `length`, `termination_reason` | yes |   |
+| `mean_loss`, `epsilon` |   | yes (eval is greedy, no learning) |
 
-`termination_reason` is one of:
-- `landed` (terminated and score > 0),
-- `crash` (terminated with negative reward),
-- `out_of_time` (truncated by the env or by `max_steps`).
+`termination_reason` follows the project brief vocabulary:
+
+- `landed` -- env terminated with the +100 sleep-state reward.
+- `crash` -- env terminated with the -100 game-over reward (body collided).
+- `out_of_view` -- env terminated because `|x| >= 1.0`.
+- `out_of_time` -- env truncated at the time limit (1000 steps).
 
 ## Results
 
@@ -173,3 +184,13 @@ Notes:
 - mean score >= 200 over 100 consecutive eval episodes,
 - termination causes are tracked,
 - `one-click.sh` regenerates the same CSV + plots within 5%.
+
+
+# Need to run all in once ?
+```bash
+./one-click.sh > logs/scripts/one-click.log 2>&1 ; \
+./ablation.sh > logs/scripts/ablation.log 2>&1 ; \
+./seeds.sh > logs/scripts/seed.log 2>&1 ; \
+./bonus/run.sh > logs/scripts/bonus-run.log 2>&1 ; \
+./bonus/seeds.sh > logs/scripts/bonus-seeds.log 2>&1
+```

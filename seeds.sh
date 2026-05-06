@@ -8,6 +8,10 @@
 
 set -euo pipefail
 
+# 5 training runs per policy. We deliberately skip --video here:
+# one-click.sh already produces demo videos for the canonical seed,
+# and recording videos for every seed would 5x the disk usage with
+# no analytical value beyond the first run.
 SEEDS=(0 1 2 3 4)
 
 echo "============================================"

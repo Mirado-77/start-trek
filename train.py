@@ -37,6 +37,30 @@ def _seed_everything(seed: int):
 LOGS_DIR   = "logs/train"
 VIDEOS_DIR = "assets/videos/train"
 
+# Extra kwargs forwarded to gym.make() when present in config.env.
+# Lets bonus configs enable wind (LunarLander-v3 supports continuous,
+# gravity, enable_wind, wind_power, turbulence_power).
+ENV_PASSTHROUGH_KEYS = ("continuous", "gravity", "enable_wind",
+                        "wind_power", "turbulence_power")
+
+
+def _env_kwargs(config: dict) -> dict:
+    return {k: config["env"][k] for k in ENV_PASSTHROUGH_KEYS if k in config["env"]}
+
+
+def _classify_termination(terminated: bool, truncated: bool, last_reward: float, last_obs) -> str:
+    """Map a step outcome to one of: landed, crash, out_of_view, out_of_time.
+    Vocabulary follows the project brief. The env terminates with reward +100
+    on a safe landing, -100 on a body crash, and -100 when |x| >= 1.0
+    (out-of-view). Truncation is the env's time limit (1000 steps)."""
+    if truncated:
+        return "out_of_time"
+    if last_reward >= 50:
+        return "landed"
+    if abs(last_obs[0]) >= 1.0:
+        return "out_of_view"
+    return "crash"
+
 
 def load_config(path: str) -> dict:
     with open(path, "r") as f:
@@ -60,7 +84,7 @@ def _resolve_render_mode(config: dict, save_video: bool, render: bool) -> str:
 
 def _make_env(config: dict, run_name: str, save_video: bool, render: bool, video_every: int, name_suffix: str):
     render_mode = _resolve_render_mode(config, save_video, render)
-    env = gym.make(config["env"]["name"], render_mode=render_mode)
+    env = gym.make(config["env"]["name"], render_mode=render_mode, **_env_kwargs(config))
 
     if save_video:
         video_folder = f"{VIDEOS_DIR}/{run_name}"
@@ -80,6 +104,7 @@ def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bo
     log_path = f"{LOGS_DIR}/{run_name}.csv"
 
     env = _make_env(config, run_name, save_video, render, video_every=10, name_suffix="_train")
+    env.action_space.seed(config["env"]["seed"])
     policy = POLICIES[policy_name]
     scores = []
 
@@ -91,6 +116,7 @@ def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bo
             obs, info = env.reset(seed=config["env"]["seed"] + ep)
             total_reward = 0.0
             length = 0
+            reward = 0.0
             terminated = truncated = False
 
             while not (terminated or truncated):
@@ -99,10 +125,7 @@ def run_baseline(config: dict, policy_name: str, n_episodes: int, save_video: bo
                 total_reward += reward
                 length += 1
 
-            if terminated:
-                reason = "landed" if total_reward > 0 else "crash"
-            else:
-                reason = "out_of_time"
+            reason = _classify_termination(terminated, truncated, reward, obs)
             scores.append(total_reward)
             print(f"[ep {ep+1:03d}] score: {total_reward:8.2f} | length: {length:4d} | {reason}")
             writer.writerow([ep + 1, round(total_reward, 2), length, reason])
@@ -131,6 +154,7 @@ def train_dqn(config: dict, save_video: bool, render: bool, seed_suffix: str = "
     log_path = f"{LOGS_DIR}/{run_name}.csv"
 
     env = _make_env(config, run_name, save_video, render, video_every=50, name_suffix="_train")
+    env.action_space.seed(config["env"]["seed"])
 
     obs_dim = env.observation_space.shape[0]
     n_actions = env.action_space.n
@@ -144,6 +168,7 @@ def train_dqn(config: dict, save_video: bool, render: bool, seed_suffix: str = "
             obs, info = env.reset(seed=config["env"]["seed"] + ep)
             total_reward = 0.0
             length = 0
+            reward = 0.0
             losses = []
             terminated = truncated = False
 
@@ -157,10 +182,7 @@ def train_dqn(config: dict, save_video: bool, render: bool, seed_suffix: str = "
                 total_reward += reward
                 length += 1
 
-            if terminated:
-                reason = "landed" if total_reward > 0 else "crash"
-            else:
-                reason = "out_of_time"
+            reason = _classify_termination(terminated, truncated, reward, obs)
 
             mean_loss = sum(losses) / len(losses) if losses else 0.0
             print(
