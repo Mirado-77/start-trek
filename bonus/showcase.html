@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Start Trek - Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="site/style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav>
+        <a href="#" class="nav-brand">Start Trek</a>
+        <ul class="nav-links">
+            <li><a href="#random">Aléatoire</a></li>
+            <li><a href="#heuristique">Heuristique</a></li>
+            <li><a href="#dqn">DQN</a></li>
+            <li><a href="#vent">Vent</a></li>
+            <li><a href="#continu">Continu</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Epitech · Reinforcement Learning · 2026</p>
+            <h1>Start Trek</h1>
+            <p class="hero-desc">
+                <b>Le but :</b> faire atterrir un module lunaire.<br>
+                <b>La méthode :</b> le programme apprend <b>seul</b>, par essais et erreurs.
+            </p>
+        </div>
+        <div class="hero-scores">
+            <div class="score-card">
+                <span class="sr-name">Pilote aléatoire</span>
+                <span class="sr-val bad">-185</span>
+            </div>
+            <div class="score-card">
+                <span class="sr-name">Heuristique</span>
+                <span class="sr-val neutral">+253</span>
+            </div>
+            <div class="score-card">
+                <span class="sr-name">IA - DQN</span>
+                <span class="sr-val good">+262</span>
+            </div>
+            <div class="score-card">
+                <span class="sr-name">TD3 continu</span>
+                <span class="sr-val accent">+237</span>
+            </div>
+        </div>
+    </div>
+
+    <main>
+
+        <div id="random" class="section">
+            <div class="section-text">
+                <div class="section-meta">
+                    <p class="section-num">01 / 05</p>
+                    <span class="section-tag tag-low">Baseline basse</span>
+                    <h2 class="section-title">Le pilote au hasard</h2>
+                </div>
+                <p class="section-desc">
+                    Le module agit totalement <b>au hasard</b>.<br>
+                    Résultat : <b>aucun</b> atterrissage réussi.<br>
+                    C'est notre point de départ (le pire scénario).
+                </p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-label">Score moyen</div>
+                        <div class="stat-value bad">-185</div>
+                        <div class="stat-sub">sur 100 essais</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Atterrissages réussis</div>
+                        <div class="stat-value bad">0 / 100</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-videos">
+                <div class="video-card">
+                    <video src="../assets/videos/eval/random/random_eval-episode-0.mp4" controls muted loop></video>
+                    <div class="video-caption">Essai 1 - s'écrase immédiatement</div>
+                </div>
+                <div class="video-card">
+                    <video src="../assets/videos/eval/random/random_eval-episode-50.mp4" controls muted loop></video>
+                    <div class="video-caption">Essai 50 - toujours rien</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="heuristique" class="section">
+            <div class="section-text">
+                <div class="section-meta">
+                    <p class="section-num">02 / 05</p>
+                    <span class="section-tag tag-high">Baseline haute</span>
+                    <h2 class="section-title">Le pilote écrit à la main</h2>
+                </div>
+                <p class="section-desc">
+                    Un programmeur écrit des <b>règles fixes</b> (viser la piste, ralentir).<br>
+                    Cela représente le niveau d'un <b>humain expert</b>.<br>
+                    91% de réussite, mais impossible de faire mieux sans changer le code.
+                </p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-label">Score moyen</div>
+                        <div class="stat-value neutral">+253</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Atterrissages réussis</div>
+                        <div class="stat-value good">91 / 100</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-videos">
+                <div class="video-card">
+                    <video src="../assets/videos/eval/heuristic/heuristic_eval-episode-0.mp4" controls muted loop></video>
+                    <div class="video-caption">Atterrissage type</div>
+                </div>
+                <div class="video-card">
+                    <video src="../assets/videos/eval/heuristic/heuristic_eval-episode-30.mp4" controls muted loop></video>
+                    <div class="video-caption">Autre essai</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="dqn" class="section">
+            <div class="section-text">
+                <div class="section-meta">
+                    <p class="section-num">03 / 05</p>
+                    <span class="section-tag tag-rl">Renforcement</span>
+                    <h2 class="section-title">L'IA qui apprend - DQN</h2>
+                </div>
+                <p class="section-desc">
+                    <b>Aucune règle</b> n'est donnée au module.<br>
+                    Il essaie, échoue, et <b>apprend</b> de ses erreurs.<br>
+                    Au final, il <b>dépasse</b> le niveau du pilote humain !
+                </p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-label">Score moyen</div>
+                        <div class="stat-value good">+262</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Atterrissages réussis</div>
+                        <div class="stat-value good">91 / 100</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Entraînements</div>
+                        <div class="stat-value" style="color:var(--ink)">5×</div>
+                        <div class="stat-sub">résultat stable</div>
+                    </div>
+                </div>
+                <div class="bar-chart">
+                    <div class="bar-chart-label">Comparaison des scores</div>
+                    <div class="bar-row">
+                        <span class="bar-name">Pilote aléatoire</span>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width:8%; background:var(--bad)"></div>
+                        </div>
+                        <span class="bar-val" style="color:var(--bad)">-185</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-name">Heuristique</span>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width:70%; background:var(--neutral)"></div>
+                        </div>
+                        <span class="bar-val" style="color:var(--neutral)">+253</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-name">IA - DQN</span>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width:74%; background:var(--good)"></div>
+                        </div>
+                        <span class="bar-val" style="color:var(--good)">+262</span>
+                    </div>
+                </div>
+            </div>
+            <div class="section-videos">
+                <p class="prog-label">Progression de l'entraînement</p>
+                <div class="progression">
+                    <div class="prog-step">
+                        <video src="../assets/videos/train/dqn/dqn_train-episode-0.mp4" controls muted loop></video>
+                        <div class="prog-info">
+                            <div class="prog-ep">Ep. 1</div>
+                            <div class="prog-state">Ne sait rien faire</div>
+                        </div>
+                    </div>
+                    <div class="prog-step">
+                        <video src="../assets/videos/train/dqn/dqn_train-episode-200.mp4" controls muted loop></video>
+                        <div class="prog-info">
+                            <div class="prog-ep">Ep. 200</div>
+                            <div class="prog-state">Il explore</div>
+                        </div>
+                    </div>
+                    <div class="prog-step">
+                        <video src="../assets/videos/train/dqn/dqn_train-episode-500.mp4" controls muted loop></video>
+                        <div class="prog-info">
+                            <div class="prog-ep">Ep. 500</div>
+                            <div class="prog-state">Commence à poser</div>
+                        </div>
+                    </div>
+                    <div class="prog-step">
+                        <video src="../assets/videos/train/dqn/dqn_train-episode-750.mp4" controls muted loop></video>
+                        <div class="prog-info">
+                            <div class="prog-ep">Ep. 750</div>
+                            <div class="prog-state">Expert</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="vent" class="section">
+            <div class="section-text">
+                <div class="section-meta">
+                    <p class="section-num">04 / 05</p>
+                    <span class="section-tag tag-bonus">Bonus</span>
+                    <h2 class="section-title">L'IA face au vent</h2>
+                </div>
+                <p class="section-desc">
+                    On ajoute du <b>vent imprévisible</b> pendant la descente.<br>
+                    L'IA n'a <b>jamais</b> été entraînée avec du vent.<br>
+                    Résultat : elle réussit quand même dans <b>plus de 60%</b> des cas !
+                </p>
+                <div class="callout">
+                    <span>L'IA prouve sa capacité à <b>s'adapter</b> à une situation complètement nouvelle et inattendue.</span>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-label">Score (avec vent)</div>
+                        <div class="stat-value neutral">+179</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Atterrissages</div>
+                        <div class="stat-value neutral">63 / 100</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Sans vent</div>
+                        <div class="stat-value good">91%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-videos">
+                <div class="video-card">
+                    <video src="../assets/videos/eval/ddqn_wind/ddqn_wind_eval-episode-0.mp4" controls muted loop></video>
+                    <div class="video-caption">DQN face au vent - essai 1</div>
+                </div>
+                <div class="video-card">
+                    <video src="../assets/videos/eval/ddqn_wind/ddqn_wind_eval-episode-30.mp4" controls muted loop></video>
+                    <div class="video-caption">DQN face au vent - essai 30</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="continu" class="section">
+            <div class="section-text">
+                <div class="section-meta">
+                    <p class="section-num">05 / 05</p>
+                    <span class="section-tag tag-rl">Bonus avancé</span>
+                    <h2 class="section-title">Pilotage fin - TD3 continu</h2>
+                </div>
+                <p class="section-desc">
+                    Avant : on allume ou on éteint les moteurs (<b>100% ou 0%</b>).<br>
+                    Maintenant : l'IA <b>dose l'intensité</b> avec précision, comme un vrai pilote.<br>
+                    C'est beaucoup plus difficile et demande une IA plus avancée.
+                </p>
+                <div class="callout blue">
+                    <span>Le pilotage <b>continu</b> (précis) est beaucoup plus complexe que le pilotage <b>discret</b> (on/off), mais donne un vol plus fluide.</span>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-label">Score moyen</div>
+                        <div class="stat-value accent">+237</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Atterrissages réussis</div>
+                        <div class="stat-value good">88 / 100</div>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Approche</th>
+                                <th>Contrôle</th>
+                                <th>Algorithme</th>
+                                <th>Score</th>
+                                <th>Taux</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="name">Aléatoire</td>
+                                <td>Discret</td>
+                                <td>-</td>
+                                <td class="v-bad">-185</td>
+                                <td class="v-bad">0%</td>
+                            </tr>
+                            <tr>
+                                <td class="name">Heuristique</td>
+                                <td>Discret</td>
+                                <td>Règles fixes</td>
+                                <td class="v-neutral">+253</td>
+                                <td class="v-neutral">91%</td>
+                            </tr>
+                            <tr class="highlight">
+                                <td class="name">DQN</td>
+                                <td>Discret</td>
+                                <td>Deep Q-Network</td>
+                                <td class="v-good">+262</td>
+                                <td class="v-good">91%</td>
+                            </tr>
+                            <tr>
+                                <td class="name">DQN + vent</td>
+                                <td>Discret</td>
+                                <td>Deep Q-Network</td>
+                                <td class="v-neutral">+179</td>
+                                <td class="v-neutral">63%</td>
+                            </tr>
+                            <tr class="highlight">
+                                <td class="name">TD3 (bonus)</td>
+                                <td>Continu</td>
+                                <td>Twin Delayed DDPG</td>
+                                <td class="v-accent">+237</td>
+                                <td class="v-accent">88%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="section-videos">
+                <div class="video-card">
+                    <video src="assets/videos/eval/td3/td3_eval-episode-0.mp4" controls muted loop></video>
+                    <div class="video-caption">TD3 continu - essai 1</div>
+                </div>
+                <div class="video-card">
+                    <video src="assets/videos/eval/td3/td3_eval-episode-50.mp4" controls muted loop></video>
+                    <div class="video-caption">TD3 continu - essai 50</div>
+                </div>
+                <div class="video-card">
+                    <video src="assets/videos/eval/td3/td3_eval-episode-90.mp4" controls muted loop></video>
+                    <div class="video-caption">TD3 continu - essai 90</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div>
+            <div class="footer-brand">Start Trek</div>
+            <div class="footer-sub">Epitech Paris · Reinforcement Learning</div>
+        </div>
+        <div class="footer-right">Promo 2026</div>
+    </footer>
+
+</body>
+
+</html>
