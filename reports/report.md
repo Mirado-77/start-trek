@@ -290,7 +290,7 @@ Without input normalization the network just learns the natural scales itself.
   which should cut training variance.
 - **Dueling architecture** (separate state-value and advantage streams),
   which usually helps on environments with many near-equivalent actions, including LunarLander.
-- **Continuous-control variant** (`continuous=True`) with DDPG / SAC to remove the discrete-action restriction.
+- **Continuous-control variant** (`continuous=True`) with DDPG / TD3 / SAC to remove the discrete-action restriction (TD3 is implemented in section 9; SAC remains future work).
 - **Wind / turbulence** to test robustness,
   since the brief flags it as a bonus and our policy has never seen perturbed dynamics.
 - **More seeds.**
@@ -348,7 +348,7 @@ The wind row is single-seed (42) like the ablation table.
 |------------------------------|-----------:|----------:|-----------:|
 | DQN (5 seeds)                |     261.89 | +/-  21.3 |      91.0% |
 | Double DQN (5 seeds)         |      41.76 | +/- 509.0 |      62.4% |
-| Double DQN + wind (1 seed)   |     154.37 |       n/a |      64.0% |
+| Double DQN + wind (1 seed)   |     179.46 |       n/a |      63.0% |
 
 Per-seed breakdown for Double DQN (eval):
 
@@ -391,13 +391,193 @@ but the honest takeaway from the data we have is:
 **Wind run.**
 
 With `wind_power=15`, `turbulence_power=1.5`, and no curriculum,
-the wind agent still solves 64% of episodes
-(against 91% in still air for plain DQN).
-The 36 unsolved episodes are dominated by crashes,
-not by time-outs:
-the agent commits to a landing attempt but the lateral push pulls it off the pad
-before the legs touch.
+the wind agent still solves 63% of episodes
+(against 91% in still air for plain DQN), with a mean score of 179.46.
+The 37 unsolved episodes break down as 23 crashes, 9 time-outs and 3 out-of-view:
+the lateral push either drifts the lander off the pad just before the legs touch,
+or pushes it past the |x| = 1.0 boundary entirely.
 A short policy fine-tuning with wind enabled,
 or domain randomization across `wind_power` during training,
 would close most of that gap;
 out of scope for this submission.
+
+
+## 9. Bonus: continuous control with TD3
+
+`LunarLander-v3` accepts `continuous=True`,
+which switches the action space from `Discrete(4)` to `Box(-1, 1, (2,))`.
+Each component is a continuous throttle:
+
+```
+action[0]  : main engine.   < 0 -> off, [0, 1] -> proportional thrust (>= 0.5 fires).
+action[1]  : side engines. < -0.5 -> left engine, > 0.5 -> right engine, otherwise off.
+```
+
+DQN cannot solve this version: `argmax_a Q(s, a)` is undefined on a continuous action space.
+We therefore implement a separate algorithm in `bonus/td3/`.
+
+### 9.1 Algorithm: TD3
+
+The base algorithm is DDPG (Deep Deterministic Policy Gradient, Lillicrap et al. 2015):
+two networks, an actor `pi(s; theta)` that maps a state to a deterministic action,
+and a critic `Q(s, a; phi)` that scores (state, action) pairs.
+Training alternates:
+
+```
+Critic loss:  (Q(s, a; phi) - [r + gamma * (1 - done) * Q_target(s', pi_target(s'))])^2
+Actor loss:  -Q(s, pi(s; theta); phi)              # gradient ascent on the critic
+```
+
+Vanilla DDPG diverged in our smoke run (Q values exploded,
+agent drifted out of frame).
+We use **TD3** (Fujimoto, van Hoof, Meger 2018), which adds three stabilising tricks:
+
+1. **Twin critics.**
+   Two independent critics `Q1`, `Q2` are trained on the same batches.
+   The TD target uses the smaller of the two:
+   ```
+   y = r + gamma * (1 - done) * min(Q1_target(s', a'), Q2_target(s', a'))
+   ```
+   `min` removes the systematic Q-value overestimation that DDPG suffers from.
+
+2. **Delayed policy updates.**
+   The actor and target networks are updated every `policy_delay = 2` critic updates.
+   The critics get to settle before the actor moves, which avoids chasing a
+   non-stationary value function.
+
+3. **Target policy smoothing.**
+   Small clipped Gaussian noise is added to the action chosen by the target actor
+   before evaluating Q:
+   ```
+   a' = clip(pi_target(s') + clip(N(0, sigma), -c, c), -1, 1)
+   ```
+   This penalises the actor for exploiting sharp Q peaks (which would not
+   survive small action perturbations in the real env).
+
+A pure warm-up phase of `start_steps = 10 000` random actions fills the replay
+buffer before any gradient step. Without warm-up, the actor saturates on a
+single bad action early and cannot recover.
+
+### 9.2 Hyperparameters
+
+From `bonus/configs/td3.yaml`:
+gamma 0.99, batch 256, replay 1e6, tau 0.005, actor and critic lr 3e-4,
+exploration noise N(0, 0.1), target noise N(0, 0.2) clipped to [-0.5, 0.5],
+policy delay 2, warm-up 10 000 steps, 800 episodes (the smaller 400-episode
+run plateaued in a hover policy that did not commit to landing).
+
+### 9.3 Results
+
+100 evaluation episodes, single seed, greedy policy (no exploration noise).
+
+| Run                           | Mean score | Solve rate | Landed | Crash | Timeout |
+|-------------------------------|-----------:|-----------:|-------:|------:|--------:|
+| TD3 -- LunarLanderContinuous  |     236.95 |      88.0% |     95 |     4 |       1 |
+
+The continuous variant **clears the 200 threshold** (mean 236.95 over 100 episodes).
+Termination breakdown is dominated by clean landings (95/100);
+the four crashes happen on initial states where the lander spawns close to a leg
+and the actor over-rotates before the legs touch;
+the single timeout is an episode where the agent hovers above the pad without
+committing -- the residual hover-bias visible in the 400-episode run is much
+reduced after 800 episodes but not entirely gone.
+
+Compared to discrete DQN (5-seed mean 261.89, solve rate 91%) on the easier
+discrete env, TD3 on the harder continuous env reaches 237 mean / 88% solve.
+That is a fair result given:
+
+- the continuous action space is, on paper, a more general problem
+  (DQN cannot even attempt it),
+- training is single-seed: with the 95% CI of the discrete DQN study (+/- 21),
+  237 and 261 are within sampling distance of each other.
+
+### 9.4 Demo and showcase
+
+For the in-person defence and the family review,
+two helpers are provided:
+
+- `python bonus/demo.py` opens a window and runs random / heuristic / DQN / TD3
+  one after the other, with a coloured terminal scoreboard.
+  The visual contrast between the four pilots is the easiest way to convey
+  what reinforcement learning achieves to a non-technical audience.
+- `bonus/showcase.html` is a static page that embeds the recorded videos
+  (random crashes, heuristic landings, DQN learning progression, wind run,
+  continuous run) with short captions in plain French.
+  Open it in any browser, no server needed.
+
+
+## 10. Sources
+
+### Foundational papers
+
+- **DQN.**
+  Mnih, V., Kavukcuoglu, K., Silver, D., et al. (2013).
+  *Playing Atari with Deep Reinforcement Learning.*
+  arXiv:1312.5602. https://arxiv.org/abs/1312.5602
+- **DQN (full version).**
+  Mnih, V., et al. (2015).
+  *Human-level control through deep reinforcement learning.*
+  Nature 518, 529-533. https://www.nature.com/articles/nature14236
+- **Double Q-learning.**
+  van Hasselt, H. (2010).
+  *Double Q-learning.* NIPS 2010.
+  https://papers.nips.cc/paper/2010/hash/091d584fced301b442654dd8c23b3fc9-Abstract.html
+- **Double DQN.**
+  van Hasselt, H., Guez, A., Silver, D. (2016).
+  *Deep Reinforcement Learning with Double Q-learning.* AAAI 2016.
+  arXiv:1509.06461. https://arxiv.org/abs/1509.06461
+- **DDPG.**
+  Lillicrap, T., Hunt, J., Pritzel, A., et al. (2015).
+  *Continuous control with deep reinforcement learning.*
+  arXiv:1509.02971. https://arxiv.org/abs/1509.02971
+- **TD3.**
+  Fujimoto, S., van Hoof, H., Meger, D. (2018).
+  *Addressing Function Approximation Error in Actor-Critic Methods.*
+  ICML 2018. arXiv:1802.09477. https://arxiv.org/abs/1802.09477
+- **Potential-based reward shaping.**
+  Ng, A. Y., Harada, D., Russell, S. (1999).
+  *Policy invariance under reward transformations: theory and application
+  to reward shaping.* ICML 1999.
+  http://robotics.stanford.edu/~ang/papers/shaping-icml99.pdf
+- **Polyak averaging.**
+  Polyak, B. T., Juditsky, A. B. (1992).
+  *Acceleration of stochastic approximation by averaging.*
+  SIAM Journal on Control and Optimization 30(4), 838-855.
+- **Welford's online variance.**
+  Welford, B. P. (1962).
+  *Note on a method for calculating corrected sums of squares and products.*
+  Technometrics 4(3), 419-420.
+
+### Environment
+
+- **Gymnasium.**
+  Towers, M., Terry, J. K., Kwiatkowski, A., et al. (2024).
+  *Gymnasium: A Standard API for Reinforcement Learning Environments.*
+  https://gymnasium.farama.org/
+- **LunarLander-v3.**
+  https://gymnasium.farama.org/environments/box2d/lunar_lander/
+- **Box2D physics.**
+  https://box2d.org/
+
+### Reference implementations and tutorials consulted
+
+- **Stable-Baselines3.**
+  Raffin, A., Hill, A., Gleave, A., et al. (2021).
+  *Stable-Baselines3: Reliable Reinforcement Learning Implementations.*
+  JMLR 22(268), 1-8. https://github.com/DLR-RM/stable-baselines3
+- **OpenAI Spinning Up.**
+  Achiam, J. (2018).
+  *Spinning Up in Deep RL.*
+  https://spinningup.openai.com/
+- **CleanRL.**
+  Huang, S., et al. (2022).
+  *CleanRL: High-quality Single-file Implementations of Deep RL Algorithms.*
+  JMLR 23(274), 1-18. https://github.com/vwxyzjn/cleanrl
+
+### Books
+
+- Sutton, R. S., Barto, A. G. (2018).
+  *Reinforcement Learning: An Introduction* (2nd ed.). MIT Press.
+  http://incompleteideas.net/book/the-book-2nd.html
+  (Chapter 6 for TD learning, Chapter 9-10 for function approximation,
+  Chapter 13 for policy gradient and actor-critic.)
