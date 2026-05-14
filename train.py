@@ -71,6 +71,7 @@ POLICIES = {
     "random": random.random_policy,
     "heuristic": heuristic.heuristic_policy,
     "dqn": None,
+    "qlearn": None,
 }
 
 
@@ -196,6 +197,58 @@ def train_dqn(config: dict, save_video: bool, render: bool, seed_suffix: str = "
     print(f"Logs saved to {log_path}")
     env.close()
 
+def train_qlearn(config: dict, save_video: bool, render: bool, seed_suffix: str = ""):
+    from policies.qlearn.agent import QlearnAgent
+
+    train_cfg = config["train"]
+    n_episodes = train_cfg["n_episodes"]
+    max_steps = train_cfg["max_steps"]
+    save_path = train_cfg["save_path"]
+    
+    if seed_suffix:
+        base, ext = os.path.splitext(save_path)
+        save_path = f"{base}{seed_suffix}{ext}"
+
+    run_name = os.path.splitext(os.path.basename(save_path))[0]
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    os.makedirs(LOGS_DIR, exist_ok=True)
+    log_path = f"{LOGS_DIR}/{run_name}.csv"
+    
+    env = _make_env(config, run_name, save_video, render, video_every=50, name_suffix="_train")
+    env.action_space.seed(config["env"]["seed"])
+    n_state = env.observation_space.shape[0]
+    n_actions = env.action_space.n
+    agent = QlearnAgent(n_state, n_actions, config)
+
+    with open(log_path, "w", newline="") as f:
+        writer = csv.writer(f, delimiter=',')
+        writer.writerow(["episode", "score", "length", "termination_reason", "mean_loss", "epsilon"])
+
+        for ep in range(n_episodes):
+            total_reward = 0.0
+            epsilon = agent.reduce_epsilon(ep)
+            state, info = env.reset(seed=config["env"]["seed"] + ep)
+            length = 0
+            terminated = truncated = False
+            while not (terminated or truncated) and length < max_steps:
+                action = agent.epsilon_greedy_policy(state, epsilon, env)
+                new_state, reward, terminated, truncated, info = env.step(action)
+                new_reward = agent.shaped_reward(new_state, reward, (terminated or truncated))
+                agent.update_Qtable(state, action, new_reward, new_state)
+                state = new_state
+                total_reward += reward
+                length += 1
+
+            reason = _classify_termination(terminated, truncated, reward, state)
+            print(
+                f"[ep {ep+1:03d}] score: {total_reward:8.2f} | length: {length:4d} "
+                f"| eps: {epsilon:.3f} | {reason}"
+            )
+            writer.writerow([ep + 1, round(total_reward, 2), length, reason, round(epsilon, 4)])
+    agent.save(save_path)
+    print(f"\nModel saved to {save_path}")
+    print(f"Logs saved to {log_path}")
+    env.close()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -217,5 +270,7 @@ if __name__ == "__main__":
 
     if args.policy == "dqn":
         train_dqn(config, args.video, args.render, seed_suffix)
+    if args.policy == "qlearn":
+        train_qlearn(config, args.video, args.render, seed_suffix)
     else:
         run_baseline(config, args.policy, args.episodes, args.video, args.render, seed_suffix)
