@@ -90,7 +90,7 @@ def aggregate(phase: str, base_name: str) -> dict | None:
 def main():
     parser = argparse.ArgumentParser(description="Aggregate per-seed CSVs (mean +/- 95% CI)")
     parser.add_argument("--phases", nargs="+", default=["train", "eval"])
-    parser.add_argument("--runs",   nargs="+", default=["random", "heuristic", "dqn"])
+    parser.add_argument("--runs",   nargs="+", default=["random", "heuristic", "dqn", "qlearn"])
     parser.add_argument("--out", default="logs/seeds_summary.csv")
     args = parser.parse_args()
 
