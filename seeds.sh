@@ -33,6 +33,11 @@ for s in "${SEEDS[@]}"; do
   echo "[dqn]       train + eval"
   python train.py --policy dqn --config config/dqn.yaml --seed "$s"
   python eval.py --policy dqn --config config/dqn.yaml --episodes 100 --seed "$s"
+  
+  echo "[double dqn]       train + eval"
+  python train.py --policy dqn --config bonus/configs/ddqn.yaml --seed "$s"
+  python eval.py --policy dqn --config bonus/configs/ddqn.yaml --episodes 100 --seed "$s"
+
 done
 
 echo ""
