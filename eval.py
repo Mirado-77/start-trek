@@ -12,7 +12,7 @@ import argparse
 import csv
 import os
 from policies.baseline import random, heuristic
-
+import numpy as np
 
 LOGS_DIR   = "logs/eval"
 VIDEOS_DIR = "assets/videos/eval"
@@ -48,6 +48,7 @@ POLICIES = {
     "random": random.random_policy,
     "heuristic": heuristic.heuristic_policy,
     "dqn": None,
+    "qlearn": None
 }
 
 
@@ -167,6 +168,53 @@ def eval_dqn(config: dict, n_episodes: int, save_video: bool, render: bool, seed
     print(f"Logs saved to {log_path}")
     env.close()
 
+def eval_Qlearn(config: dict, n_episodes: int, save_video: bool, render: bool, seed_suffix: str = ""):
+    from policies.qlearn.agent import QlearnAgent
+
+    save_path = config["train"]["save_path"]
+    if seed_suffix:
+        base, ext = os.path.splitext(save_path)
+        save_path = f"{base}{seed_suffix}{ext}"
+    run_name = os.path.splitext(os.path.basename(save_path))[0]
+
+    os.makedirs(LOGS_DIR, exist_ok=True)
+    log_path = f"{LOGS_DIR}/{run_name}.csv"
+
+    env = _make_env(config, run_name, save_video, render)
+    env.action_space.seed(config["env"]["seed"])
+
+    obs_dim = env.observation_space.shape[0]
+    n_actions = env.action_space.n
+    agent = QlearnAgent(obs_dim, n_actions, config)
+    agent.load(save_path)
+    episode_rewards = []
+    rows_out = []
+
+    for ep in range(n_episodes):
+        state, info = env.reset(seed=config["env"]["seed"] + ep)
+        total_reward = 0.0
+        length = 0
+        reward = 0.0
+        terminated = truncated = False
+
+        while not (terminated or truncated):
+            action = agent.perform_action(state)
+            new_state, reward, terminated, truncated, info = env.step(action)
+            total_reward += reward
+            state = new_state
+            length += 1
+
+        reason = _classify_termination(terminated, truncated, reward, new_state)
+        episode_rewards.append(total_reward)
+        rows_out.append([ep + 1, round(total_reward, 2), length, reason])
+        print(f"[ep {ep+1:03d}] score: {total_reward:8.2f} | length: {length:4d} | {reason}")
+
+    _write_log(log_path, rows_out)
+    mean_reward = np.mean(episode_rewards)
+    std_reward = np.std(episode_rewards)
+    print(f"\nMean score over {n_episodes} episodes: {mean_reward:.2f} +/- {std_reward:.2f}")
+    print(f"Logs saved to {log_path}")
+    env.close()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -186,6 +234,8 @@ if __name__ == "__main__":
         seed_suffix = f"_s{args.seed}"
 
     if args.policy == "dqn":
-        eval_dqn(config, args.episodes, args.video, args.render, seed_suffix)
+        eval_dqn(config, args.episodes, args.video, args.render, seed_suffix)    
+    if args.policy == "qlearn":
+        eval_Qlearn(config, args.episodes, args.video, args.render, seed_suffix)
     else:
         evaluate(config, args.policy, args.episodes, args.video, args.render, seed_suffix)
