@@ -43,7 +43,12 @@ def main():
     parser.add_argument("--episodes", type=int, default=100)
     parser.add_argument("--seed",     type=int, default=None)
     parser.add_argument("--video",    action="store_true")
+    parser.add_argument("--render",   action="store_true",
+                        help="open a live window to watch the trained agent")
     args = parser.parse_args()
+
+    if args.render and args.video:
+        parser.error("--render (live window) and --video are mutually exclusive")
 
     with open(args.config) as f:
         config = yaml.safe_load(f)
@@ -62,7 +67,8 @@ def main():
     os.makedirs("bonus/logs/eval", exist_ok=True)
     log_path = f"bonus/logs/eval/{run_name}.csv"
 
-    env = gym.make(config["env"]["name"], render_mode="rgb_array", **_env_kwargs(config))
+    render_mode = "human" if args.render else "rgb_array"
+    env = gym.make(config["env"]["name"], render_mode=render_mode, **_env_kwargs(config))
     env.action_space.seed(config["env"]["seed"])
 
     if args.video:
